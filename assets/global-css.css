@@ -237,6 +237,33 @@
   margin-inline: 0.9em;
 }
 
+/* The design covers desktop only. On mobile the single left-aligned line is too
+   long, so the two blocks stack and centre — the treatment the theme already
+   uses for utilities at this width. back-to-top is out of flow, so it keeps its
+   top-right corner either way. */
+@media screen and (max-width: 749px) {
+  .footer-utilities .utilities--blocks-3 {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 8px;
+  }
+
+  .footer-utilities .utilities--blocks-3 > *:nth-child(n) {
+    text-align: center;
+  }
+
+  .footer-utilities .menu .details-content ul {
+    justify-content: center;
+  }
+
+  /* Each separator is drawn before its link, which is what supplies the divider
+     between the copyright and the first link on one line. Once the two stack,
+     that first one would open the line instead. */
+  .footer-utilities .menu .menu__item:first-child::before {
+    content: none;
+  }
+}
+
 /* Back to top straddles the seam: 13px above the bar, flush with the content
    column's right edge. */
 .footer-utilities .back-to-top {

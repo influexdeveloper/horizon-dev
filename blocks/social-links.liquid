@@ -58,24 +58,21 @@
             endcase
         endcase
 
-        # Check if URL has a profile path (more than just the domain)
-        assign url_parts = link_url | split: '//' | last | split: '/'
-        assign has_profile = false
-
-        if url_parts.size > 1 and url_parts[1] != ''
-          assign has_profile = true
-        endif
-
-        unless render_icon
-          assign has_profile = true
-        endunless
+        # Any non-blank URL renders. Horizon shipped this gated on the URL
+        # carrying a profile path, so a placeholder or a bare domain showed in
+        # the theme editor but silently vanished on the storefront, which reads
+        # as a broken block rather than as a deliberate guard.
+        # Trade-off: a placeholder URL now reaches shoppers as a live link, so
+        # the real profile URLs have to be filled in before launch.
+        assign has_profile = true
       endif
     %}
 
     {% comment %}
-      Only render the social icon if:
-      1. In editor mode (always show, but may be disabled)
-      2. On storefront AND has a valid profile link
+      Render the social icon whenever a URL is set. `has_profile` is now always
+      true for a non-blank URL, so the editor and the storefront agree and the
+      disabled treatment below never applies; restoring the profile-path guard
+      is a matter of reinstating that one assignment above.
     {% endcomment %}
     {% if link_url != blank %}
       {% if request.design_mode or has_profile %}
