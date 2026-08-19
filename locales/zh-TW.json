@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "載入影片：{{ description }}",
@@ -20,6 +29,7 @@
     "slider_label": "投影播放器"
   },
   "accessibility": {
+    "back_to_top": "返回頂部",
     "play_model": "播放 3D 模型",
     "play_video": "播放影片",
     "unit_price": "單價",

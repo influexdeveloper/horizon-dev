@@ -15,6 +15,9 @@
   <span class="footer-utilities__text">
     &copy; {{ 'now' | date: '%Y' }}
     {{ shop.name | link_to: routes.root_url -}}
+    {%- if block_settings.rights_text != blank -%}
+      <span class="footer-utilities__rights">{{ block_settings.rights_text }}</span>
+    {%- endif -%}
     {%- if block_settings.show_powered_by -%}
       , {{ powered_by_link }}
     {%- endif -%}
@@ -25,6 +28,11 @@
   .footer-utilities__group-copyright {
     color: var(--color-utilities, var(--color-foreground-muted));
   }
+
+  /* Reads as a second clause after the store name rather than a run-on. */
+  .footer-utilities__rights {
+    margin-inline-start: 0.75em;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -32,6 +40,12 @@
   "name": "t:names.copyright",
   "tag": null,
   "settings": [
+    {
+      "type": "text",
+      "id": "rights_text",
+      "label": "Rights statement",
+      "info": "Shown after the store name, e.g. \"All Rights Reserved\". Leave blank to omit."
+    },
     {
       "type": "checkbox",
       "id": "show_powered_by",

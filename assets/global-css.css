@@ -1,0 +1,228 @@
+/* ==========================================================================
+   Global CSS
+
+   Project-level overrides that sit on top of Horizon's own section and block
+   `{% stylesheet %}` blocks. Those get compiled into a generated bundle whose
+   load order relative to this file is not guaranteed, so the rules below are
+   scoped through `#header-component` to win on specificity rather than on
+   source order — and without reaching for `!important`.
+
+   Only add rules here that cannot be expressed through a theme setting.
+   Anything the section schema already exposes belongs in
+   sections/header-group.json instead.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Header — Figma "Monrosia - Custom (Copy)", node 4001:21
+   -------------------------------------------------------------------------- */
+
+#header-component.header {
+  /* The design's bar is 80px tall: a 46px logo centred in 16px of block
+     padding, sitting on a 1px hairline. `section_height` only offers 4px
+     (compact) or 11.2px (standard), so the padding is set directly. */
+  --header-padding: 16px;
+
+  /* Distance between two top-level menu items. Measured off the design's
+     nav run (~34px); the theme's default is --gap-xl (20px). */
+  --header-menu-item-gap: 34px;
+}
+
+/* Horizon spaces top-level items with padding on the link title rather than a
+   flex gap, so the hit area extends into the gap. Keep that behaviour and just
+   widen it.
+
+   Items the overflow-list has moved into the "more" dropdown are excluded, so
+   the theme's `[slot='overflow'] .menu-list__link-title { padding-inline: 0 }`
+   keeps governing them — they stack vertically and want no side padding. */
+#header-component .header-menu .menu-list__list-item:not([slot='overflow']) .menu-list__link-title {
+  padding-inline: calc(var(--header-menu-item-gap) / 2);
+}
+
+/* ...and pull the list back out by the same half-gap so the first and last
+   items stay flush with the column edges. Mirrors the theme's own
+   `margin-inline: calc(-1 * var(--menu-horizontal-gap) / 2)`. */
+#header-component .header-menu .overflow-menu::part(list) {
+  margin-inline: calc(var(--header-menu-item-gap) / -2);
+}
+
+/* Action icons keep the exact box they occupy in the design rather than the
+   square --icon-size-md (22px) the theme applies to header action SVGs. The
+   cart is a trolley — wider than it is tall — so a square box would stretch it.
+
+   Search is 21.3px because its exported canvas carries a 0.3px stroke bleed
+   around a 21px glyph; the account icon is sized by the width/height
+   attributes on its inline SVG in snippets/header-actions.liquid. */
+#header-component .search-action svg {
+  width: 21.3px;
+  height: 21.3px;
+}
+
+#header-component .header-actions__cart-icon svg {
+  width: 28px;
+  height: 21.234px;
+}
+
+/* Cart count bubble: a 15px disc overlapping the trolley's top-right corner.
+   Colours come from the section's custom bubble settings, not from here.
+
+   The `:not()` guard leaves the theme's 10px "100+ items" dot alone — that
+   state is styled off an empty count span. */
+#header-component cart-icon.header-actions__cart-icon:not(:has(.cart-bubble__text-count:empty)) {
+  --cart-bubble-size: 15px;
+  --cart-bubble-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — Figma "Monrosia - Custom (Copy)", node 2575:124
+   -------------------------------------------------------------------------- */
+
+/* The panel is a horizontal gradient. A theme colour setting holds one flat
+   colour, so the section keeps `background_color: #220706` — that is still the
+   value contrast-override reads to pick text colours — and the gradient is
+   painted over it here. Only `background-image` is set, so the theme's
+   `background-color` rule is left intact underneath. */
+.footer-section .section-background {
+  background-image: linear-gradient(90deg, #220706 5.92%, #4d0804 100%);
+}
+
+/* Both bands centre a ~930px content block, narrower than the page container
+   the header uses (design: content runs x127→1056 of a 1200 page). */
+.footer-section .footer-content,
+.footer-utilities .utilities {
+  max-width: 930px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Three unequal columns, measured off the design: logo 324, nav 194,
+   signup 411. Below 990px the theme's own collapsing rules take over. */
+@media screen and (min-width: 990px) {
+  .footer-section .footer-content {
+    grid-template-columns: 324fr 194fr 411fr;
+  }
+}
+
+/* Footer nav: 18px on a 36px rhythm (the design sets line-height 2, and four
+   items at 36px are exactly the 144px the nav block occupies). */
+.footer-section .menu__item {
+  font-size: 18px;
+  line-height: 2;
+}
+
+/* Social glyphs read as white at 50% over the panel. */
+.footer-section .social-icons__wrapper {
+  --color-utilities: rgb(255 255 255 / 0.5);
+}
+
+/* The text block's font_size list has no 30px or 15px step, so both sizes are
+   set here. It has to be the resolved `font-size` / `line-height` rather than
+   `--font-size` / `--line-height`: snippets/typography-style.liquid writes those
+   variables as an inline style, which no external rule can outrank. Overriding
+   the properties mirrors the theme's own `.custom-font-size, .custom-font-size > *`
+   pair, so the block and its paragraph both follow. Block ids come from
+   sections/footer-group.json. */
+.footer-section .text-block--footer_signup_heading,
+.footer-section .text-block--footer_signup_heading > * {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.footer-section .text-block--footer_signup_text,
+.footer-section .text-block--footer_signup_text > * {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+/* Signup form: a square 42px field and a detached gold pill.
+   The gradient and the pill radius cannot come from block settings. */
+.footer-section .email-signup__input {
+  height: 42px;
+  padding-inline: 18px;
+}
+
+.footer-section .email-signup__input::placeholder {
+  opacity: 0.5;
+}
+
+.footer-section .email-signup__button {
+  min-width: 144px;
+  height: 42px;
+  border-radius: 50px;
+  border: 0;
+  background-image: linear-gradient(45deg, #ecddcc 0%, #e4b68c 100%);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+/* --- Utilities bar --- */
+
+/* Three blocks are declared, but back-to-top is taken out of flow below, so a
+   flex row left-aligns the copyright and the legal links as one continuous
+   line instead of the theme's 1fr/auto/1fr split. */
+.footer-utilities .utilities--blocks-3 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 0;
+  color: rgb(244 244 244 / 0.5);
+
+  --color-utilities: rgb(244 244 244 / 0.5);
+}
+
+.footer-utilities .utilities--blocks-3 > *:nth-child(n) {
+  text-align: left;
+  justify-self: start;
+}
+
+/* Legal links run inline after the copyright, each preceded by a rule, which
+   also supplies the divider between the copyright and the first link. */
+.footer-utilities .menu {
+  width: auto;
+}
+
+.footer-utilities .menu .details-content ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-utilities .menu .menu__item {
+  font-size: 0.75rem;
+}
+
+.footer-utilities .menu .menu__item + .menu__item {
+  margin-block-start: 0;
+}
+
+.footer-utilities .menu .menu__item::before {
+  content: '|';
+  margin-inline: 0.9em;
+}
+
+/* Back to top straddles the seam: 13px above the bar, flush with the content
+   column's right edge. */
+.footer-utilities .back-to-top {
+  position: absolute;
+  inset-block-start: -13px;
+  inset-inline-end: 0;
+  width: 24px;
+  height: 23px;
+  border-radius: 2px;
+  overflow: hidden;
+  background-image: linear-gradient(178.4deg, #fff2c6 1.45%, #bd8332 152.5%);
+  color: #fff;
+}
+
+/* icon-caret's chevron fills 8/14 of its viewBox; scaling the SVG past the
+   button box renders the glyph at the design's 18x9 while the empty margin is
+   clipped. The stroke is rescaled to land back at ~2px. */
+.footer-utilities .back-to-top svg {
+  width: 31.5px;
+  height: 31.5px;
+
+  --icon-stroke-width: 0.9px;
+}

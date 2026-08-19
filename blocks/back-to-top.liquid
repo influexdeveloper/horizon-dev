@@ -1,0 +1,52 @@
+{%- doc -%}
+  Renders the control that returns a visitor to the top of the page.
+
+  It is a plain anchor rather than a scripted button: base.css already sets
+  `scroll-behavior: smooth` on the document, so the scroll animates without any
+  JavaScript and the control keeps working for keyboard and no-JS visitors.
+  `#header-group` is the wrapper rendered by layout/theme.liquid.
+
+  Appearance (the gold gradient, size and placement) lives in
+  assets/global-css.css, since a gradient cannot be expressed as a theme setting.
+{%- enddoc -%}
+
+<a
+  class="back-to-top"
+  href="#header-group"
+  aria-label="{{ 'accessibility.back_to_top' | t }}"
+  {{ block.shopify_attributes }}
+>
+  <span
+    class="back-to-top__icon svg-wrapper"
+    aria-hidden="true"
+  >
+    {{- 'icon-caret.svg' | inline_asset_content -}}
+  </span>
+</a>
+
+{% stylesheet %}
+  .back-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* icon-caret.svg points down; this control points back up the page. */
+  .back-to-top__icon {
+    display: flex;
+    transform: rotate(180deg);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Back to top",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Back to top"
+    }
+  ]
+}
+{% endschema %}
