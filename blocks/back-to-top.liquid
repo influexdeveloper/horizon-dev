@@ -5,11 +5,10 @@
   `scroll-behavior: smooth` on the document, so the scroll animates without any
   JavaScript and the control keeps working for keyboard and no-JS visitors.
 
-  The target is the bare `#top` fragment, which HTML defines as the top of the
-  document whenever no element carries that id — nothing in this theme does.
-  It deliberately does not point at `#header-group`: with a sticky header,
-  sections/header.liquid gives that element `display: contents`, so it generates
-  no box for the browser to scroll to.
+  The target is `#MainContent`, the `<main>` rendered by layout/theme.liquid —
+  the same element the theme's own skip link points at. It deliberately does not
+  point at `#header-group`: with a sticky header, sections/header.liquid gives
+  that element `display: contents`, so it generates no box to scroll to.
 
   Appearance (the gold gradient, size and placement) lives in
   assets/global-css.css, since a gradient cannot be expressed as a theme setting.
@@ -17,7 +16,7 @@
 
 <a
   class="back-to-top"
-  href="#top"
+  href="#MainContent"
   aria-label="{{ 'accessibility.back_to_top' | t }}"
   {{ block.shopify_attributes }}
 >
@@ -25,7 +24,7 @@
     class="back-to-top__icon"
     aria-hidden="true"
   >
-    {{- 'icon-caret.svg' | inline_asset_content -}}
+    {{- 'icon-chevron-up.svg' | inline_asset_content -}}
   </span>
 </a>
 
@@ -36,10 +35,8 @@
     justify-content: center;
   }
 
-  /* icon-caret.svg points down; this control points back up the page. */
   .back-to-top__icon {
     display: flex;
-    transform: rotate(180deg);
   }
 {% endstylesheet %}
 

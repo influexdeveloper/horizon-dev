@@ -195,8 +195,19 @@
   align-items: center;
 }
 
+/* The colour has to be stated: `.menu__item` carries the `paragraph` class,
+   whose `color: var(--color, var(--color-foreground))` applies at full strength.
+   The links inside pick up the muted tone from `.utilities a`, but the separator
+   is a pseudo-element on the item itself, so without this it renders brighter
+   than the text on either side of it.
+
+   Laying the item out as a centred flex row aligns the pipe against the link
+   box rather than leaving it on the text baseline, where it rides high. */
 .footer-utilities .menu .menu__item {
+  display: flex;
+  align-items: center;
   font-size: 0.75rem;
+  color: var(--color-utilities, var(--color-foreground-muted));
 }
 
 .footer-utilities .menu .menu__item + .menu__item {
@@ -205,6 +216,7 @@
 
 .footer-utilities .menu .menu__item::before {
   content: '|';
+  line-height: 1;
   margin-inline: 0.9em;
 }
 
@@ -217,19 +229,14 @@
   width: 24px;
   height: 23px;
   border-radius: 2px;
-  overflow: hidden;
   background-image: linear-gradient(178.4deg, #fff2c6 1.45%, #bd8332 152.5%);
-  color: #fff;
+  color: #000;
 }
 
-/* icon-caret's chevron fills 8/14 of its viewBox; scaling the SVG past the
-   button box renders the glyph at the design's 18x9 while the empty margin is
-   clipped by the button's `overflow: hidden`. The stroke is rescaled to land
-   back at ~2px. The span is sized to match so it does not clip the SVG first. */
+/* icon-chevron-up.svg is drawn on the design's own 36x18 canvas, so it renders
+   at its intended 18x9 with no scaling tricks. */
 .footer-utilities .back-to-top__icon,
 .footer-utilities .back-to-top svg {
-  width: 31.5px;
-  height: 31.5px;
-
-  --icon-stroke-width: 0.9px;
+  width: 18px;
+  height: 9px;
 }
