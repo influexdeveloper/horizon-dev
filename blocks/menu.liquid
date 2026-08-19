@@ -4,13 +4,23 @@
   assign block_settings = block.settings
   assign menu = block_settings.menu
   assign heading = block_settings.heading
+
+  # The heading falls back to the link list's own name — Main menu, Footer menu
+  # — which is an admin label rather than something a shopper should read, so
+  # showing it is opt-in. heading_text is what actually gets rendered; the menu
+  # title is still used for the nav's accessible name below.
+  assign heading_text = ''
+  if block_settings.show_heading
+    assign heading_text = heading | default: menu.title
+  endif
+
   assign show_as_accordion = block_settings.show_as_accordion
   if show_as_accordion == true and block_settings.accordion_dividers == true
     assign dividers_enabled = true
   endif
 %}
 
-{% if menu != blank or heading != blank %}
+{% if menu != blank or heading_text != blank %}
   {% render 'contrast-override',
     background_color: block_settings.background_color,
     text_color: block_settings.text_color,
@@ -48,10 +58,10 @@
       {% endif %}
       {{ block.shopify_attributes }}
     >
-      <summary class="menu__heading{% if heading == blank and menu.title == blank %} menu__heading--empty{% endif %} {{ block_settings.heading_preset }}">
-        <span class="menu__heading__default">{{ heading | default: menu.title }}</span>
+      <summary class="menu__heading{% if heading_text == blank %} menu__heading--empty{% endif %} {{ block_settings.heading_preset }}">
+        <span class="menu__heading__default">{{ heading_text }}</span>
         <span class="menu__heading__accordion">
-          {{ heading | default: menu.title }}
+          {{ heading_text }}
           {% if block_settings.accordion_icon == 'plus' %}
             <span class="menu__heading__toggle svg-wrapper icon-plus">
               {{- 'icon-plus.svg' | inline_asset_content -}}
@@ -66,7 +76,7 @@
 
       <nav
         class="details-content"
-        {% if heading == blank %}
+        {% if heading_text == blank %}
           aria-label="{{ menu.title | escape }}"
         {% endif %}
       >
@@ -163,9 +173,17 @@
       "default": "main-menu"
     },
     {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": false,
+      "info": "When off, the block shows only the links. The menu's own name in the admin is never used as a shopper-facing heading."
+    },
+    {
       "type": "text",
       "id": "heading",
-      "label": "t:settings.heading"
+      "label": "t:settings.heading",
+      "visible_if": "{{ block.settings.show_heading == true }}"
     },
     {
       "type": "header",
