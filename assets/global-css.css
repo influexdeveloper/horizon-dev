@@ -13,6 +13,17 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   Shared brand tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* The gold pill behind "shop the collection" and the footer's submit button.
+     Figma exports it as a flattened PNG on both, so it is reproduced here once
+     and referenced from each. */
+  --gradient-gold-pill: linear-gradient(45deg, #ecddcc 0%, #e4b68c 100%);
+}
+
+/* --------------------------------------------------------------------------
    Header — Figma "Monrosia - Custom (Copy)", node 4001:21
    -------------------------------------------------------------------------- */
 
@@ -158,7 +169,7 @@
   height: 42px;
   border-radius: 50px;
   border: 0;
-  background-image: linear-gradient(45deg, #ecddcc 0%, #e4b68c 100%);
+  background-image: var(--gradient-gold-pill);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -283,4 +294,74 @@
 .footer-utilities .back-to-top svg {
   width: 18px;
   height: 9px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero — Figma "Monrosia - Custom (Copy)", node 4002:7
+
+   Built on the theme's own `hero` section; everything the schema can express
+   lives in templates/index.json instead. Rules are scoped to `#Hero-hero_main`
+   (the section id the template assigns) so other `hero` sections added later
+   keep the theme's defaults.
+   -------------------------------------------------------------------------- */
+
+/* The design pins the headline at 63.35px on a 1200px page and the subhead at
+   30px. The text block's font_size list has no step for either, so both are set
+   here — as resolved `font-size` / `line-height` rather than `--font-size` /
+   `--line-height`, because snippets/typography-style.liquid writes those
+   variables as an inline style that no external rule can outrank. The `> *`
+   half of each pair is what carries the size onto the h1/p inside; base.css
+   sizes `.custom-font-size > *` too.
+
+   Both scale with the viewport below 1200px rather than wrapping: the headline
+   is a single nowrap line in the design, and 5.28vw / 2.5vw are its and the
+   subhead's exact share of the 1200px page. */
+#Hero-hero_main .text-block--hero_heading,
+#Hero-hero_main .text-block--hero_heading > * {
+  font-size: clamp(2.5rem, 5.28vw, 3.959rem);
+  line-height: 1.3;
+}
+
+#Hero-hero_main .text-block--hero_subheading,
+#Hero-hero_main .text-block--hero_subheading > * {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  line-height: 1.1;
+}
+
+/* The subhead breaks over two lines at 584px. `max_width: none` leaves the
+   block unconstrained, so the measure is set directly. */
+#Hero-hero_main .text-block--hero_subheading > * {
+  max-inline-size: 584px;
+  margin-inline: auto;
+}
+
+/* The pill: 320 x 59.5 at a 50px radius. `--button-padding-block` would fight
+   the fixed height, so the label is centred by the grid `.button-custom`
+   already establishes and the block padding is dropped.
+
+   Headline and subhead sit flush in the design, so the section's `gap` is 0 and
+   the 42px that precedes the button is added here rather than spacing all three
+   blocks apart. */
+#Hero-hero_main .button-custom--hero_button {
+  margin-block-start: 42px;
+  min-width: 320px;
+  height: 59.5px;
+  padding-block: 0;
+  border-radius: 50px;
+  box-shadow: none;
+  background-image: var(--gradient-gold-pill);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.85px;
+  text-transform: uppercase;
+}
+
+/* Below the page's 1200px design width the fixed pill would overflow a narrow
+   viewport before the clamped type does. */
+@media screen and (max-width: 480px) {
+  #Hero-hero_main .button-custom--hero_button {
+    min-width: 0;
+    width: 100%;
+    max-width: 320px;
+  }
 }

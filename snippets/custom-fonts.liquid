@@ -1,0 +1,198 @@
+{% comment %}
+  Custom (self-hosted) brand fonts.
+
+  Shopify's `font_picker` setting can only offer fonts from Shopify's own
+  library, so the Monrosia display and accent faces cannot be selected in the
+  theme editor. They are shipped as theme assets instead and wired into the
+  same `--font-<role>--family` variables the rest of the theme already reads,
+  so every section, block and text preset picks them up without further edits.
+
+  Render this AFTER `theme-styles-variables` — that snippet writes the role
+  variables from the font_picker settings, and these overrides win on source
+  order rather than on specificity.
+
+  Adding another face:
+    1. Drop the .woff2 + .woff into assets/
+    2. Add an @font-face pair below
+    3. Add a `--font-<name>` stack token and a `.font-<name>` utility class
+
+  Reference: Figma "Monrosia - Custom", node 2575:98 ("Option 2.3 - APPROVED").
+{% endcomment %}
+
+{% # theme-check-disable AssetPreload %}
+{%- comment -%}
+  Coldiac is the only face that renders above the fold — it sets the h1 the
+  page opens on. Everything else is declared below and fetched lazily, the
+  first time a rule actually asks for it; an unreferenced @font-face costs
+  nothing, and preloading one the page never uses is a wasted round trip.
+{%- endcomment -%}
+<link
+  rel="preload"
+  as="font"
+  href="{{ 'Coldiac-Regular.woff2' | asset_url }}"
+  type="font/woff2"
+  crossorigin
+>
+{% # theme-check-enable AssetPreload %}
+
+{% style %}
+  /* ------------------------------------------------------------------------
+     Faces
+
+     woff2 + woff only. Between them they cover every browser Shopify
+     supports; the .eot / .ttf / .svg files that shipped with the foundry
+     bundle target IE and pre-Chrome Android and are deliberately left out.
+     ------------------------------------------------------------------------ */
+
+  /* Coldiac — display serif. Headings. */
+  @font-face {
+    font-family: 'Coldiac';
+    src:
+      url('{{ 'Coldiac-Regular.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'Coldiac-Regular.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Coldiac';
+    src:
+      url('{{ 'Coldiac-Italic.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'Coldiac-Italic.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  /* Blue Velvet — script. Accent lines such as "Join The Ritual". */
+  @font-face {
+    font-family: 'Blue Velvet';
+    src:
+      url('{{ 'BlueVelvet-Regular.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'BlueVelvet-Regular.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Magnolia — 400 / 500 / 700. */
+  @font-face {
+    font-family: 'Magnolia';
+    src:
+      url('{{ 'MagnoliaRegular.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'MagnoliaRegular.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Magnolia';
+    src:
+      url('{{ 'MagnoliaMedium.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'MagnoliaMedium.woff' | asset_url }}') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Magnolia';
+    src:
+      url('{{ 'MagnoliaBold.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'MagnoliaBold.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Rose Orchard Garden — 400 / 700. */
+  @font-face {
+    font-family: 'Rose Orchard Garden';
+    src:
+      url('{{ 'RoseOrchardGarden.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'RoseOrchardGarden.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Rose Orchard Garden';
+    src:
+      url('{{ 'RoseOrchardGardenBold.woff2' | asset_url }}') format('woff2'),
+      url('{{ 'RoseOrchardGardenBold.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    /* ----------------------------------------------------------------------
+       Stack tokens — one per family, name it here and nowhere else.
+
+       The fallbacks are what shows during `swap` and if a face 404s, so each
+       one names a widely installed face of the same broad shape before the
+       generic keyword.
+       ---------------------------------------------------------------------- */
+    --font-coldiac: 'Coldiac', 'Times New Roman', Times, serif;
+    --font-blue-velvet: 'Blue Velvet', 'Snell Roundhand', 'Segoe Script', cursive;
+    --font-magnolia: 'Magnolia', Georgia, 'Times New Roman', serif;
+    --font-rose-orchard-garden: 'Rose Orchard Garden', 'Snell Roundhand', 'Segoe Script', cursive;
+
+    /* ----------------------------------------------------------------------
+       Role mapping
+
+       These are the variables the whole theme reads — base.css, every text
+       preset, and the per-block "Font" selects whose option values are
+       literally `var(--font-heading--family)` and friends. Overriding them
+       here is what makes the brand fonts selectable in the editor without
+       touching a single block schema.
+
+       Body and subheading stay on the font_picker's Montserrat, which is what
+       the design uses for nav, body copy and buttons — so they are not
+       overridden and remain editable in Theme settings > Typography.
+       ---------------------------------------------------------------------- */
+
+    /* Headings — "Become the Altar", "Sacred Botanicals to Remember Your
+       Magic". Coldiac ships a single upright weight, so weight is pinned to
+       400 rather than left on the font_picker's value; anything heavier would
+       be a synthesised faux-bold. */
+    --font-heading--family: var(--font-coldiac);
+    --font-heading--style: normal;
+    --font-heading--weight: 400;
+
+    /* Accent — "Join The Ritual". */
+    --font-accent--family: var(--font-blue-velvet);
+    --font-accent--style: normal;
+    --font-accent--weight: 400;
+  }
+
+  /* --------------------------------------------------------------------------
+     Utility classes
+
+     For the cases the role variables cannot reach: a one-off heading in a
+     custom section, or rich-text where only a class can be applied. Prefer the
+     block's own Font setting where one exists.
+     -------------------------------------------------------------------------- */
+  .font-coldiac,
+  .font-coldiac > * {
+    font-family: var(--font-coldiac);
+  }
+
+  .font-blue-velvet,
+  .font-blue-velvet > * {
+    font-family: var(--font-blue-velvet);
+  }
+
+  .font-magnolia,
+  .font-magnolia > * {
+    font-family: var(--font-magnolia);
+  }
+
+  .font-rose-orchard-garden,
+  .font-rose-orchard-garden > * {
+    font-family: var(--font-rose-orchard-garden);
+  }
+{% endstyle %}
