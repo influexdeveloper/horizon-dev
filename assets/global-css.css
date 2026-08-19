@@ -103,8 +103,13 @@
 }
 
 /* Footer nav: 18px on a 36px rhythm (the design sets line-height 2, and four
-   items at 36px are exactly the 144px the nav block occupies). */
-.footer-section .menu__item {
+   items at 36px are exactly the 144px the nav block occupies).
+
+   The child selector is not optional. Each item carries the `paragraph` class,
+   and base.css styles `.paragraph:not(.button)` *and* `.paragraph > *`, so
+   sizing only the item leaves the `<a>` inside it at the paragraph size. */
+.footer-section .menu__item,
+.footer-section .menu__item > * {
   font-size: 18px;
   line-height: 2;
 }
@@ -144,7 +149,11 @@
   opacity: 0.5;
 }
 
-.footer-section .email-signup__button {
+/* The `.email-signup__form` step is for specificity, not scoping: the button
+   also carries the `paragraph` class, and `.paragraph:not(.button)` matches it
+   (its style class is `button-custom`, not `button`), which would otherwise tie
+   at two classes and leave the font size decided by stylesheet order. */
+.footer-section .email-signup__form .email-signup__button {
   min-width: 144px;
   height: 42px;
   border-radius: 50px;
@@ -206,8 +215,16 @@
 .footer-utilities .menu .menu__item {
   display: flex;
   align-items: center;
-  font-size: 0.75rem;
   color: var(--color-utilities, var(--color-foreground-muted));
+}
+
+/* Matches the copyright block's 0.75rem. The `> *` half is what keeps the link
+   text and the separator at the same size: base.css sizes `.paragraph > *` too,
+   so styling only the item leaves the `<a>` at the paragraph size while the
+   pseudo-element separator follows the item. */
+.footer-utilities .menu .menu__item,
+.footer-utilities .menu .menu__item > * {
+  font-size: 0.75rem;
 }
 
 .footer-utilities .menu .menu__item + .menu__item {
