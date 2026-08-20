@@ -362,6 +362,22 @@
    position are ours to rely on; ids are not.
    -------------------------------------------------------------------------- */
 
+/* --- Height chain ---
+
+   A definite height on the section and its container, so the percentage heights
+   below them resolve instead of falling back to `auto`. The theme sets only
+   `min-height` here (`.hero__container` inherits the value), which leaves the
+   chain down to the media indefinite.
+
+   Doubled classes for the reason this file documents at the top: the section's
+   own `{% stylesheet %}` sets `.hero` and `.hero__container` at equal
+   specificity, and the order its bundle loads relative to this file is not
+   guaranteed. */
+.hero.hero,
+.hero__container.hero__container {
+  height: 100%;
+}
+
 /* --- Background media ---
 
    The image covers the section: scaled uniformly until it fills the box, then
