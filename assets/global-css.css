@@ -362,6 +362,31 @@
    position are ours to rely on; ids are not.
    -------------------------------------------------------------------------- */
 
+/* --- Background media ---
+
+   The image covers the section: scaled uniformly until it fills the box, then
+   cropped. Never scaled non-uniformly to fit.
+
+   `.hero__media` already asks for `object-fit: cover` in the section's own
+   stylesheet, but the height it resolves against arrives through a chain that
+   only works if every link keeps a definite height — `.hero__media-grid` is an
+   absolutely positioned grid, its single row is implicit and `auto`, and the
+   wrapper is the grid item. If any step goes indefinite, `height: 100%` on the
+   image resolves to `auto`, the image falls back to its intrinsic ratio at full
+   width, and it stops covering. Pinning each level to 100% makes the box
+   definite outright, so `object-fit` always has something to work against. */
+.hero .hero__media-wrapper {
+  height: 100%;
+  min-height: 100%;
+}
+
+.hero .hero__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 /* The design pins the headline at 63.35px on a 1200px page and the subhead at
    30px. The text block's font_size list has no step for either, so both are set
    here — as resolved `font-size` / `line-height` rather than `--font-size` /
