@@ -139,16 +139,22 @@
    `--font-size` / `--line-height`: snippets/typography-style.liquid writes those
    variables as an inline style, which no external rule can outrank. Overriding
    the properties mirrors the theme's own `.custom-font-size, .custom-font-size > *`
-   pair, so the block and its paragraph both follow. Block ids come from
-   sections/footer-group.json. */
-.footer-section .text-block--footer_signup_heading,
-.footer-section .text-block--footer_signup_heading > * {
+   pair, so the block and its paragraph both follow.
+
+   Reached by position rather than by the per-block class the block also carries.
+   Horizon renders these through `content_for 'blocks'`, and what `block.id`
+   resolves to for a theme block is Shopify's to generate — not something a
+   stylesheet should bet on. The signup group holds exactly three children in
+   this order (heading, body, form), so first-child and the adjacent sibling name
+   them without guessing. */
+.footer-section .group-block-content > .text-block:first-child,
+.footer-section .group-block-content > .text-block:first-child > * {
   font-size: 30px;
   line-height: 1;
 }
 
-.footer-section .text-block--footer_signup_text,
-.footer-section .text-block--footer_signup_text > * {
+.footer-section .group-block-content > .text-block + .text-block,
+.footer-section .group-block-content > .text-block + .text-block > * {
   font-size: 15px;
   line-height: 20px;
 }
@@ -304,37 +310,38 @@
    Hero — Figma "Monrosia - Custom (Copy)", node 4002:7
 
    Built on the theme's own `hero` section; everything the schema can express
-   lives in templates/index.json instead. Rules are scoped to `#Hero-hero_main`
-   (the section id the template assigns) so other `hero` sections added later
-   keep the theme's defaults.
+   lives in templates/index.json instead.
+
+   Nothing here keys off a block or section id. Horizon renders these blocks
+   through `content_for 'blocks'`, and what `block.id` resolves to for a theme
+   block is Shopify's to generate — it is not reliably the key written in
+   templates/index.json. An earlier pass hung every rule below off the per-block
+   classes and the entire section rendered unstyled. Tag names and sibling
+   position are ours to rely on; ids are not.
    -------------------------------------------------------------------------- */
 
 /* The design pins the headline at 63.35px on a 1200px page and the subhead at
    30px. The text block's font_size list has no step for either, so both are set
    here — as resolved `font-size` / `line-height` rather than `--font-size` /
    `--line-height`, because snippets/typography-style.liquid writes those
-   variables as an inline style that no external rule can outrank. The `> *`
-   half of each pair is what carries the size onto the h1/p inside; base.css
-   sizes `.custom-font-size > *` too.
+   variables as an inline style that no external rule can outrank.
 
-   Both scale with the viewport below 1200px rather than wrapping: the headline
-   is a single nowrap line in the design, and 5.28vw / 2.5vw are its and the
-   subhead's exact share of the 1200px page. */
-#Hero-hero_main .text-block--hero_heading,
-#Hero-hero_main .text-block--hero_heading > * {
+   The two blocks are told apart by the tag their rich text produces: the
+   headline block holds an `<h1>`, the subhead a `<p>`.
+
+   Both sizes scale with the viewport below 1200px rather than wrapping: the
+   headline is a single nowrap line in the design, and 5.28vw / 2.5vw are its and
+   the subhead's exact share of the 1200px page. */
+.hero .text-block h1 {
   font-size: clamp(2.5rem, 5.28vw, 3.959rem);
   line-height: 1.3;
 }
 
-#Hero-hero_main .text-block--hero_subheading,
-#Hero-hero_main .text-block--hero_subheading > * {
+/* The subhead breaks over two lines at 584px; `max_width: none` leaves the block
+   itself unconstrained, so the measure is set on the paragraph. */
+.hero .text-block p {
   font-size: clamp(1.25rem, 2.5vw, 1.875rem);
   line-height: 1.1;
-}
-
-/* The subhead breaks over two lines at 584px. `max_width: none` leaves the
-   block unconstrained, so the measure is set directly. */
-#Hero-hero_main .text-block--hero_subheading > * {
   max-inline-size: 584px;
   margin-inline: auto;
 }
@@ -346,7 +353,7 @@
    Headline and subhead sit flush in the design, so the section's `gap` is 0 and
    the 42px that precedes the button is added here rather than spacing all three
    blocks apart. */
-#Hero-hero_main .button-custom--hero_button {
+.hero .button-custom {
   margin-block-start: 42px;
   min-width: 320px;
   height: 59.5px;
@@ -365,7 +372,7 @@
    moving `--button-color`, so the label alone would change. Pin the label and
    lift the whole pill instead. The design specifies no hover state, so this is
    deliberately the smallest affordance rather than an invented one. */
-#Hero-hero_main .button-custom--hero_button:hover {
+.hero .button-custom:hover {
   --button-color: #000000;
 
   filter: brightness(1.04);
@@ -374,7 +381,7 @@
 /* Below the page's 1200px design width the fixed pill would overflow a narrow
    viewport before the clamped type does. */
 @media screen and (max-width: 480px) {
-  #Hero-hero_main .button-custom--hero_button {
+  .hero .button-custom {
     min-width: 0;
     width: 100%;
     max-width: 320px;
