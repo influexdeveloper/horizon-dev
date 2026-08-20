@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Become the Altar<\/h1>",
+            "text": "<h1>Become the Altar</h1>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
@@ -42,7 +42,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Sacred Botanicals to Remember Your Magic, Return To Ritual<\/p>",
+            "text": "<p>Sacred Botanicals to Remember Your Magic, Return To Ritual</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
@@ -69,9 +69,13 @@
           "name": "t:names.button",
           "settings": {
             "label": "Shop The Collection",
-            "link": "shopify:\/\/collections\/all",
+            "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -80,11 +84,15 @@
           "blocks": {}
         }
       },
-      "block_order": ["hero_heading", "hero_subheading", "hero_button"],
+      "block_order": [
+        "hero_heading",
+        "hero_subheading",
+        "hero_button"
+      ],
       "name": "Hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "",
+        "image_1": "shopify://shop_images/Group_31098.webp",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -101,7 +109,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 0,
         "section_width": "page-width",
-        "section_height": "full-screen",
+        "section_height": "medium",
         "section_height_custom": 50,
         "background_color": "#220706",
         "toggle_overlay": true,
@@ -115,5 +123,7 @@
       }
     }
   },
-  "order": ["hero_main"]
+  "order": [
+    "hero_main"
+  ]
 }
