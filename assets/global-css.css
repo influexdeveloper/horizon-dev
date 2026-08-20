@@ -18,9 +18,13 @@
 
 :root {
   /* The gold pill behind "shop the collection" and the footer's submit button.
-     Figma exports it as a flattened PNG on both, so it is reproduced here once
-     and referenced from each. */
-  --gradient-gold-pill: linear-gradient(45deg, #ecddcc 0%, #e4b68c 100%);
+     Figma flattens it to a PNG on both, so the ramp was measured back off those
+     exports: the same two colours, and on both buttons the dark stop lands at
+     58% of the gradient line. Only the angle differs — Figma anchors the
+     gradient to the shape's own box, so tan(angle) tracks width/height and each
+     button states its own. Reproduced within 1.3/255 mean error. */
+  --gold-pill-light: #f0e8de;
+  --gold-pill-dark: #e4b68c;
 }
 
 /* --------------------------------------------------------------------------
@@ -169,7 +173,7 @@
   height: 42px;
   border-radius: 50px;
   border: 0;
-  background-image: var(--gradient-gold-pill);
+  background-image: linear-gradient(21.9deg, var(--gold-pill-light) 0%, var(--gold-pill-dark) 58%);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -349,11 +353,22 @@
   padding-block: 0;
   border-radius: 50px;
   box-shadow: none;
-  background-image: var(--gradient-gold-pill);
+  background-image: linear-gradient(14.4deg, var(--gold-pill-light) 0%, var(--gold-pill-dark) 58%);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.85px;
   text-transform: uppercase;
+}
+
+/* Painting the pill with a background-image hides the theme's hover swap — it
+   moves `--button-background-color`, which nothing now reads — while still
+   moving `--button-color`, so the label alone would change. Pin the label and
+   lift the whole pill instead. The design specifies no hover state, so this is
+   deliberately the smallest affordance rather than an invented one. */
+#Hero-hero_main .button-custom--hero_button:hover {
+  --button-color: #000000;
+
+  filter: brightness(1.04);
 }
 
 /* Below the page's 1200px design width the fixed pill would overflow a narrow
