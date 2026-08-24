@@ -513,24 +513,53 @@
    is what the rules below correct.
    -------------------------------------------------------------------------- */
 
-/* Nothing in the theme constrains this container's inline size, so the copy
-   currently runs the full width of the viewport with no page margin at all.
+/* Shopify serves its own stylesheet on these pages —
+   `cdn/shopifycloud/storefront/assets/storefront/policy-*.css` — and the layout
+   loads it *after* this file. All of it, in full:
+
+     .shopify-policy__container { max-width: 560px; max-width: 65ch;
+                                  margin: 0 auto;
+                                  padding-left: 20px; padding-right: 20px }
+     .shopify-policy__title     { text-align: center }
+
+   So the column is not unconstrained, as the theme's own CSS alone suggests —
+   it is pinned to 65ch, about 620px in Montserrat, roughly two thirds of the
+   band the footer directly beneath it uses.
+
+   Two things follow, and both are why an earlier single-class rule here did
+   nothing. `max-width` beats `width`, so setting an inline size while 65ch
+   still stands cannot widen anything — the cap has to be released explicitly.
+   And Shopify's selector is a single class that lands later in the cascade, so
+   an equal-specificity rule of ours loses outright; the doubled class is the
+   only part of this that has to be a trick, and it is the same one this file
+   uses elsewhere.
 
    The `min()` is the arithmetic base.css uses for
    `--full-page-grid-central-column-width`: the design's content band, or the
-   viewport minus a margin either side once that is the smaller of the two. It
-   lands the column exactly on the footer's, which is the point — those two
-   bands are adjacent on screen. `--page-margin` inherits from the
-   `page-width-*` class on <body>, so this tracks the 16px/40px breakpoint
-   without restating either number.
+   viewport minus a margin either side once that is the smaller of the two. That
+   lands the column exactly on the footer's, which is the point — the two bands
+   are adjacent on screen. `--page-margin` inherits from the `page-width-*`
+   class on <body>, so this tracks the 16px/40px breakpoint without restating
+   either number, and it is also why Shopify's flat 20px inline padding goes:
+   the margin is already in the width.
 
-   base.css gives the container `--padding-xl`, which is 20px: a section's worth
-   of air, not a page's, leaving the title 20px below the header. 40/80 is what
-   templates/page.json sets, so content pages and policy pages open alike. */
-.shopify-policy__container {
+   Block padding is 40/80 to match templates/page.json, replacing the
+   `--padding-xl` (20px) base.css gives the container — a section's worth of
+   air, not a page's, which left the title 20px under the header. */
+.shopify-policy__container.shopify-policy__container {
+  max-width: none;
   inline-size: min(var(--brand-content-width), 100% - var(--page-margin, 16px) * 2);
   margin-inline: auto;
+  padding-inline: 0;
   padding-block: 40px 80px;
+}
+
+/* Shopify centres the title. That reads as deliberate at its 65ch, but not
+   against left-aligned prose on a band this wide, and content pages set their
+   titles flush left (templates/page.json). Doubled for the same reason as
+   above. */
+.shopify-policy__title.shopify-policy__title {
+  text-align: start;
 }
 
 /* `display-tight` is line-height 1 — drawn for a headline that never wraps.
