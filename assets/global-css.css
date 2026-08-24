@@ -491,30 +491,95 @@
 }
 
 /* --------------------------------------------------------------------------
-   Policy pages — /policies/refund-policy, /policies/privacy-policy, ...
+   Policy pages — /policies/privacy-policy, /policies/refund-policy, ...
 
-   These do not go through a theme template. `policy` is not one of the
-   template types a theme can define — there is no templates/policy.json to
-   write, and neither Horizon nor Dawn ships one — so Shopify renders the
-   policy itself and hands the layout a fixed block of markup:
+   These do not go through a theme template. `policy` is not one of the template
+   types a theme can define — there is no templates/policy.json to write, and
+   neither Horizon nor Dawn ships one — so Shopify renders the policy itself and
+   hands the layout a fixed block of markup. Read off the live privacy policy,
+   it is:
 
-     .shopify-policy__container > .shopify-policy__title + .shopify-policy__body
+     .shopify-policy__container
+       > .shopify-policy__title > h1
+       > .shopify-policy__body  > .rte > div > p, h2, ul > li, strong, a
 
-   base.css already gives that container its block padding and routes the title
-   through the RTE heading styles, and the bare <h1> Shopify emits picks up the
-   theme's h1 preset (so the brand heading font lands here for free). What it
-   never gets is a measure: nothing constrains the container's inline size, so
-   legal copy runs the full width of the viewport, edge to edge, with no page
-   margin — the opposite failure to the one content pages had.
+   Every tag in there is bare, so the theme's element presets already reach it:
+   the h1 and h2s resolve to Coldiac through `--font-h*--family`, the prose to
+   Montserrat through the `body` rule, and `.rte :is(p, ul) a` supplies the link
+   underline and its hover. None of that needs restating here.
 
-   One declaration fixes both halves, and it is the same arithmetic base.css
-   uses for `--full-page-grid-central-column-width`: the design's content band,
-   or the viewport minus a margin either side once that is the smaller of the
-   two. `--page-margin` inherits from the `page-width-*` class on <body>, so
-   this tracks the 16px/40px breakpoint without restating it.
+   What the presets get wrong is scale and rhythm — they are tuned for sections
+   of a merchandising page, and this is 2,500 words of running legal prose. That
+   is what the rules below correct.
    -------------------------------------------------------------------------- */
 
+/* Nothing in the theme constrains this container's inline size, so the copy
+   currently runs the full width of the viewport with no page margin at all.
+
+   The `min()` is the arithmetic base.css uses for
+   `--full-page-grid-central-column-width`: the design's content band, or the
+   viewport minus a margin either side once that is the smaller of the two. It
+   lands the column exactly on the footer's, which is the point — those two
+   bands are adjacent on screen. `--page-margin` inherits from the
+   `page-width-*` class on <body>, so this tracks the 16px/40px breakpoint
+   without restating either number.
+
+   base.css gives the container `--padding-xl`, which is 20px: a section's worth
+   of air, not a page's, leaving the title 20px below the header. 40/80 is what
+   templates/page.json sets, so content pages and policy pages open alike. */
 .shopify-policy__container {
   inline-size: min(var(--brand-content-width), 100% - var(--page-margin, 16px) * 2);
   margin-inline: auto;
+  padding-block: 40px 80px;
+}
+
+/* `display-tight` is line-height 1 — drawn for a headline that never wraps.
+   These titles do wrap once the column narrows, and at 1 Coldiac's descenders
+   run into the ascenders of the line beneath. */
+.shopify-policy__title h1 {
+  line-height: 1.15;
+}
+
+/* The h1 is the only child of its wrapper, so base.css's `:last-child:is(h1)`
+   rule zeroes its bottom margin and the prose starts flush against it. The two
+   wrappers are siblings rather than one flow, so the gap has to be opened from
+   the body's side. */
+.shopify-policy__body {
+  margin-block-start: 32px;
+}
+
+/* Body copy inherits 14px/1.6 from the `body` paragraph preset. That is a UI
+   size, set for cards and labels; it is not a reading size. 16px on a 1.75
+   rhythm is the least that stays comfortable over a measure this wide.
+
+   Set on `.rte` rather than on `p`/`li` so the em-based margins inside the RTE
+   rules scale with it instead of staying pinned to the old 14px. */
+.shopify-policy__body .rte {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Thirteen subheads at the h2 preset's clamp(2.25rem, 4.8vw, 3rem) — 36px to
+   48px — read as thirteen page titles and swamp the prose between them. A third
+   of that still sections the document clearly and leaves the real title as the
+   only large thing on the page.
+
+   `:is()` takes the specificity of its most specific argument, so this is one
+   element plus two classes — enough to outrank both the bare `h2` preset and
+   the nested `.rte :is(h1, h2, ...)` margin rule, without `!important`.
+
+   Those margins have to be restated precisely because the RTE rule derives them
+   from `1em`: shrinking the heading would otherwise shrink the space around it
+   in step, which is the opposite of what a smaller heading needs to go on
+   separating sections. Stated in rem, they hold at any heading size. */
+.shopify-policy__body .rte :is(h2, h3, h4, h5, h6) {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-block: 2.5rem 0.75rem;
+}
+
+/* Twenty-seven list items, several running to three lines, set solid against
+   each other at the RTE default. */
+.shopify-policy__body .rte li + li {
+  margin-block-start: 0.5em;
 }
