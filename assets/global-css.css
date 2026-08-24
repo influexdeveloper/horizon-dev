@@ -25,6 +25,12 @@
      button states its own. Reproduced within 1.3/255 mean error. */
   --gold-pill-light: #f0e8de;
   --gold-pill-dark: #e4b68c;
+
+  /* The design's content band. Content runs x127 -> x1056 of a 1200px page, so
+     every centred column in the layout is 930px wide. The footer already
+     measured it off the export; naming it here is what lets the content pages
+     land on the same column instead of each band picking its own number. */
+  --brand-content-width: 930px;
 }
 
 /* --------------------------------------------------------------------------
@@ -142,11 +148,11 @@
   background-image: linear-gradient(90deg, #220706 5.92%, #4d0804 100%);
 }
 
-/* Both bands centre a ~930px content block, narrower than the page container
-   the header uses (design: content runs x127→1056 of a 1200 page). */
+/* Both bands centre the design's content block, narrower than the page container
+   the header uses. */
 .footer-section .footer-content,
 .footer-utilities .utilities {
-  max-width: 930px;
+  max-width: var(--brand-content-width);
   margin-inline: auto;
   width: 100%;
 }
@@ -453,4 +459,62 @@
     width: 100%;
     max-width: 320px;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Content pages — templates/page.json, templates/page.contact.json
+
+   `main-page` shipped with `page-width-content` hard-coded onto its container.
+   That class is the theme's *reading measure*, not its page width: base.css
+   redefines `--page-content-width` to `--normal-content-width` (42rem / 672px)
+   for it, which is why every page rendered through this template sat in a
+   column roughly two thirds the width of the header, hero and footer around it
+   — and why no theme setting could widen it.
+
+   The container now takes the `section--[width]` class every other section
+   uses, so "Width: Page / Full" is a real control in the editor, and the rule
+   below says what "page" means here: the design's own 930px content band, the
+   same column the footer centres.
+
+   Written as the two variables base.css sets, rather than a `max-width` on the
+   content, so the theme's grid keeps doing the work — the margins, the centring
+   and the full-bleed background all resolve from `--page-width` exactly as they
+   do for a stock section. Setting Width to "Full" drops the rule entirely.
+
+   The doubled class is only for specificity: base.css defines these variables
+   at one class, and `.section` alone would tie.
+   -------------------------------------------------------------------------- */
+
+.main-page-section.main-page-section.section--page-width {
+  --page-content-width: var(--brand-content-width);
+  --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
+}
+
+/* --------------------------------------------------------------------------
+   Policy pages — /policies/refund-policy, /policies/privacy-policy, ...
+
+   These do not go through a theme template. `policy` is not one of the
+   template types a theme can define — there is no templates/policy.json to
+   write, and neither Horizon nor Dawn ships one — so Shopify renders the
+   policy itself and hands the layout a fixed block of markup:
+
+     .shopify-policy__container > .shopify-policy__title + .shopify-policy__body
+
+   base.css already gives that container its block padding and routes the title
+   through the RTE heading styles, and the bare <h1> Shopify emits picks up the
+   theme's h1 preset (so the brand heading font lands here for free). What it
+   never gets is a measure: nothing constrains the container's inline size, so
+   legal copy runs the full width of the viewport, edge to edge, with no page
+   margin — the opposite failure to the one content pages had.
+
+   One declaration fixes both halves, and it is the same arithmetic base.css
+   uses for `--full-page-grid-central-column-width`: the design's content band,
+   or the viewport minus a margin either side once that is the smaller of the
+   two. `--page-margin` inherits from the `page-width-*` class on <body>, so
+   this tracks the 16px/40px breakpoint without restating it.
+   -------------------------------------------------------------------------- */
+
+.shopify-policy__container {
+  inline-size: min(var(--brand-content-width), 100% - var(--page-margin, 16px) * 2);
+  margin-inline: auto;
 }
