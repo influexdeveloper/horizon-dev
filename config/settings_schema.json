@@ -57,6 +57,21 @@
     ]
   },
   {
+    "name": "Social sharing",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shown when a link to your store is shared on social media or in messages. Used as a fallback — products, collections and blog posts share their own image when they have one."
+      },
+      {
+        "type": "image_picker",
+        "id": "social_sharing_image",
+        "label": "Social sharing image",
+        "info": "Recommended size: 1200 x 630px."
+      }
+    ]
+  },
+  {
     "name": "t:names.colors",
     "settings": [
       {

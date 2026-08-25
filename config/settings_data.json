@@ -13,6 +13,7 @@
     "logo_height": 46,
     "logo_height_mobile": 32,
     "favicon": "shopify://shop_images/favicon-196x196.jpg",
+    "social_sharing_image": "shopify://shop_images/OG_Image.jpg",
     "page_text_color": "{{ settings.color_palette.foreground }}",
     "type_body_font": "montserrat_n4",
     "type_subheading_font": "montserrat_n4",
