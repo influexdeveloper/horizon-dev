@@ -55,7 +55,7 @@
    theme happens to emit first.
    -------------------------------------------------------------------------- */
 
-.button.button {
+.button.button:not(.product-media-container__zoom-button) {
   background-image: linear-gradient(to top right, var(--gold-pill-light) 0%, var(--gold-pill-dark) 58%);
   font-size: 17px;
   font-weight: 700;

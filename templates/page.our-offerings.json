@@ -1,0 +1,376 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_offerings": {
+      "type": "hero",
+      "name": "Offerings Banner",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "name": "Eyebrow",
+          "settings": {
+            "text": "<p>OUR OFFERINGS</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h6",
+            "font": "var(--font-accent--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<p>Bathe in our rituals of remembrance.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["eyebrow", "heading"],
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "background_color": "#220706",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "offerings_intro": {
+      "type": "section",
+      "name": "Offerings Intro",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<p>OFFERINGS</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "<p>From the transformative Red Lotus Experience, where ceremonial tea meets immersive sound healing, to the elegant mobile Red Lotus Tea Lounge that brings a touch of beauty, intention, and old-world charm to events, each offering is crafted to create moments of connection, presence, and delight.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["heading", "text"],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 64,
+        "padding-block-end": 32
+      }
+    },
+    "offering_experience": {
+      "type": "section",
+      "name": "The Red Lotus Experience",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<p>THE RED LOTUS EXPERIENCE</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "<p>During a 90-minute tea meditation journey, participants drink micro-brewed Red Lotus tea and receive sound healing frequencies to amplify the power of the Nymphaea rubra.</p><p>Known for its transformational root and sacral chakra healing properties, the Red Lotus envelops the body from the inside out.</p><p>The experience continues with a flight of limited-edition hydrosols and sample products. Together, these elements create a benevolent healing cocoon of restoration and renewal.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "image": "",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["heading", "text", "image"],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "offering_lounge": {
+      "type": "section",
+      "name": "Red Lotus Mobile Tea Lounge",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<p>RED LOTUS MOBILE TEA LOUNGE</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "<p>Bring The Red Lotus Tea Lounge to your event and immerse guests in a customized experience where each sip becomes a moment of connection, intention, and bliss.</p><p>Monrosia's multi-sensory tea offering blends ritual-grade teas with botanical products to deepen the experience. Crafted with the rare and euphoric Red Lotus (Nymphaea rubra), this transportive flower calms the body, awakens sensuality, and invites deep presence.</p><ul><li>Tasting samples of a variety of Red Lotus beverages</li><li>Pure Red Lotus Tea, KavaRosia, or Red Lotus Vanilla Latte</li><li>Product samples and the full Monrosia product line for sale</li><li>Collaborative Red Lotus mocktail/cocktail creations</li><li>Locally made in Nevada County with Ophora&reg; Water: nano-pure&reg;, hyper-oxygenated, crystalline, restructured for ultimate vitality &amp; highest purity standards.</li></ul><p><strong>Wellness Events &bull; Retreats &bull; Markets &bull; Seasonal Gatherings &bull; Festivals</strong></p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "image": "",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["heading", "text", "image"],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 32,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": ["hero_offerings", "offerings_intro", "offering_experience", "offering_lounge"]
+}
