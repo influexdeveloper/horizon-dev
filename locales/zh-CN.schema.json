@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -931,6 +940,7 @@
     "inverse_logo_info": "在透明标头背景设置为“反色”时使用",
     "manage_customer_accounts": "在客户账户设置中[管理可见性](/admin/settings/customer_accounts)。不支持旧版账户。",
     "manage_policies": "[管理政策](/admin/settings/legal)",
+    "page": "页面",
     "product_page": "产品页面",
     "text": "文本",
     "thumbnails": "缩略图",

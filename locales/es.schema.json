@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -929,6 +938,7 @@
     "inverse_logo_info": "Se usa cuando el fondo de encabezado transparente está configurado en Inversa",
     "manage_customer_accounts": "[Gestiona la visibilidad](/admin/settings/customer_accounts) en la configuración de cuentas de cliente. Las cuentas heredadas no son compatibles.",
     "manage_policies": "[Gestionar políticas](/admin/settings/legal)",
+    "page": "Página",
     "product_page": "Página de producto",
     "text": "Texto",
     "thumbnails": "Miniaturas",

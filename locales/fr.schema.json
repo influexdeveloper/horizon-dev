@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -931,6 +940,7 @@
     "inverse_logo_info": "Utilisé lorsque l’arrière-plan transparent de l’en-tête est défini sur Inverse",
     "manage_customer_accounts": "[Gérer la visibilité](/admin/settings/customer_accounts) dans les paramètres de compte client. Les comptes hérités ne sont pas pris en charge.",
     "manage_policies": "[Gérer les politiques](/admin/settings/legal)",
+    "page": "Page",
     "product_page": "Page de produit",
     "text": "Texte",
     "thumbnails": "Vignettes",

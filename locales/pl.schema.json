@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -929,6 +938,7 @@
     "inverse_logo_info": "Używane, gdy przezroczyste tło nagłówka jest ustawione na Odwrotne",
     "manage_customer_accounts": "[Zarządzaj widocznością](/admin/settings/customer_accounts) w ustawieniach konta klienta. Starsze konta nie są obsługiwane.",
     "manage_policies": "[Zarządzaj politykami](/admin/settings/legal)",
+    "page": "Strona",
     "product_page": "Strona produktu",
     "text": "Tekst",
     "thumbnails": "Miniatury",

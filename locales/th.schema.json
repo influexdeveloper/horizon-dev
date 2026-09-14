@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -931,6 +940,7 @@
     "inverse_logo_info": "ใช้เมื่อพื้นหลังของส่วนหัวแบบโปร่งใสถูกตั้งค่าเป็นสีตรงข้าม",
     "manage_customer_accounts": "[จัดการการแสดงผล](/admin/settings/customer_accounts)ในการตั้งค่าบัญชีผู้ใช้ของลูกค้า ไม่รองรับบัญชีรุ่นเก่า",
     "manage_policies": "[จัดการนโยบาย](/admin/settings/legal)",
+    "page": "หน้า",
     "product_page": "หน้าสินค้า",
     "text": "ข้อความ",
     "thumbnails": "ภาพขนาดย่อ",

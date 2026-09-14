@@ -27,6 +27,9 @@
   elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
     assign transparent = 'always'
     assign transparent_text_color_setting = section.settings.text_color_transparent_collection
+  elsif section.settings.enable_transparent_header_page and template.name == 'page'
+    assign transparent = 'always'
+    assign transparent_text_color_setting = section.settings.text_color_transparent_page
   endif
 
   if section.settings.enable_sticky_header == 'always'
@@ -1763,6 +1766,30 @@
       "label": "t:settings.text_color_transparent",
       "placeholder": "t:settings.default",
       "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header_page",
+      "label": "t:settings.transparent_background",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "page_inverse_logo",
+      "label": "t:settings.inverse_logo",
+      "default": false,
+      "visible_if": "{{ section.settings.enable_transparent_header_page }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color_transparent_page",
+      "label": "t:settings.text_color_transparent",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.enable_transparent_header_page }}"
     }
   ],
   "presets": []

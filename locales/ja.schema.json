@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -930,6 +939,7 @@
     "inverse_logo_info": "透明なヘッダーの背景が [反転] に設定されている場合に使用されます",
     "manage_customer_accounts": "お客様アカウント設定で[表示を管理](/admin/settings/customer_accounts)します。レガシーアカウントはサポートされていません。",
     "manage_policies": "[ポリシーを管理する](/admin/settings/legal)",
+    "page": "ページ",
     "product_page": "商品ページ",
     "text": "テキスト",
     "thumbnails": "サムネイル",

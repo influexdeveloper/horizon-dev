@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -930,6 +939,7 @@
     "inverse_logo_info": "투명한 머리글 배경이 반전으로 설정된 경우에 사용됩니다",
     "manage_customer_accounts": "고객 계정 설정에서 [공개 상태를 관리](/admin/settings/customer_accounts)하세요. 레거시 계정은 지원되지 않습니다.",
     "manage_policies": "[정책 관리](/admin/settings/legal)",
+    "page": "페이지",
     "product_page": "제품 페이지",
     "text": "텍스트",
     "thumbnails": "미리 보기 이미지",
