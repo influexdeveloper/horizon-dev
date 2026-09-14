@@ -16,7 +16,7 @@
           "type": "text",
           "name": "Eyebrow",
           "settings": {
-            "text": "<p>OUR OFFERINGS</p>",
+            "text": "<h1>OUR OFFERINGS</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -108,7 +108,7 @@
           "type": "text",
           "name": "Heading",
           "settings": {
-            "text": "<p>OFFERINGS</p>",
+            "text": "<h2>OFFERINGS</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
