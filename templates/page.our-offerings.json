@@ -11,7 +11,6 @@
   "sections": {
     "hero_offerings": {
       "type": "hero",
-      "name": "Offerings Banner",
       "blocks": {
         "eyebrow": {
           "type": "text",
@@ -21,13 +20,17 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "h6",
+            "type_preset": "h1",
             "font": "var(--font-accent--family)",
             "font_size": "",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -50,6 +53,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -58,10 +65,13 @@
           "blocks": {}
         }
       },
-      "block_order": ["eyebrow", "heading"],
+      "block_order": [
+        "eyebrow",
+        "heading"
+      ],
+      "name": "Offerings Banner",
       "settings": {
         "media_type_1": "image",
-        "image_1": "",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -93,7 +103,6 @@
     },
     "offerings_intro": {
       "type": "section",
-      "name": "Offerings Intro",
       "blocks": {
         "heading": {
           "type": "text",
@@ -110,6 +119,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -123,7 +136,7 @@
           "settings": {
             "text": "<p>From the transformative Red Lotus Experience, where ceremonial tea meets immersive sound healing, to the elegant mobile Red Lotus Tea Lounge that brings a touch of beauty, intention, and old-world charm to events, each offering is crafted to create moments of connection, presence, and delight.</p>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "none",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
@@ -132,6 +145,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -140,7 +157,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading", "text"],
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "name": "Offerings Intro",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -164,6 +185,7 @@
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
+        "border_color": "",
         "border_radius": 0,
         "padding-block-start": 64,
         "padding-block-end": 32
@@ -171,7 +193,6 @@
     },
     "offering_experience": {
       "type": "section",
-      "name": "The Red Lotus Experience",
       "blocks": {
         "heading": {
           "type": "text",
@@ -188,6 +209,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -201,7 +226,7 @@
           "settings": {
             "text": "<p>During a 90-minute tea meditation journey, participants drink micro-brewed Red Lotus tea and receive sound healing frequencies to amplify the power of the Nymphaea rubra.</p><p>Known for its transformational root and sacral chakra healing properties, the Red Lotus envelops the body from the inside out.</p><p>The experience continues with a flight of limited-edition hydrosols and sample products. Together, these elements create a benevolent healing cocoon of restoration and renewal.</p>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "none",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
@@ -210,6 +235,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -221,7 +250,6 @@
           "type": "image",
           "name": "Image",
           "settings": {
-            "image": "",
             "link": "",
             "image_ratio": "adapt",
             "width": "fill",
@@ -232,6 +260,7 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -241,7 +270,12 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading", "text", "image"],
+      "block_order": [
+        "heading",
+        "text",
+        "image"
+      ],
+      "name": "The Red Lotus Experience",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -265,6 +299,7 @@
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
+        "border_color": "",
         "border_radius": 0,
         "padding-block-start": 32,
         "padding-block-end": 32
@@ -272,7 +307,6 @@
     },
     "offering_lounge": {
       "type": "section",
-      "name": "Red Lotus Mobile Tea Lounge",
       "blocks": {
         "heading": {
           "type": "text",
@@ -289,6 +323,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -311,6 +349,10 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -322,7 +364,6 @@
           "type": "image",
           "name": "Image",
           "settings": {
-            "image": "",
             "link": "",
             "image_ratio": "adapt",
             "width": "fill",
@@ -333,6 +374,7 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -342,7 +384,12 @@
           "blocks": {}
         }
       },
-      "block_order": ["heading", "text", "image"],
+      "block_order": [
+        "heading",
+        "text",
+        "image"
+      ],
+      "name": "Red Lotus Mobile Tea Lounge",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -366,11 +413,17 @@
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
+        "border_color": "",
         "border_radius": 0,
         "padding-block-start": 32,
         "padding-block-end": 80
       }
     }
   },
-  "order": ["hero_offerings", "offerings_intro", "offering_experience", "offering_lounge"]
+  "order": [
+    "hero_offerings",
+    "offerings_intro",
+    "offering_experience",
+    "offering_lounge"
+  ]
 }
