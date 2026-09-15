@@ -12,6 +12,16 @@
   assign scoped_class = block.settings.style_class | append: '--' | append: block.id
   assign class = 'add-to-cart-button ' | append: block.settings.style_class | append: ' ' | append: scoped_class
   assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+
+  assign show_icon = can_add_to_cart
+  if block.settings.hide_icon
+    assign show_icon = false
+  endif
+
+  assign button_text = add_to_cart_text
+  if can_add_to_cart and block.settings.custom_label != blank
+    assign button_text = block.settings.custom_label
+  endif
 %}
 {% render 'button-custom-styles', block_settings: block.settings, block_id: block.id %}
 {% render 'add-to-cart-button-styles' %}
@@ -25,9 +35,9 @@
     id: id,
     class: class,
     can_add_to_cart: can_add_to_cart,
-    show_icon: can_add_to_cart,
+    show_icon: show_icon,
     product: closest.product,
-    add_to_cart_text: add_to_cart_text,
+    add_to_cart_text: button_text,
     data_testid: 'standalone-add-to-cart'
   %}
 </span>
@@ -37,6 +47,18 @@
   "name": "t:names.add_to_cart",
   "tag": null,
   "settings": [
+    {
+      "type": "text",
+      "id": "custom_label",
+      "label": "Button label override",
+      "info": "Leave blank to use the default \"Add to cart\" text. Only applies when the product can be purchased — sold out / unavailable states always use their own label."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_icon",
+      "label": "Hide cart icon",
+      "default": false
+    },
     {
       "type": "select",
       "id": "style_class",

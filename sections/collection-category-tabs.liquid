@@ -1,9 +1,12 @@
 
 
-<div
-  class="section section--{{ section.settings.section_width }} collection-category-tabs spacing-style"
-  style="{% render 'spacing-style', settings: section.settings %}"
->
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+{% capture children %}
   <ul class="collection-category-tabs__list" role="list">
     {% for block in section.blocks %}
       {% liquid
@@ -25,11 +28,50 @@
       </li>
     {% endfor %}
   </ul>
+{% endcapture %}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="
+    section section--{{ section.settings.section_width }}
+    collection-category-tabs spacing-style
+    {% if section.settings.background_color != blank %}color-custom-{{ section.id }}{% endif %}
+  "
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    {% if section.settings.section_width == 'custom' and section.settings.section_width_custom != blank %}
+      --section-width-custom: {{ section.settings.section_width_custom | remove: 'px' | strip }}px;
+    {% endif %}
+    --collection-category-tabs-font: {{ section.settings.font }};
+    --collection-category-tabs-font-size: {{ section.settings.font_size | default: '0.875rem' }};
+    --collection-category-tabs-letter-spacing: var(--letter-spacing--heading-{{ section.settings.letter_spacing }});
+    {% if section.settings.active_text_color != blank %}
+      --collection-category-tabs-active-color: {{ section.settings.active_text_color }};
+    {% endif %}
+    {% if section.settings.inactive_text_color != blank %}
+      --collection-category-tabs-inactive-color: {{ section.settings.inactive_text_color }};
+    {% endif %}
+  "
+  {% if section.settings.section_width == 'custom' %}
+    data-testid="collection-category-tabs"
+  {% endif %}
+>
+  <div
+    class="collection-category-tabs__container{% if section.settings.case == 'uppercase' %} collection-category-tabs__container--uppercase{% endif %}"
+  >
+    {{ children }}
+  </div>
 </div>
 
 {% stylesheet %}
   .collection-category-tabs {
     display: flex;
+  }
+
+  .collection-category-tabs__container {
+    width: 100%;
   }
 
   .collection-category-tabs__list {
@@ -46,18 +88,23 @@
   .collection-category-tabs__link {
     display: inline-block;
     padding-block-end: 6px;
-    font-family: var(--font-heading--family);
-    font-size: 0.875rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--collection-category-tabs-font, var(--font-heading--family));
+    font-size: var(--collection-category-tabs-font-size, 0.875rem);
+    letter-spacing: var(--collection-category-tabs-letter-spacing, normal);
     text-decoration: none;
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-50));
+    color: var(--collection-category-tabs-inactive-color, rgb(var(--color-foreground-rgb) / var(--opacity-50)));
     border-block-end: 1px solid transparent;
-    transition: color var(--duration-short) ease, border-color var(--duration-short) ease;
+    transition:
+      color var(--duration-short) ease,
+      border-color var(--duration-short) ease;
+  }
+
+  .collection-category-tabs__container--uppercase .collection-category-tabs__link {
+    text-transform: uppercase;
   }
 
   .collection-category-tabs__link:hover {
-    color: var(--color-foreground);
+    color: var(--collection-category-tabs-active-color, var(--color-foreground));
   }
 
   .collection-category-tabs__link--active {
@@ -102,10 +149,18 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
       "type": "select",
       "id": "section_width",
       "label": "t:settings.width",
       "options": [
+        {
+          "value": "narrow",
+          "label": "t:options.narrow"
+        },
         {
           "value": "page-width",
           "label": "t:options.page"
@@ -113,9 +168,135 @@
         {
           "value": "full-width",
           "label": "t:options.full"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
       "default": "page-width"
+    },
+    {
+      "type": "text",
+      "id": "section_width_custom",
+      "label": "t:settings.custom_width",
+      "placeholder": "930",
+      "default": "930",
+      "visible_if": "{{ section.settings.section_width == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-heading--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "0.75rem",
+          "label": "12px"
+        },
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        },
+        {
+          "value": "1.25rem",
+          "label": "20px"
+        }
+      ],
+      "default": "0.875rem"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "loose"
+    },
+    {
+      "type": "select",
+      "id": "case",
+      "label": "t:settings.case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:options.uppercase"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "active_text_color",
+      "label": "Active tab color",
+      "placeholder": "#4d0804"
+    },
+    {
+      "type": "color",
+      "id": "inactive_text_color",
+      "label": "Inactive tab color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "header",
@@ -140,6 +321,26 @@
       "step": 1,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [
