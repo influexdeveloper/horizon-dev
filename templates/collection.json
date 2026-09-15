@@ -305,7 +305,7 @@
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
-                    "font_size": "1.5rem",
+                    "font_size": "1.25rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
