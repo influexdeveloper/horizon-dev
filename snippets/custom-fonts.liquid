@@ -2,10 +2,16 @@
   Custom (self-hosted) brand fonts.
 
   Shopify's `font_picker` setting can only offer fonts from Shopify's own
-  library, so the Monrosia display and accent faces cannot be selected in the
-  theme editor. They are shipped as theme assets instead and wired into the
-  same `--font-<role>--family` variables the rest of the theme already reads,
-  so every section, block and text preset picks them up without further edits.
+  library, so the Monrosia display face cannot be selected in the theme
+  editor. It ships as a theme asset instead and is wired into the same
+  `--font-heading--family` variable the rest of the theme already reads, so
+  every section, block and text preset picks it up without further edits.
+
+  The Accent role is intentionally left on Theme Settings > Typography (the
+  font_picker value written by `theme-styles-variables`) rather than being
+  overridden here — Blue Velvet remains available as a font-face/utility
+  class below for manual, one-off use, but no longer drives the sitewide
+  Accent role.
 
   Render this AFTER `theme-styles-variables` — that snippet writes the role
   variables from the font_picker settings, and these overrides win on source
@@ -150,9 +156,9 @@
        here is what makes the brand fonts selectable in the editor without
        touching a single block schema.
 
-       Body and subheading stay on the font_picker's Montserrat, which is what
-       the design uses for nav, body copy and buttons — so they are not
-       overridden and remain editable in Theme settings > Typography.
+       Body, subheading and accent stay on the font_picker's values (Montserrat
+       for body/subheading, whatever is set in Theme settings > Typography for
+       accent), so only Heading is overridden below.
        ---------------------------------------------------------------------- */
 
     /* Headings — "Become the Altar", "Sacred Botanicals to Remember Your
@@ -162,11 +168,6 @@
     --font-heading--family: var(--font-coldiac);
     --font-heading--style: normal;
     --font-heading--weight: 400;
-
-    /* Accent — "Join The Ritual". */
-    --font-accent--family: var(--font-blue-velvet);
-    --font-accent--style: normal;
-    --font-accent--weight: 400;
   }
 
   /* --------------------------------------------------------------------------
