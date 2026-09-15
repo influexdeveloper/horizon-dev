@@ -109,7 +109,7 @@
         "actions_font_size": "0.875rem",
         "actions_font": "body",
         "actions_text_case": "none",
-        "background_color_top": "{{ settings.color_palette.background }}",
+        "background_color_top": "#220706",
         "text_color_top": "",
         "background_color_bottom": "",
         "text_color_bottom": "",
