@@ -12,6 +12,14 @@
     "main": {
       "type": "product-information",
       "blocks": {
+        "breadcrumb": {
+          "type": "custom-liquid",
+          "name": "Breadcrumb",
+          "settings": {
+            "custom_liquid": "<p class=\"product-breadcrumb\" style=\"font-size: 0.875rem; margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\"><a href=\"/collections/all\" style=\"color: inherit;\">Shop</a> / {{ closest.product.title }}</p>"
+          },
+          "blocks": {}
+        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -176,6 +184,7 @@
                     "border_radius": 0,
                     "link": "",
                     "open_in_new_tab": false,
+                    "placeholder": "",
                     "padding-block-start": 4,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -213,7 +222,10 @@
                       "blocks": {}
                     }
                   },
-                  "block_order": ["price_tVjtKg", "variant_label"]
+                  "block_order": [
+                    "price_tVjtKg",
+                    "variant_label"
+                  ]
                 }
               },
               "block_order": [
@@ -232,6 +244,33 @@
                 "width_percent": 100,
                 "padding-block-start": 0,
                 "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "text_aEtTtq": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "<p>A sensual and grounding botanical tincture inspired by ancient temple rituals. Red Lotus supports euphoria, embodied sovereignty, and relaxation of the nervous system.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "custom_class": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
@@ -305,9 +344,9 @@
                     "hide_icon": true,
                     "border_radius_override": "999",
                     "style_class": "button-custom",
-                    "custom_button_background": "#E5B78D",
+                    "custom_button_background": "#e5b78d",
                     "custom_button_text": "#000000",
-                    "custom_button_border": "#E5B78D"
+                    "custom_button_border": "#e5b78d"
                   },
                   "blocks": {}
                 },
@@ -319,33 +358,6 @@
                 }
               },
               "block_order": []
-            },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "Product description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "custom_class": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             },
             "features_box": {
               "type": "group",
@@ -366,7 +378,7 @@
                 "height": "fit",
                 "custom_height": 100,
                 "background_media": "none",
-                "background_color": "#FCF0E3",
+                "background_color": "#fcf0e3",
                 "video_position": "cover",
                 "background_image_position": "cover",
                 "toggle_overlay": false,
@@ -380,6 +392,7 @@
                 "border_radius": 16,
                 "link": "",
                 "open_in_new_tab": false,
+                "placeholder": "",
                 "padding-block-start": 28,
                 "padding-block-end": 28,
                 "padding-inline-start": 28,
@@ -403,7 +416,10 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["features_heading", "features_list"]
+              "block_order": [
+                "features_heading",
+                "features_list"
+              ]
             },
             "suggested_use": {
               "type": "custom-liquid",
@@ -432,17 +448,11 @@
             "suggested_use",
             "ingredients"
           ]
-        },
-        "breadcrumb": {
-          "type": "custom-liquid",
-          "name": "Breadcrumb",
-          "settings": {
-            "custom_liquid": "<p class=\"product-breadcrumb\" style=\"font-size: 0.875rem; margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\"><a href=\"/collections/all\" style=\"color: inherit;\">Shop</a> / {{ closest.product.title }}</p>"
-          },
-          "blocks": {}
         }
       },
-      "block_order": ["breadcrumb"],
+      "block_order": [
+        "breadcrumb"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -450,7 +460,7 @@
         "limit_details_width": false,
         "gap": 48,
         "enable_sticky_add_to_cart": true,
-        "background_color": "#FFF7ED",
+        "background_color": "#fff7ed",
         "padding-block-start": 40,
         "padding-block-end": 40
       }
@@ -540,7 +550,7 @@
                 "letter_spacing": "loose",
                 "case": "uppercase",
                 "wrap": "pretty",
-                "text_color": "#7B1C23",
+                "text_color": "#7b1c23",
                 "custom_class": "",
                 "background": false,
                 "background_color": "#00000026",
@@ -671,7 +681,7 @@
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "text_color": "#4D0804",
+                    "text_color": "#4d0804",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -710,7 +720,7 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 56,
-        "background_color": "#FFF7ED",
+        "background_color": "#fff7ed",
         "padding-block-start": 100,
         "padding-block-end": 100
       }
