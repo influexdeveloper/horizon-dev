@@ -46,9 +46,9 @@
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
-            "type_preset": "h1",
+            "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "",
+            "font_size": "2rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -72,6 +72,7 @@
       "name": "Offerings Banner",
       "settings": {
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/offering-banner.webp",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -88,7 +89,8 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "medium",
+        "section_width_custom": "930",
+        "section_height": "small",
         "section_height_custom": 50,
         "background_color": "#220706",
         "toggle_overlay": false,
@@ -171,7 +173,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 24,
-        "section_width": "narrow",
+        "section_width": "custom",
+        "section_width_custom": "688",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
@@ -187,8 +190,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 64,
-        "padding-block-end": 32
+        "padding-block-start": 80,
+        "padding-block-end": 0
       }
     },
     "offering_experience": {
@@ -235,7 +238,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "",
+            "text_color": "#220706",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -250,6 +253,7 @@
           "type": "image",
           "name": "Image",
           "settings": {
+            "image": "shopify://shop_images/Facetune_06-10-2025-12-03-17_1.webp",
             "link": "",
             "image_ratio": "adapt",
             "width": "fill",
@@ -285,7 +289,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 24,
-        "section_width": "narrow",
+        "section_width": "custom",
+        "section_width_custom": "688",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
@@ -301,8 +306,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 32,
-        "padding-block-end": 32
+        "padding-block-start": 50,
+        "padding-block-end": 0
       }
     },
     "offering_lounge": {
@@ -323,7 +328,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "",
+            "text_color": "#4D0804",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -338,7 +343,7 @@
           "type": "text",
           "name": "Text",
           "settings": {
-            "text": "<p>Bring The Red Lotus Tea Lounge to your event and immerse guests in a customized experience where each sip becomes a moment of connection, intention, and bliss.</p><p>Monrosia's multi-sensory tea offering blends ritual-grade teas with botanical products to deepen the experience. Crafted with the rare and euphoric Red Lotus (Nymphaea rubra), this transportive flower calms the body, awakens sensuality, and invites deep presence.</p><ul><li>Tasting samples of a variety of Red Lotus beverages</li><li>Pure Red Lotus Tea, KavaRosia, or Red Lotus Vanilla Latte</li><li>Product samples and the full Monrosia product line for sale</li><li>Collaborative Red Lotus mocktail/cocktail creations</li><li>Locally made in Nevada County with Ophora® Water: nano-pure®, hyper-oxygenated, crystalline, restructured for ultimate vitality & highest purity standards.</li></ul><p><strong>Wellness Events • Retreats • Markets • Seasonal Gatherings • Festivals</strong></p>",
+            "text": "<p>Bring The Red Lotus Tea Lounge to your event and immerse guests in a customized experience where each sip becomes a moment of connection, intention, and bliss.</p><p>Monrosia's multi-sensory tea offering blends ritual-grade teas with botanical products to deepen the experience. Crafted with the rare and euphoric Red Lotus (Nymphaea rubra), this transportive flower calms the body, awakens sensuality, and invites deep presence.</p><ul><li>Tasting samples of a variety of Red Lotus beverages</li><li>Pure Red Lotus Tea, KavaRosia, or Red Lotus Vanilla Latte</li><li>Product samples and the full Monrosia product line for sale</li><li>Collaborative Red Lotus mocktail/cocktail creations</li><li>Locally made in Nevada County with Ophora® Water: nano-pure®, hyper-oxygenated, crystalline, restructured for ultimate vitality & highest purity standards.</li></ul>",
             "width": "100%",
             "max_width": "none",
             "alignment": "left",
@@ -349,7 +354,33 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "",
+            "text_color": "#220706",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_r8LfCr": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "<p><strong>Wellness Events • Retreats • Markets • Seasonal Gatherings • Festivals</strong></p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#220706",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -364,6 +395,7 @@
           "type": "image",
           "name": "Image",
           "settings": {
+            "image": "shopify://shop_images/IMG_0778_1.webp",
             "link": "",
             "image_ratio": "adapt",
             "width": "fill",
@@ -387,6 +419,7 @@
       "block_order": [
         "heading",
         "text",
+        "text_r8LfCr",
         "image"
       ],
       "name": "Red Lotus Mobile Tea Lounge",
@@ -399,7 +432,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 24,
-        "section_width": "narrow",
+        "section_width": "custom",
+        "section_width_custom": "688",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
@@ -415,8 +449,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 32,
-        "padding-block-end": 80
+        "padding-block-start": 50,
+        "padding-block-end": 83
       }
     }
   },
