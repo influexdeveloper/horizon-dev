@@ -102,6 +102,54 @@
         "padding-block-end": 0
       }
     },
+    "collection_category_tabs": {
+      "type": "collection-category-tabs",
+      "name": "Category tabs",
+      "blocks": {
+        "tab_all": {
+          "type": "tab",
+          "settings": {
+            "label": "All",
+            "link": "",
+            "default_tab": true
+          }
+        },
+        "tab_tinctures": {
+          "type": "tab",
+          "settings": {
+            "label": "Tinctures",
+            "link": ""
+          }
+        },
+        "tab_teas": {
+          "type": "tab",
+          "settings": {
+            "label": "Teas",
+            "link": ""
+          }
+        },
+        "tab_skincare": {
+          "type": "tab",
+          "settings": {
+            "label": "Skincare",
+            "link": ""
+          }
+        },
+        "tab_balms": {
+          "type": "tab",
+          "settings": {
+            "label": "Balms",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["tab_all", "tab_tinctures", "tab_teas", "tab_skincare", "tab_balms"],
+      "settings": {
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 16
+      }
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -118,7 +166,7 @@
             "enable_sorting": true,
             "enable_grid_density": true,
             "background_color": "",
-            "text_color": "",
+            "text_color": "#6b5651",
             "padding-block-start": 8,
             "padding-block-end": 8,
             "padding-inline-start": 0,
@@ -168,14 +216,14 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "0.875rem",
                 "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
-                "text_color": "",
+                "text_color": "#4d0804",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -183,6 +231,14 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "description_HgKq2m": {
+              "type": "custom-liquid",
+              "name": "Description",
+              "settings": {
+                "custom_liquid": "{% if closest.product.type != blank %}<p style=\"font-size: 0.875rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-50)); margin: 0;\">{{ closest.product.type }}</p>{% endif %}"
               },
               "blocks": {}
             },
@@ -200,8 +256,22 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
+                "text_color": "#4d0804",
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_Qw9Zp1": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": false,
                 "text_color": "",
-                "padding-block-start": 0,
+                "show_pickup_availability": false,
+                "gift_card_form": false,
+                "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -212,7 +282,9 @@
           "block_order": [
             "card-gallery",
             "product_title_4nY4eT",
-            "price_EzJzMm"
+            "description_HgKq2m",
+            "price_EzJzMm",
+            "buy_buttons_Qw9Zp1"
           ]
         }
       },
@@ -236,6 +308,7 @@
   },
   "order": [
     "hero_collection",
+    "collection_category_tabs",
     "main"
   ]
 }
