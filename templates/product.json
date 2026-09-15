@@ -458,7 +458,7 @@
         "desktop_media_position": "left",
         "equal_columns": true,
         "limit_details_width": false,
-        "gap": 48,
+        "gap": 20,
         "enable_sticky_add_to_cart": true,
         "background_color": "#fff7ed",
         "padding-block-start": 40,
