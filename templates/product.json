@@ -17,14 +17,14 @@
           "static": true,
           "settings": {
             "media_presentation": "carousel",
-            "media_columns": "two",
+            "media_columns": "one",
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
             "thumbnail_radius": 0,
             "aspect_ratio": "1/1.25",
             "constrain_to_viewport": true,
@@ -120,7 +120,7 @@
                   "type": "custom-liquid",
                   "name": "Eyebrow",
                   "settings": {
-                    "custom_liquid": "{% if closest.product.metafields.custom.tagline != blank %}<p style=\"font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 0; color: #4d0804;\">{{ closest.product.metafields.custom.tagline }}</p>{% endif %}"
+                    "custom_liquid": "<p style=\"font-size: 0.875rem; letter-spacing: 0.15em; text-transform: uppercase; margin: 0; color: #4d0804;\">{{ closest.product.metafields.custom.tagline | default: 'Euphoria | Sensuality | Sovereignty' }}</p>"
                   },
                   "blocks": {}
                 },
@@ -398,7 +398,7 @@
                   "type": "custom-liquid",
                   "name": "Heading",
                   "settings": {
-                    "custom_liquid": "{% if closest.product.metafields.custom.features_and_benefits != blank %}<p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: #4d0804;\">Features &amp; Benefits</p>{% endif %}"
+                    "custom_liquid": "<p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: #4d0804;\">Features &amp; Benefits</p>"
                   },
                   "blocks": {}
                 },
@@ -406,7 +406,7 @@
                   "type": "custom-liquid",
                   "name": "List",
                   "settings": {
-                    "custom_liquid": "{% if closest.product.metafields.custom.features_and_benefits != blank %}<div style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{{ closest.product.metafields.custom.features_and_benefits.value }}</div>{% endif %}"
+                    "custom_liquid": "<div style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{% if closest.product.metafields.custom.features_and_benefits != blank %}{{ closest.product.metafields.custom.features_and_benefits.value }}{% else %}<ul style=\"margin: 0; padding-inline-start: 1.2em;\"><li>Promotes calm euphoria and sensual embodiment</li><li>Supports relaxation and nervous system balance</li><li>Encourages self-trust and emotional grounding</li><li>Infused with red lotus, passionvine, and motherwort</li></ul>{% endif %}</div>"
                   },
                   "blocks": {}
                 }
@@ -417,7 +417,7 @@
               "type": "custom-liquid",
               "name": "Suggested Use",
               "settings": {
-                "custom_liquid": "{% if closest.product.metafields.custom.suggested_use != blank %}<div><p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px; color: #4d0804;\">Suggested Use</p><p style=\"margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{{ closest.product.metafields.custom.suggested_use.value }}</p></div>{% endif %}"
+                "custom_liquid": "<div><p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px; color: #4d0804;\">Suggested Use</p><p style=\"margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{% if closest.product.metafields.custom.suggested_use != blank %}{{ closest.product.metafields.custom.suggested_use.value }}{% else %}Take sublingually or add to a beverage of your choice for daily ritual use.{% endif %}</p></div>"
               },
               "blocks": {}
             },
@@ -425,7 +425,7 @@
               "type": "custom-liquid",
               "name": "Ingredients",
               "settings": {
-                "custom_liquid": "{% if closest.product.metafields.custom.ingredients != blank %}<div><p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px; color: #4d0804;\">Ingredients</p><p style=\"margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{{ closest.product.metafields.custom.ingredients.value }}</p></div>{% endif %}"
+                "custom_liquid": "<div><p style=\"font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px; color: #4d0804;\">Ingredients</p><p style=\"margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{% if closest.product.metafields.custom.ingredients != blank %}{{ closest.product.metafields.custom.ingredients.value }}{% else %}Red Lotus Blossoms, Passionvine, Motherwort, Vanilla Bean, Tonka Bean, Organic Vegetable Glycerin &amp; Organic Spirit. Use within 12–24 months.{% endif %}</p></div>"
               },
               "blocks": {}
             }
