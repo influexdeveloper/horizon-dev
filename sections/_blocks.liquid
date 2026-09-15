@@ -189,9 +189,24 @@
         {
           "value": "full-width",
           "label": "t:options.full"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
       "default": "page-width"
+    },
+    {
+      "type": "range",
+      "id": "section_width_custom",
+      "label": "t:settings.custom_width",
+      "min": 300,
+      "max": 1500,
+      "step": 30,
+      "unit": "px",
+      "default": 930,
+      "visible_if": "{{ section.settings.section_width == 'custom' }}"
     },
     {
       "type": "select",
