@@ -46,7 +46,7 @@
           "static": true,
           "settings": {
             "width": "fill",
-            "custom_width": 100,
+            "custom_width": 50,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -301,13 +301,13 @@
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
-        "equal_columns": false,
+        "equal_columns": true,
         "limit_details_width": false,
         "gap": 48,
         "enable_sticky_add_to_cart": true,
         "background_color": "#FFF7ED",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "product_recommendations_qggXJq": {
@@ -493,8 +493,8 @@
         "section_width": "page-width",
         "gap": 28,
         "background_color": "#FFF7ED",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     }
   },
