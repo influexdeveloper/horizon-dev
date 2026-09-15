@@ -115,8 +115,16 @@
 
   .product-details .quantity-selector :is(.quantity-minus, .quantity-plus) {
     color: #4d0804 !important;
-    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     border-radius: 0 !important;
+  }
+
+  .product-details .quantity-selector :is(.quantity-minus, .quantity-plus):hover,
+  .product-details .quantity-selector :is(.quantity-minus, .quantity-plus):focus,
+  .product-details .quantity-selector :is(.quantity-minus, .quantity-plus):active {
+    background: transparent !important;
   }
 
   .product-details .quantity-selector input[type='number'] {
