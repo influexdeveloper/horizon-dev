@@ -252,6 +252,46 @@
               },
               "blocks": {}
             },
+            "product_card_group_GBaeFQ": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "price_EzJzMm": {
               "type": "price",
               "settings": {
@@ -274,7 +314,7 @@
               },
               "blocks": {}
             },
-            "buy_buttons_Qw9Zp1": {
+            "buy_buttons_Dd8DRA": {
               "type": "buy-buttons",
               "settings": {
                 "stacking": false,
@@ -341,8 +381,9 @@
             "card-gallery",
             "product_title_4nY4eT",
             "description_HgKq2m",
+            "product_card_group_GBaeFQ",
             "price_EzJzMm",
-            "buy_buttons_Qw9Zp1"
+            "buy_buttons_Dd8DRA"
           ]
         }
       },
