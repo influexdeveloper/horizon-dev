@@ -187,11 +187,11 @@
             "enable_grid_density": true,
             "background_color": "",
             "text_color": "#6b5651",
-            "padding-block-start": 8,
-            "padding-block-end": 8,
+            "padding-block-start": 18,
+            "padding-block-end": 18,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
-            "facets_margin_bottom": 8,
+            "facets_margin_bottom": 60,
             "facets_margin_right": 20
           },
           "blocks": {}
@@ -459,7 +459,7 @@
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "background_color": "#fff7ed",
-        "padding-block-start": 40,
+        "padding-block-start": 0,
         "padding-block-end": 100
       }
     }
