@@ -78,6 +78,13 @@
       padding-block-end: var(--zoom-out-padding-block-end, 0);
     }
   }
+
+  /* The Left/right padding setting only applies on mobile; desktop stays flush with the grid. */
+  @media screen and (max-width: 749px) {
+    #ResultsList {
+      padding-inline: var(--padding-inline-start) var(--padding-inline-end);
+    }
+  }
 {% endstyle %}
 <div
   id="ResultsList"
@@ -95,7 +102,6 @@
     --grid-column--mobile: var(--{% if section.settings.full_width_on_mobile %}full-width{% else %}{% if section.settings.product_grid_width == 'centered' %}centered{% else %}full-width{% endif %}{% endif %});
     --padding-inline-start: {{ section.settings.padding-inline-start }}px;
     --padding-inline-end: {{ section.settings.padding-inline-end }}px;
-    padding-inline: {{ section.settings.padding-inline-start }}px {{ section.settings.padding-inline-end }}px;
   "
 >
   <div
