@@ -157,7 +157,7 @@
       "settings": {
         "section_width": "page-width",
         "section_width_custom": "930",
-        "font": "var(--font-body--family)",
+        "font": "var(--font-accent--family)",
         "font_size": "0.875rem",
         "letter_spacing": "loose",
         "case": "uppercase",
