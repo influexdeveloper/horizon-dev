@@ -288,31 +288,35 @@
                 "padding-block-start": 20,
                 "padding-block-end": 20,
                 "padding-inline-start": 20,
-                "padding-inline-end": 0
+                "padding-inline-end": 20
               },
-              "blocks": {}
-            },
-            "price_EzJzMm": {
-              "type": "price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "#4d0804",
-                "padding-block-start": 8,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+              "blocks": {
+                "price_figgzF": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "h6",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "#4d0804",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
               },
-              "blocks": {}
+              "block_order": [
+                "price_figgzF"
+              ]
             },
             "buy_buttons_Dd8DRA": {
               "type": "buy-buttons",
@@ -382,7 +386,6 @@
             "product_title_4nY4eT",
             "description_HgKq2m",
             "product_card_group_GBaeFQ",
-            "price_EzJzMm",
             "buy_buttons_Dd8DRA"
           ]
         }
