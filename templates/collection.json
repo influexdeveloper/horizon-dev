@@ -349,7 +349,7 @@
                         "type_preset": "custom",
                         "width": "100%",
                         "alignment": "left",
-                        "font": "var(--font-body--family)",
+                        "font": "var(--font-accent--family)",
                         "font_size": "1rem",
                         "line_height": "normal",
                         "letter_spacing": "normal",
