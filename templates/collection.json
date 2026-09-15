@@ -346,7 +346,7 @@
                         "show_sale_price_first": true,
                         "show_installments": false,
                         "show_tax_info": false,
-                        "type_preset": "h6",
+                        "type_preset": "custom",
                         "width": "100%",
                         "alignment": "left",
                         "font": "var(--font-accent--family)",
