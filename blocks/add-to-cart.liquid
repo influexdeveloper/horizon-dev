@@ -27,6 +27,14 @@
 {% render 'add-to-cart-button-styles' %}
 {% render 'fly-to-cart-styles' %}
 
+{% if block.settings.border_radius_override != blank %}
+  {% style %}
+    .{{ scoped_class }} {
+      border-radius: {{ block.settings.border_radius_override | remove: 'px' | strip }}px;
+    }
+  {% endstyle %}
+{% endif %}
+
 <span
   {{ block.shopify_attributes }}
   style="--add-to-cart-font-case: {{ settings.button_text_case }};"
@@ -58,6 +66,13 @@
       "id": "hide_icon",
       "label": "Hide cart icon",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "border_radius_override",
+      "label": "Border radius override",
+      "placeholder": "e.g. 8 or 999",
+      "info": "Leave blank to use the theme's default button shape (Theme settings > Buttons)."
     },
     {
       "type": "select",
