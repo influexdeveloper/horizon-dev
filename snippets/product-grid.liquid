@@ -95,6 +95,7 @@
     --grid-column--mobile: var(--{% if section.settings.full_width_on_mobile %}full-width{% else %}{% if section.settings.product_grid_width == 'centered' %}centered{% else %}full-width{% endif %}{% endif %});
     --padding-inline-start: {{ section.settings.padding-inline-start }}px;
     --padding-inline-end: {{ section.settings.padding-inline-end }}px;
+    padding-inline: {{ section.settings.padding-inline-start }}px {{ section.settings.padding-inline-end }}px;
   "
 >
   <div
@@ -348,11 +349,11 @@
 
   .main-collection-grid {
     grid-column: var(--grid-column--mobile);
-    padding: var(--grid--margin--mobile);
+    padding-block: var(--grid--margin--mobile);
 
     @media screen and (min-width: 750px) {
       grid-column: var(--grid-column--desktop);
-      padding: var(--padding-block-start) var(--padding-inline-end) var(--padding-block-end) var(--padding-inline-start);
+      padding-block: var(--padding-block-start) var(--padding-block-end);
     }
   }
 
