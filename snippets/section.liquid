@@ -41,8 +41,8 @@
      --section-preview-height: 600px;
      {% endif %}
 
-    {% if section.settings.section_width == 'custom' %}
-      --section-width-custom: {{ section.settings.section_width_custom }}px;
+    {% if section.settings.section_width == 'custom' and section.settings.section_width_custom != blank %}
+      --section-width-custom: {{ section.settings.section_width_custom | remove: 'px' | strip }}px;
     {% endif %}
   "
 >

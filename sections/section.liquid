@@ -195,14 +195,11 @@
       "default": "page-width"
     },
     {
-      "type": "range",
+      "type": "text",
       "id": "section_width_custom",
       "label": "t:settings.custom_width",
-      "min": 300,
-      "max": 1500,
-      "step": 30,
-      "unit": "px",
-      "default": 930,
+      "placeholder": "930",
+      "default": "930",
       "visible_if": "{{ section.settings.section_width == 'custom' }}"
     },
     {
