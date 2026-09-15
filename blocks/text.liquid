@@ -1,6 +1,6 @@
 
 
-{% render 'text', block: block %}
+{% render 'text', block: block, class: block.settings.custom_class %}
 
 {% schema %}
 {
@@ -298,6 +298,12 @@
       "id": "text_color",
       "label": "t:settings.text_color",
       "placeholder": "t:settings.default"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS class",
+      "info": "Adds this class to the text block's wrapper, e.g. \"text-gradient\"."
     },
     {
       "type": "checkbox",

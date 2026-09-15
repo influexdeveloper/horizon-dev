@@ -1141,6 +1141,16 @@ summary:hover {
   }
 }
 
+/* Text gradient utility */
+.text-gradient,
+.text-gradient > * {
+  background: linear-gradient(178deg, #fff2c6 1.45%, #bd8332 152.5%), #383a4c;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Custom Typography style */
 .custom-typography,
 .custom-typography * {
