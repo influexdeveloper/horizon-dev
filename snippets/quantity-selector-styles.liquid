@@ -102,4 +102,19 @@
   .quantity-selector input[type='number'] {
     appearance: textfield;
   }
+
+  /* Product page quantity selector — pill shape, brand maroon border/text,
+     set directly rather than through the --style-border-radius-* /
+     --color-input-* custom-property chain, which has competing same-
+     specificity declarations from color-palette.liquid and this file. */
+  .product-details .quantity-selector {
+    border-radius: 999px !important;
+    border-color: #4d0804 !important;
+    background-color: #fff7ed !important;
+  }
+
+  .product-details .quantity-selector :is(.quantity-minus, .quantity-plus),
+  .product-details .quantity-selector input[type='number'] {
+    color: #4d0804 !important;
+  }
 {% endstylesheet %}
