@@ -40,6 +40,10 @@
     {% if section.settings.section_height != '' %}
      --section-preview-height: 600px;
      {% endif %}
+
+    {% if section.settings.section_width == 'custom' %}
+      --section-width-custom: {{ section.settings.section_width_custom }}px;
+    {% endif %}
   "
 >
   <div class="custom-section-background">

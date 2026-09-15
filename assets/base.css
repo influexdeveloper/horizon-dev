@@ -369,6 +369,13 @@ p:empty {
   margin-inline: auto;
 }
 
+/* For custom-width sections, content is centered in the page column with a merchant-defined cap */
+.section--custom > * {
+  grid-column: 2;
+  max-width: var(--section-width-custom, 930px);
+  margin-inline: auto;
+}
+
 /* For full-width sections, content spans all columns */
 .section--full-width > * {
   grid-column: 1 / -1;
