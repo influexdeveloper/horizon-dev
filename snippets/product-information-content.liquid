@@ -128,6 +128,13 @@
     gap: var(--gap) 0;
   }
 
+  /* Additional section-level blocks (e.g. a breadcrumb) render after
+     <product-component> in the DOM, but should visually sit above the
+     media/details columns on every breakpoint. */
+  .product-information > product-component {
+    order: 1;
+  }
+
   /* Base grid layout */
   .product-information__grid {
     display: grid;

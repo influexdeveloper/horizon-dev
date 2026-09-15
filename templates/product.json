@@ -68,14 +68,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "breadcrumb": {
-              "type": "custom-liquid",
-              "name": "Breadcrumb",
-              "settings": {
-                "custom_liquid": "<p style=\"font-size: 0.875rem; margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\"><a href=\"/collections/all\" style=\"color: inherit;\">Shop</a> / {{ closest.product.title }}</p>"
-              },
-              "blocks": {}
-            },
             "group_icgrde": {
               "type": "group",
               "name": "Header",
@@ -296,7 +288,7 @@
                   "type": "quantity",
                   "static": true,
                   "settings": {
-                    "input_style": "default",
+                    "input_style": "custom",
                     "input_background_color": "{{ settings.color_palette.background }}",
                     "input_text_color": "#4d0804",
                     "input_border_color": "#4d0804",
@@ -431,7 +423,6 @@
             }
           },
           "block_order": [
-            "breadcrumb",
             "group_icgrde",
             "divider_VJhene",
             "text_aEtTtq",
@@ -441,8 +432,17 @@
             "suggested_use",
             "ingredients"
           ]
+        },
+        "breadcrumb": {
+          "type": "custom-liquid",
+          "name": "Breadcrumb",
+          "settings": {
+            "custom_liquid": "<p class=\"product-breadcrumb\" style=\"font-size: 0.875rem; margin: 0; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\"><a href=\"/collections/all\" style=\"color: inherit;\">Shop</a> / {{ closest.product.title }}</p>"
+          },
+          "blocks": {}
         }
       },
+      "block_order": ["breadcrumb"],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
