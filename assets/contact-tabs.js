@@ -8,12 +8,16 @@
 // Liquid — see contact-tabs.liquid) is cloned in over the form; on failure,
 // its `.contact-tabs__error-template` is shown above the form instead so
 // the visitor can retry.
+//
+// The subscribe call below only ever sends `email` — Klaviyo's client
+// subscribe endpoint returned 400 Bad Request the one time this also sent
+// `first_name` / `phone_number` / a `properties` bag built from the other
+// fields (Event Date, Business Name, Location, Inquiry details / Message).
+// Its exact accepted profile shape isn't fully confirmed, and every failure
+// here now logs Klaviyo's own response body to the console, so the real
+// reason is visible next time rather than another guess — check that output
+// and this endpoint's current docs before adding those fields back in.
 const KLAVIYO_REVISION = '2024-10-15';
-
-// Klaviyo profile attributes with a dedicated top-level field, as opposed to
-// a custom one nested under `properties`. Keyed to each field's own
-// `data-klaviyo-field` value in contact-tabs.liquid.
-const KLAVIYO_NATIVE_ATTRIBUTES = new Set(['first_name', 'last_name', 'phone_number']);
 
 class ContactTabs extends HTMLElement {
   #controller = new AbortController();
@@ -115,35 +119,20 @@ class ContactTabs extends HTMLElement {
     const submitButton = /** @type {HTMLButtonElement | null} */ (form.querySelector('button[type="submit"]'));
     if (submitButton) submitButton.disabled = true;
 
-    this.#subscribeToKlaviyo({ publicKey, listId, email, form })
+    this.#subscribeToKlaviyo({ publicKey, listId, email })
       .then(() => this.#showSuccess(panel, form))
-      .catch(() => {
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('[contact-tabs] Klaviyo subscription failed:', error);
         this.#showError(panel);
         if (submitButton) submitButton.disabled = false;
       });
   };
 
   /**
-   * @param {{ publicKey: string, listId: string, email: string, form: HTMLFormElement }} params
+   * @param {{ publicKey: string, listId: string, email: string }} params
    */
-  #subscribeToKlaviyo({ publicKey, listId, email, form }) {
-    const attributes = { email };
-    const properties = {};
-
-    form.querySelectorAll('[data-klaviyo-field]').forEach((field) => {
-      const key = /** @type {HTMLElement} */ (field).dataset.klaviyoField;
-      const value = /** @type {HTMLInputElement | HTMLTextAreaElement} */ (field).value.trim();
-      if (!key || !value) return;
-
-      if (KLAVIYO_NATIVE_ATTRIBUTES.has(key)) {
-        attributes[key] = value;
-      } else {
-        properties[key] = value;
-      }
-    });
-
-    if (Object.keys(properties).length > 0) attributes.properties = properties;
-
+  #subscribeToKlaviyo({ publicKey, listId, email }) {
     return fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(publicKey)}`, {
       method: 'POST',
       headers: {
@@ -158,7 +147,7 @@ class ContactTabs extends HTMLElement {
               data: {
                 type: 'profile',
                 attributes: {
-                  ...attributes,
+                  email,
                   subscriptions: {
                     email: { marketing: { consent: 'SUBSCRIBED' } },
                   },
@@ -172,7 +161,11 @@ class ContactTabs extends HTMLElement {
         },
       }),
     }).then((response) => {
-      if (!response.ok) throw new Error(`Klaviyo responded with ${response.status}`);
+      if (response.ok) return;
+
+      return response.text().then((body) => {
+        throw new Error(`Klaviyo responded with ${response.status}: ${body}`);
+      });
     });
   }
 
