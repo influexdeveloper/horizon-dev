@@ -489,28 +489,38 @@ ol {
 /* --------------------------------------------------------------------------
    Contact page — templates/page.contact-us.json, Figma node 2935:145
 
-   The banner reuses the homepage hero's own `.hero .text-block h1` / `p`
-   rules above for size, so setting this page's own heading sizes without
-   also changing the homepage's needs a selector more specific than theirs
-   rather than editing them in place. `custom_class` on the two text blocks
-   (contact-hero-heading / contact-hero-subtext) gives each a hook one class
-   more specific than the shared rule, which wins outright on specificity —
-   no dependency on load order, no doubled class needed.
+   Both headline/tagline pairs on this page (the banner, and "Stay Connected"
+   further down) want 64px / 30px. Neither is a step the text block's own
+   "Font size" dropdown offers — that list runs ...24, 32... and ...56, 72...,
+   with no 30 or 64 in between — so picking "Custom" and typing one of those
+   values in doesn't actually select anything: the editor shows the field
+   blank, because the stored value matches none of its options. Sizing has to
+   come from CSS instead, the same way the homepage hero's own headline/tagline
+   already do (see the fixed clamp() bounds above).
 
-   Fixed 64px / 30px rather than the homepage's fluid clamp: this page's
-   copy pairs a display headline with a fixed-size tagline throughout (see
-   "Stay Connected" below), so the banner matches that same flat scale
-   instead of one section behaving responsively and the rest not.
-
-   "Stay Connected" doesn't need an override here: it isn't inside `.hero`,
-   so nothing else is contesting its size — its 64px/30px are set directly
-   on the text blocks themselves (`font_size`) in the template JSON.
-   -------------------------------------------------------------------------- */
+   Each of the four blocks carries its own `custom_class` (contact-hero-heading
+   / contact-hero-subtext / contact-stay-connected-heading /
+   contact-stay-connected-subtext) with `font_size` left blank, so nothing
+   mismatched shows in the editor. The banner pair sits inside `.hero`, whose
+   own `.hero .text-block h1` / `p` rules above would otherwise win, so those
+   two selectors add the class one level deeper to come in more specific.
+   "Stay Connected" isn't inside `.hero`, but its heading's own `<h2>` tag is
+   still caught by base.css's bare `h2` typography-preset rule, so its
+   selector adds the class for the same reason — the tagline is a `custom`
+   preset with nothing else contesting it, so no extra class is needed there. */
 .hero .text-block.contact-hero-heading h1 {
   font-size: 4rem;
 }
 
 .hero .text-block.contact-hero-subtext p {
+  font-size: 1.875rem;
+}
+
+.text-block.contact-stay-connected-heading h2 {
+  font-size: 4rem;
+}
+
+.text-block.contact-stay-connected-subtext p {
   font-size: 1.875rem;
 }
 
