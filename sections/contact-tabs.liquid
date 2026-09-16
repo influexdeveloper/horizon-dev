@@ -62,6 +62,7 @@
   "
   data-testid="contact-tabs"
 >
+ <div class="contact-tabs__container">
   <div
     class="contact-tabs__tablist"
     role="tablist"
@@ -304,16 +305,18 @@
       </div>
     {% endfor %}
   </div>
+ </div>
 </contact-tabs>
 
 {% stylesheet %}
-  .contact-tabs {
+  .contact-tabs__container {
     display: flex;
     flex-direction: column;
   }
 
   .contact-tabs__tablist {
     display: flex;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
