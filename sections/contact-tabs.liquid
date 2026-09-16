@@ -71,9 +71,9 @@
       {% capture success_message_html %}
         {% case block.type %}
           {% when 'signup_panel' %}
-            <strong>SUBSCRIPTION CONFIRMED</strong>
+            <p class="h4">SUBSCRIPTION CONFIRMED</p>
           {% else %}
-            <strong>Thank you for contacting us.</strong>
+            <p class="h4">Thank you for contacting us.</p>
             <p>We will be in touch with you shortly.</p>
         {% endcase %}
       {% endcapture %}
@@ -315,16 +315,21 @@
 
   .contact-tabs__tab {
     flex: 1 1 0;
-    padding: 20px 16px;
+    padding: 12px 6px;
     border: 0;
     background: transparent;
     cursor: pointer;
     font-family: var(--font-heading--family);
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     line-height: 1.2;
     text-align: center;
     color: var(--contact-tabs-inactive-color, #bababa);
     transition: color var(--duration-short) ease, background-color var(--duration-short) ease;
+
+    @media screen and (min-width: 750px) {
+      padding: 20px 16px;
+      font-size: 1.125rem;
+    }
   }
 
   .contact-tabs__tab--active {
@@ -337,7 +342,11 @@
   }
 
   .contact-tabs__panel {
-    padding: 32px;
+    padding: 20px;
+
+    @media screen and (min-width: 750px) {
+      padding: 32px;
+    }
   }
 
   .contact-tabs__intro {
@@ -352,6 +361,14 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-md, 16px);
+  }
+
+  /* `[hidden]` alone ties `.contact-tabs__form`'s own `display: flex` on
+     specificity, and the class wins that tie — contact-tabs.js's
+     `form.hidden = true` on success would otherwise leave the form (submit
+     button included) fully visible, right above the success message. */
+  .contact-tabs__form[hidden] {
+    display: none;
   }
 
   .contact-tabs__row {
@@ -418,8 +435,13 @@
   }
 
   .contact-tabs__submit {
-    align-self: center;
+    width: 100%;
     margin-block-start: 8px;
+
+    @media screen and (min-width: 750px) {
+      width: auto;
+      align-self: center;
+    }
   }
 
   .contact-form__error {
@@ -434,9 +456,14 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    margin-block-start: 16px;
     padding: 24px;
     border: 1px solid var(--contact-tabs-input-border, var(--color-input-border));
     text-align: center;
+  }
+
+  .contact-form__success p.h4 {
+    margin-block-end: 10px;
   }
 {% endstylesheet %}
 
