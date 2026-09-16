@@ -1334,6 +1334,7 @@ summary:hover {
   ol {
     margin-block-start: 0;
     padding-inline-start: 1.5em;
+    line-height: var(--line-height--body, var(--line-height));
   }
 
   /* Only apply margin-block-end to the higher level list, not nested lists */
