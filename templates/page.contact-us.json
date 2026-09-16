@@ -12,23 +12,23 @@
     "hero_contact": {
       "type": "hero",
       "blocks": {
-        "heading": {
+        "text_WELYwT": {
           "type": "text",
-          "name": "Heading",
+          "name": "t:names.text",
           "settings": {
             "text": "<h1>Get In Touch</h1>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h1",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#ffffff",
-            "custom_class": "contact-hero-heading",
+            "text_color": "",
+            "custom_class": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -39,23 +39,23 @@
           },
           "blocks": {}
         },
-        "subtext": {
+        "text_RrjbLh": {
           "type": "text",
-          "name": "Subtext",
+          "name": "t:names.text",
           "settings": {
-            "text": "<p>Our team would love to connect with you.</p>",
+            "text": "<p>Our team would love to <br/>connect with you.</p>",
             "width": "100%",
-            "max_width": "narrow",
+            "max_width": "none",
             "alignment": "center",
-            "type_preset": "h3",
-            "font": "var(--font-heading--family)",
-            "font_size": "1.875rem",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#ffffff",
-            "custom_class": "contact-hero-subtext",
+            "text_color": "",
+            "custom_class": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -68,8 +68,8 @@
         }
       },
       "block_order": [
-        "heading",
-        "subtext"
+        "text_WELYwT",
+        "text_RrjbLh"
       ],
       "name": "Contact Banner",
       "settings": {
@@ -229,7 +229,7 @@
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
-            "type_preset": "h2",
+            "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "",
             "line_height": "normal",
