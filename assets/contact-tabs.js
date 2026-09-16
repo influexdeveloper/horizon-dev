@@ -9,16 +9,18 @@
 // its `.contact-tabs__error-template` is shown above the form instead so
 // the visitor can retry.
 //
-// The subscribe call below only sends `email` — the extra fields (Event
-// Date, Business Name, Location, Inquiry details / Message) were dropped
-// while chasing a 400 that turned out to be unrelated (`subscriptions`
-// nested inside the profile object instead of beside it — see
-// #subscribeToKlaviyo). They haven't been confirmed against this endpoint's
-// accepted profile shape since, so add them back one at a time rather than
-// all at once. Every failure here logs Klaviyo's own response body to the
-// console, which is what actually diagnosed the `subscriptions` issue —
-// check that output first if a re-added field 400s again.
+// Every failed subscribe call below logs Klaviyo's own response body to the
+// console (not just the status code) — that detail is what diagnosed the
+// two rounds of 400s this endpoint gave over an incorrectly-placed
+// `subscriptions` field (see #subscribeToKlaviyo), and it's the fastest way
+// to a fix if any field here ever gets rejected too: check that output
+// first, rather than guessing a new payload shape from scratch.
 const KLAVIYO_REVISION = '2024-10-15';
+
+// Klaviyo profile attributes with a dedicated top-level field, as opposed to
+// a custom one nested under `properties`. Keyed to each field's own
+// `data-klaviyo-field` value in contact-tabs.liquid.
+const KLAVIYO_NATIVE_PROFILE_ATTRIBUTES = new Set(['first_name', 'last_name', 'phone_number']);
 
 class ContactTabs extends HTMLElement {
   #controller = new AbortController();
@@ -120,7 +122,7 @@ class ContactTabs extends HTMLElement {
     const submitButton = /** @type {HTMLButtonElement | null} */ (form.querySelector('button[type="submit"]'));
     if (submitButton) submitButton.disabled = true;
 
-    this.#subscribeToKlaviyo({ publicKey, listId, email })
+    this.#subscribeToKlaviyo({ publicKey, listId, email, form })
       .then(() => this.#showSuccess(panel, form))
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -131,9 +133,26 @@ class ContactTabs extends HTMLElement {
   };
 
   /**
-   * @param {{ publicKey: string, listId: string, email: string }} params
+   * @param {{ publicKey: string, listId: string, email: string, form: HTMLFormElement }} params
    */
-  #subscribeToKlaviyo({ publicKey, listId, email }) {
+  #subscribeToKlaviyo({ publicKey, listId, email, form }) {
+    const profileAttributes = { email };
+    const properties = {};
+
+    form.querySelectorAll('[data-klaviyo-field]').forEach((field) => {
+      const key = /** @type {HTMLElement} */ (field).dataset.klaviyoField;
+      const value = /** @type {HTMLInputElement | HTMLTextAreaElement} */ (field).value.trim();
+      if (!key || !value) return;
+
+      if (KLAVIYO_NATIVE_PROFILE_ATTRIBUTES.has(key)) {
+        profileAttributes[key] = value;
+      } else {
+        properties[key] = value;
+      }
+    });
+
+    if (Object.keys(properties).length > 0) profileAttributes.properties = properties;
+
     return fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(publicKey)}`, {
       method: 'POST',
       headers: {
@@ -144,19 +163,16 @@ class ContactTabs extends HTMLElement {
         data: {
           type: 'subscription',
           attributes: {
-            // No explicit `subscriptions` / consent field: Klaviyo has
-            // rejected it both nested inside `profile` ("not a valid field
-            // for the resource 'profile'") and as a sibling of `profile`
-            // here ("not a valid field for the resource 'subscription'").
-            // Subscribing someone to the list via the relationship below
-            // may just be the consent action itself on this endpoint — if
-            // Klaviyo actually requires consent expressed some other way,
-            // its response will now say so explicitly (see the console log
-            // in #handleFormSubmit) instead of this being a third guess.
+            // No explicit `subscriptions` / consent field: Klaviyo rejected
+            // it both nested inside `profile` ("not a valid field for the
+            // resource 'profile'") and as a sibling of `profile` here ("not
+            // a valid field for the resource 'subscription'"). Subscribing
+            // via the list relationship below is apparently the consent
+            // action itself on this endpoint.
             profile: {
               data: {
                 type: 'profile',
-                attributes: { email },
+                attributes: profileAttributes,
               },
             },
           },
