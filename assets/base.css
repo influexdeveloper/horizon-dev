@@ -374,6 +374,7 @@ p:empty {
   grid-column: 2;
   max-width: var(--section-width-custom, 930px);
   margin-inline: auto;
+  width: 100%;
 }
 
 /* For full-width sections, content spans all columns */

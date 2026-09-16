@@ -178,7 +178,8 @@
           "settings": {
             "label": "Email Sign Up & Special Offers",
             "intro_text": "Stay connected to the Monrosia community, discover new products, and learn about upcoming offerings.",
-            "button_label": "Join The Ritual"
+            "button_label": "Join The Ritual",
+            "klaviyo_list_id": "X5EKbe"
           }
         },
         "wholesale": {
@@ -187,7 +188,8 @@
           "settings": {
             "label": "Wholesale & Partnerships",
             "intro_text": "Interested in carrying Monrosia products or offering The Red Lotus Tea Service at your space or event?",
-            "button_label": "Send Message"
+            "button_label": "Send Message",
+            "klaviyo_list_id": "WK9HME"
           }
         },
         "general": {
@@ -196,7 +198,8 @@
           "settings": {
             "label": "General Inquiries",
             "intro_text": "For order questions, product guidance, or returns, please include your order number and the best way to reach you.",
-            "button_label": "Send Message"
+            "button_label": "Send Message",
+            "klaviyo_list_id": "Sn2pth"
           }
         }
       },
@@ -214,6 +217,7 @@
         "input_border_color": "#f0d9bb",
         "active_tab_text_color": "#4d0804",
         "inactive_tab_text_color": "#bababa",
+        "klaviyo_public_api_key": "Tw56Et",
         "padding-block-start": 32,
         "padding-block-end": 64
       }

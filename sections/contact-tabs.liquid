@@ -7,40 +7,17 @@
 %}
 
 {% comment %}
-  Work out which panel should be open on first paint. Each panel is its own
-  `{% form 'contact' %}`, and Shopify only populates the `form` drop inside the
-  tag that owns it — so the only way to know whether a given panel's form was
-  the one just submitted is to open it. The pass below opens each form purely
-  to read `form.id` / `form.posted_successfully?` / `form.errors` and throws
-  the markup away; the real, visible forms are rendered once each further
-  down. `active_ids` collects the block id of any panel whose form was just
-  submitted (success or error) so it re-opens instead of defaulting to the
-  first tab.
+  Every panel is its own `{% form 'contact' %}`, and Shopify only populates
+  the `form` drop inside the tag that owns it — so which panel (if any) was
+  just submitted can only be known once each panel's own single form tag is
+  rendered below. Liquid's `{% form %}` tag isn't safe to open speculatively
+  inside a `{% capture %}` just to peek at that state, so the tab that opens
+  by default is always the first one; if a different panel's form comes back
+  with an error or success message, contact-tabs.js finds it after render
+  (by looking for that message inside the panel) and switches to it — see
+  the `#activateSubmittedPanel` method there.
 {% endcomment %}
-{% capture discard %}
-  {% assign active_ids = '' %}
-  {% for block in section.blocks %}
-    {% assign tab_form_id = 'ContactTabs-' | append: block.id %}
-    {% form 'contact', id: tab_form_id %}
-      {% if form.id == tab_form_id %}
-        {% if form.posted_successfully? or form.errors %}
-          {% assign active_ids = active_ids | append: block.id | append: ',' %}
-        {% endif %}
-      {% endif %}
-    {% endform %}
-  {% endfor %}
-{% endcapture %}
-
-{% liquid
-  assign active_block_id = section.blocks.first.id
-  if active_ids != blank
-    for block in section.blocks
-      if active_ids contains block.id
-        assign active_block_id = block.id
-      endif
-    endfor
-  endif
-%}
+{% assign active_block_id = section.blocks.first.id %}
 
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
@@ -61,6 +38,7 @@
     --contact-tabs-inactive-color: {{ section.settings.inactive_tab_text_color }};
   "
   data-testid="contact-tabs"
+  data-klaviyo-public-key="{{ section.settings.klaviyo_public_api_key }}"
 >
  <div class="contact-tabs__container">
   <div
@@ -102,7 +80,7 @@
           hidden
         {% endunless %}
       >
-        {%- form 'contact', id: tab_form_id, class: 'contact-tabs__form' -%}
+        {%- form 'contact', id: tab_form_id, class: 'contact-tabs__form', data-klaviyo-list-id: block.settings.klaviyo_list_id -%}
           <input
             type="hidden"
             name="contact[id]"
@@ -386,7 +364,12 @@
     flex: 1 1 100%;
   }
 
-  .contact-tabs__input {
+  /* base.css's own `input:not([type='checkbox'], [type='radio'])` rule
+     (one element + one attribute selector) outranks a single class, so it
+     wins the border-color right back off a plain `.contact-tabs__input`
+     rule regardless of load order. The doubled class is this codebase's own
+     idiom for outranking a rule like that without `!important`. */
+  .contact-tabs__input.contact-tabs__input {
     width: 100%;
     color: var(--color-input-text);
     background-color: var(--color-input-background);
@@ -447,6 +430,16 @@
           "id": "button_label",
           "label": "Button label",
           "default": "Join The Ritual"
+        },
+        {
+          "type": "header",
+          "content": "Klaviyo"
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_list_id",
+          "label": "Klaviyo list ID",
+          "info": "Subscribes the submitted email to this list. Leave blank to skip Klaviyo for this tab."
         }
       ]
     },
@@ -471,6 +464,16 @@
           "id": "button_label",
           "label": "Button label",
           "default": "Send Message"
+        },
+        {
+          "type": "header",
+          "content": "Klaviyo"
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_list_id",
+          "label": "Klaviyo list ID",
+          "info": "Subscribes the submitted email to this list. Leave blank to skip Klaviyo for this tab."
         }
       ]
     },
@@ -495,6 +498,16 @@
           "id": "button_label",
           "label": "Button label",
           "default": "Send Message"
+        },
+        {
+          "type": "header",
+          "content": "Klaviyo"
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_list_id",
+          "label": "Klaviyo list ID",
+          "info": "Subscribes the submitted email to this list. Leave blank to skip Klaviyo for this tab."
         }
       ]
     }
@@ -569,6 +582,16 @@
       "id": "inactive_tab_text_color",
       "label": "Inactive tab color",
       "default": "#bababa"
+    },
+    {
+      "type": "header",
+      "content": "Klaviyo"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_public_api_key",
+      "label": "Klaviyo public API key",
+      "info": "Your Klaviyo account's public API key (Settings > API Keys). Shared by every tab below — each tab's own \"Klaviyo list ID\" setting picks which list it subscribes to."
     },
     {
       "type": "header",
