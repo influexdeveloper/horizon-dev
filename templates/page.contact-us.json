@@ -256,7 +256,7 @@
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
-            "type_preset": "custom",
+            "type_preset": "h4",
             "font": "var(--font-heading--family)",
             "font_size": "3.375rem",
             "line_height": "normal",
