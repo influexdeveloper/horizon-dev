@@ -7,15 +7,13 @@
 %}
 
 {% comment %}
-  Every panel is its own `{% form 'contact' %}`, and Shopify only populates
-  the `form` drop inside the tag that owns it — so which panel (if any) was
-  just submitted can only be known once each panel's own single form tag is
-  rendered below. Liquid's `{% form %}` tag isn't safe to open speculatively
-  inside a `{% capture %}` just to peek at that state, so the tab that opens
-  by default is always the first one; if a different panel's form comes back
-  with an error or success message, contact-tabs.js finds it after render
-  (by looking for that message inside the panel) and switches to it — see
-  the `#activateSubmittedPanel` method there.
+  No `{% form 'contact' %}` here on purpose: every panel below is a plain
+  `<form>` that contact-tabs.js submits entirely client-side, straight to
+  Klaviyo's public Client API — there is no Shopify-side processing, no
+  redirect, and no store notification email for any of the three tabs.
+  Success/error UI (below) is JS-driven for the same reason: it clones the
+  matching `<template>` in that panel rather than reacting to a `form` drop,
+  since there's no server round trip left to populate one.
 {% endcomment %}
 {% assign active_block_id = section.blocks.first.id %}
 
@@ -70,7 +68,6 @@
       {% if block.id == active_block_id %}
         {% assign is_active = true %}
       {% endif %}
-      {% assign tab_form_id = 'ContactTabs-' | append: block.id %}
       {% capture success_message_html %}
         {% case block.type %}
           {% when 'signup_panel' %}
@@ -89,21 +86,17 @@
           hidden
         {% endunless %}
       >
-        {%- form 'contact', id: tab_form_id, class: 'contact-tabs__form', data-klaviyo-list-id: block.settings.klaviyo_list_id -%}
-          <input
-            type="hidden"
-            name="contact[id]"
-            value="{{ tab_form_id }}"
-          >
-
+        <form
+          class="contact-tabs__form"
+          data-klaviyo-list-id="{{ block.settings.klaviyo_list_id }}"
+          novalidate
+        >
           {% comment %}
             Honeypot: real visitors never see or reach this field (visually
             hidden, aria-hidden, and skipped by keyboard tabbing), but simple
             spam bots that auto-fill every input they find tend to fill it
-            in. contact-tabs.js blocks the submission client-side when it's
-            non-empty — see #handleFormSubmit. This is on top of, not instead
-            of, Shopify's own invisible reCAPTCHA v3, which already runs
-            server-side on every `{% form 'contact' %}` automatically.
+            in. contact-tabs.js drops the submission client-side when it's
+            non-empty — see #handleFormSubmit.
           {% endcomment %}
           <div
             class="contact-tabs__honeypot"
@@ -113,7 +106,7 @@
             <input
               type="text"
               id="ContactTabs-{{ block.id }}-website"
-              name="contact[website]"
+              data-klaviyo-honeypot
               tabindex="-1"
               autocomplete="off"
             >
@@ -122,29 +115,6 @@
           {% if block.settings.intro_text != blank %}
             <p class="contact-tabs__intro">{{ block.settings.intro_text }}</p>
           {% endif %}
-
-          {%- if form.errors and form.id == tab_form_id -%}
-            <div
-              class="contact-form__error"
-              tabindex="-1"
-              autofocus
-            >
-              {{- 'icon-error.svg' | inline_asset_content -}}
-              {{- form.errors.translated_fields.email | capitalize }}
-              {{ form.errors.messages.email -}}
-            </div>
-          {%- endif -%}
-
-          {%- if form.posted_successfully? and form.id == tab_form_id -%}
-            <div
-              class="contact-form__success"
-              tabindex="-1"
-              autofocus
-            >
-              {{- 'icon-checkmark.svg' | inline_asset_content -}}
-              {{ success_message_html }}
-            </div>
-          {%- endif -%}
 
           {% case block.type %}
             {% when 'signup_panel' %}
@@ -156,8 +126,7 @@
                     id="ContactTabs-{{ block.id }}-name"
                     class="contact-tabs__input"
                     autocomplete="name"
-                    name="contact[name]"
-                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    data-klaviyo-field="first_name"
                   >
                 </div>
                 <div class="contact-tabs__field">
@@ -170,11 +139,10 @@
                     id="ContactTabs-{{ block.id }}-email"
                     class="contact-tabs__input"
                     autocomplete="email"
-                    name="contact[email]"
                     spellcheck="false"
                     autocapitalize="off"
-                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                    aria-required="true"
+                    required
+                    data-klaviyo-email
                   >
                 </div>
               </div>
@@ -188,8 +156,7 @@
                     id="ContactTabs-{{ block.id }}-name"
                     class="contact-tabs__input"
                     autocomplete="name"
-                    name="contact[name]"
-                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    data-klaviyo-field="first_name"
                   >
                 </div>
                 <div class="contact-tabs__field">
@@ -202,11 +169,10 @@
                     id="ContactTabs-{{ block.id }}-email"
                     class="contact-tabs__input"
                     autocomplete="email"
-                    name="contact[email]"
                     spellcheck="false"
                     autocapitalize="off"
-                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                    aria-required="true"
+                    required
+                    data-klaviyo-email
                   >
                 </div>
               </div>
@@ -218,9 +184,8 @@
                     id="ContactTabs-{{ block.id }}-phone"
                     class="contact-tabs__input"
                     autocomplete="tel"
-                    name="contact[phone]"
                     pattern="[0-9\-]*"
-                    value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                    data-klaviyo-field="phone_number"
                   >
                 </div>
                 <div class="contact-tabs__field">
@@ -229,7 +194,7 @@
                     type="text"
                     id="ContactTabs-{{ block.id }}-event-date"
                     class="contact-tabs__input"
-                    name="contact[Event Date]"
+                    data-klaviyo-field="Event Date"
                   >
                 </div>
               </div>
@@ -240,7 +205,7 @@
                     type="text"
                     id="ContactTabs-{{ block.id }}-business-name"
                     class="contact-tabs__input"
-                    name="contact[Business name]"
+                    data-klaviyo-field="Business Name"
                   >
                 </div>
                 <div class="contact-tabs__field">
@@ -249,7 +214,7 @@
                     type="text"
                     id="ContactTabs-{{ block.id }}-location"
                     class="contact-tabs__input"
-                    name="contact[Location]"
+                    data-klaviyo-field="Location"
                   >
                 </div>
               </div>
@@ -259,8 +224,8 @@
                   rows="4"
                   id="ContactTabs-{{ block.id }}-body"
                   class="contact-tabs__input contact-tabs__input--textarea"
-                  name="contact[body]"
-                >{{- form.body -}}</textarea>
+                  data-klaviyo-field="Inquiry details"
+                ></textarea>
               </div>
 
             {% when 'general_panel' %}
@@ -272,8 +237,7 @@
                     id="ContactTabs-{{ block.id }}-name"
                     class="contact-tabs__input"
                     autocomplete="name"
-                    name="contact[name]"
-                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    data-klaviyo-field="first_name"
                   >
                 </div>
                 <div class="contact-tabs__field">
@@ -286,11 +250,10 @@
                     id="ContactTabs-{{ block.id }}-email"
                     class="contact-tabs__input"
                     autocomplete="email"
-                    name="contact[email]"
                     spellcheck="false"
                     autocapitalize="off"
-                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                    aria-required="true"
+                    required
+                    data-klaviyo-email
                   >
                 </div>
               </div>
@@ -300,8 +263,8 @@
                   rows="4"
                   id="ContactTabs-{{ block.id }}-body"
                   class="contact-tabs__input contact-tabs__input--textarea"
-                  name="contact[body]"
-                >{{- form.body -}}</textarea>
+                  data-klaviyo-field="Message"
+                ></textarea>
               </div>
           {% endcase %}
 
@@ -311,7 +274,26 @@
           >
             {{- block.settings.button_label -}}
           </button>
-        {%- endform -%}
+        </form>
+
+        <template class="contact-tabs__success-template">
+          <div
+            class="contact-form__success"
+            tabindex="-1"
+          >
+            {{- 'icon-checkmark.svg' | inline_asset_content -}}
+            {{ success_message_html }}
+          </div>
+        </template>
+        <template class="contact-tabs__error-template">
+          <div
+            class="contact-form__error"
+            tabindex="-1"
+          >
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            <p>Something went wrong. Please try again.</p>
+          </div>
+        </template>
       </div>
     {% endfor %}
   </div>
