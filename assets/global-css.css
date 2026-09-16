@@ -490,37 +490,30 @@ ol {
    Contact page — templates/page.contact-us.json, Figma node 2935:145
 
    Both headline/tagline pairs on this page (the banner, and "Stay Connected"
-   further down) want 64px / 30px. Neither is a step the text block's own
-   "Font size" dropdown offers — that list runs ...24, 32... and ...56, 72...,
-   with no 30 or 64 in between — so picking "Custom" and typing one of those
-   values in doesn't actually select anything: the editor shows the field
-   blank, because the stored value matches none of its options. Sizing has to
-   come from CSS instead, the same way the homepage hero's own headline/tagline
-   already do (see the fixed clamp() bounds above).
+   further down) want 64px / 30px. Neither was a step the text block's own
+   "Font size" dropdown offered — that list ran ...24, 32... and ...56, 72...
+   — so blocks/text.liquid's `font_size` options now include 30px (1.875rem)
+   and 64px (4rem) directly, the real fix: every text block on the site can
+   select them from the dropdown, not just this page's.
 
-   Each of the four blocks carries its own `custom_class` (contact-hero-heading
-   / contact-hero-subtext / contact-stay-connected-heading /
-   contact-stay-connected-subtext) with `font_size` left blank, so nothing
-   mismatched shows in the editor. The banner pair sits inside `.hero`, whose
-   own `.hero .text-block h1` / `p` rules above would otherwise win, so those
-   two selectors add the class one level deeper to come in more specific.
-   "Stay Connected" isn't inside `.hero`, but its heading's own `<h2>` tag is
-   still caught by base.css's bare `h2` typography-preset rule, so its
-   selector adds the class for the same reason — the tagline is a `custom`
-   preset with nothing else contesting it, so no extra class is needed there. */
+   That alone is enough for "Stay Connected": setting a `custom`-preset text
+   block's own font_size adds a `.custom-font-size` class the block picks up
+   automatically (snippets/text.liquid), and `.custom-font-size` (one class)
+   already outranks base.css's bare `h2`/`p` typography-preset rules (zero
+   classes) on specificity — no extra CSS needed here.
+
+   The banner pair still does, because it sits inside `.hero`, and the
+   homepage hero's own `.hero .text-block h1` / `p` rules above
+   (two classes + the tag) outrank `.custom-font-size` on their own — a
+   dropdown selection there is correct for the editor to show, but doesn't
+   win the cascade. `custom_class` on those two blocks (contact-hero-heading
+   / contact-hero-subtext) adds one class beyond what the shared rule has, so
+   these three-class selectors are what actually decide the rendered size. */
 .hero .text-block.contact-hero-heading h1 {
   font-size: 4rem;
 }
 
 .hero .text-block.contact-hero-subtext p {
-  font-size: 1.875rem;
-}
-
-.text-block.contact-stay-connected-heading h2 {
-  font-size: 4rem;
-}
-
-.text-block.contact-stay-connected-subtext p {
   font-size: 1.875rem;
 }
 
