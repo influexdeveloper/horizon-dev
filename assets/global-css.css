@@ -33,6 +33,19 @@
   --brand-content-width: 930px;
 }
 
+.custom-typography ul,
+.custom-typography ol,
+ul,
+ol {
+  margin-block-start: 0;
+  padding-inline-start: 1.5em;
+  line-height: var(--line-height--body, var(--line-height));
+}
+
+.custom-typography li {
+    line-height: var(--line-height--body, var(--line-height));
+}
+
 /* --------------------------------------------------------------------------
    Buttons — primary
 

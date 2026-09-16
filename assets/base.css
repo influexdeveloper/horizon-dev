@@ -1330,19 +1330,12 @@ summary:hover {
     margin-block-start: 0;
   }
 
-  .custom-typography ul,
-  .custom-typography ol,
   ul,
   ol {
     margin-block-start: 0;
     padding-inline-start: 1.5em;
     line-height: var(--line-height--body, var(--line-height));
   }
-
-  .custom-typography li {
-      line-height: var(--line-height--body, var(--line-height));
-  }
-
   /* Only apply margin-block-end to the higher level list, not nested lists */
   :is(ul, ol):not(:is(ul, ol) :is(ul, ol)) {
     margin-block-end: 1em;
