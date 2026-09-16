@@ -1,0 +1,610 @@
+
+
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+{% comment %}
+  Work out which panel should be open on first paint. Each panel is its own
+  `{% form 'contact' %}`, and Shopify only populates the `form` drop inside the
+  tag that owns it — so the only way to know whether a given panel's form was
+  the one just submitted is to open it. The pass below opens each form purely
+  to read `form.id` / `form.posted_successfully?` / `form.errors` and throws
+  the markup away; the real, visible forms are rendered once each further
+  down. `active_ids` collects the block id of any panel whose form was just
+  submitted (success or error) so it re-opens instead of defaulting to the
+  first tab.
+{% endcomment %}
+{% capture discard %}
+  {% assign active_ids = '' %}
+  {% for block in section.blocks %}
+    {% assign tab_form_id = 'ContactTabs-' | append: block.id %}
+    {% form 'contact', id: tab_form_id %}
+      {% if form.id == tab_form_id %}
+        {% if form.posted_successfully? or form.errors %}
+          {% assign active_ids = active_ids | append: block.id | append: ',' %}
+        {% endif %}
+      {% endif %}
+    {% endform %}
+  {% endfor %}
+{% endcapture %}
+
+{% liquid
+  assign active_block_id = section.blocks.first.id
+  if active_ids != blank
+    for block in section.blocks
+      if active_ids contains block.id
+        assign active_block_id = block.id
+      endif
+    endfor
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<contact-tabs
+  class="
+    contact-tabs section section--{{ section.settings.section_width }} spacing-style
+    {% if section.settings.background_color != blank %}color-custom-{{ section.id }}{% endif %}
+  "
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    {% if section.settings.section_width == 'custom' and section.settings.section_width_custom != blank %}
+      --section-width-custom: {{ section.settings.section_width_custom | remove: 'px' | strip }}px;
+    {% endif %}
+    --contact-tabs-card-background: {{ section.settings.card_background_color }};
+    --contact-tabs-input-border: {{ section.settings.input_border_color }};
+    --contact-tabs-active-color: {{ section.settings.active_tab_text_color }};
+    --contact-tabs-inactive-color: {{ section.settings.inactive_tab_text_color }};
+  "
+  data-testid="contact-tabs"
+>
+  <div
+    class="contact-tabs__tablist"
+    role="tablist"
+  >
+    {% for block in section.blocks %}
+      {% assign is_active = false %}
+      {% if block.id == active_block_id %}
+        {% assign is_active = true %}
+      {% endif %}
+      <button
+        type="button"
+        role="tab"
+        id="ContactTab-{{ block.id }}"
+        aria-controls="ContactPanel-{{ block.id }}"
+        aria-selected="{{ is_active }}"
+        class="contact-tabs__tab{% if is_active %} contact-tabs__tab--active{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.label }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="contact-tabs__panels">
+    {% for block in section.blocks %}
+      {% assign is_active = false %}
+      {% if block.id == active_block_id %}
+        {% assign is_active = true %}
+      {% endif %}
+      {% assign tab_form_id = 'ContactTabs-' | append: block.id %}
+      <div
+        id="ContactPanel-{{ block.id }}"
+        role="tabpanel"
+        aria-labelledby="ContactTab-{{ block.id }}"
+        class="contact-tabs__panel{% if is_active %} contact-tabs__panel--active{% endif %}"
+        {% unless is_active %}
+          hidden
+        {% endunless %}
+      >
+        {%- form 'contact', id: tab_form_id, class: 'contact-tabs__form' -%}
+          <input
+            type="hidden"
+            name="contact[id]"
+            value="{{ tab_form_id }}"
+          >
+
+          {% if block.settings.intro_text != blank %}
+            <p class="contact-tabs__intro">{{ block.settings.intro_text }}</p>
+          {% endif %}
+
+          {%- if form.errors and form.id == tab_form_id -%}
+            <div
+              class="contact-form__error"
+              tabindex="-1"
+              autofocus
+            >
+              {{- 'icon-error.svg' | inline_asset_content -}}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </div>
+          {%- endif -%}
+
+          {%- if form.posted_successfully? and form.id == tab_form_id -%}
+            <div
+              class="contact-form__success"
+              tabindex="-1"
+              autofocus
+            >
+              {{- 'icon-checkmark.svg' | inline_asset_content -}}
+              {{- 'blocks.contact_form.post_success' | t -}}
+            </div>
+          {%- endif -%}
+
+          {% case block.type %}
+            {% when 'signup_panel' %}
+              <div class="contact-tabs__row">
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-name">{{ 'blocks.contact_form.name' | t }}</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-name"
+                    class="contact-tabs__input"
+                    autocomplete="name"
+                    name="contact[name]"
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  >
+                </div>
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-email">
+                    {{- 'blocks.contact_form.email' | t -}}
+                    <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="ContactTabs-{{ block.id }}-email"
+                    class="contact-tabs__input"
+                    autocomplete="email"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                  >
+                </div>
+              </div>
+
+            {% when 'wholesale_panel' %}
+              <div class="contact-tabs__row">
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-name">{{ 'blocks.contact_form.name' | t }}</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-name"
+                    class="contact-tabs__input"
+                    autocomplete="name"
+                    name="contact[name]"
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  >
+                </div>
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-email">
+                    {{- 'blocks.contact_form.email' | t -}}
+                    <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="ContactTabs-{{ block.id }}-email"
+                    class="contact-tabs__input"
+                    autocomplete="email"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                  >
+                </div>
+              </div>
+              <div class="contact-tabs__row">
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-phone">{{ 'blocks.contact_form.phone' | t }}</label>
+                  <input
+                    type="tel"
+                    id="ContactTabs-{{ block.id }}-phone"
+                    class="contact-tabs__input"
+                    autocomplete="tel"
+                    name="contact[phone]"
+                    pattern="[0-9\-]*"
+                    value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                  >
+                </div>
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-event-date">Event Date</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-event-date"
+                    class="contact-tabs__input"
+                    name="contact[Event Date]"
+                  >
+                </div>
+              </div>
+              <div class="contact-tabs__row">
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-business-name">Business Name</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-business-name"
+                    class="contact-tabs__input"
+                    name="contact[Business name]"
+                  >
+                </div>
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-location">Location</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-location"
+                    class="contact-tabs__input"
+                    name="contact[Location]"
+                  >
+                </div>
+              </div>
+              <div class="contact-tabs__field contact-tabs__field--full">
+                <label for="ContactTabs-{{ block.id }}-body">Inquiry details</label>
+                <textarea
+                  rows="4"
+                  id="ContactTabs-{{ block.id }}-body"
+                  class="contact-tabs__input contact-tabs__input--textarea"
+                  name="contact[body]"
+                >{{- form.body -}}</textarea>
+              </div>
+
+            {% when 'general_panel' %}
+              <div class="contact-tabs__row">
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-name">{{ 'blocks.contact_form.name' | t }}</label>
+                  <input
+                    type="text"
+                    id="ContactTabs-{{ block.id }}-name"
+                    class="contact-tabs__input"
+                    autocomplete="name"
+                    name="contact[name]"
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  >
+                </div>
+                <div class="contact-tabs__field">
+                  <label for="ContactTabs-{{ block.id }}-email">
+                    {{- 'blocks.contact_form.email' | t -}}
+                    <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="ContactTabs-{{ block.id }}-email"
+                    class="contact-tabs__input"
+                    autocomplete="email"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                  >
+                </div>
+              </div>
+              <div class="contact-tabs__field contact-tabs__field--full">
+                <label for="ContactTabs-{{ block.id }}-body">Message</label>
+                <textarea
+                  rows="4"
+                  id="ContactTabs-{{ block.id }}-body"
+                  class="contact-tabs__input contact-tabs__input--textarea"
+                  name="contact[body]"
+                >{{- form.body -}}</textarea>
+              </div>
+          {% endcase %}
+
+          <button
+            type="submit"
+            class="button contact-tabs__submit"
+          >
+            {{- block.settings.button_label -}}
+          </button>
+        {%- endform -%}
+      </div>
+    {% endfor %}
+  </div>
+</contact-tabs>
+
+{% stylesheet %}
+  .contact-tabs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-tabs__tablist {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact-tabs__tab {
+    flex: 1 1 0;
+    padding: 20px 16px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-heading--family);
+    font-size: 1.125rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--contact-tabs-inactive-color, #bababa);
+    transition: color var(--duration-short) ease, background-color var(--duration-short) ease;
+  }
+
+  .contact-tabs__tab--active {
+    background-color: var(--contact-tabs-card-background, #fff);
+    color: var(--contact-tabs-active-color, #4d0804);
+  }
+
+  .contact-tabs__panels {
+    background-color: var(--contact-tabs-card-background, #fff);
+  }
+
+  .contact-tabs__panel {
+    padding: 32px;
+  }
+
+  .contact-tabs__intro {
+    margin: 0 0 24px;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .contact-tabs__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md, 16px);
+  }
+
+  .contact-tabs__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md, 16px);
+
+    @media screen and (min-width: 750px) {
+      flex-direction: row;
+    }
+  }
+
+  .contact-tabs__field {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: 8px;
+    font-family: var(--font-body--family);
+  }
+
+  .contact-tabs__field--full {
+    flex: 1 1 100%;
+  }
+
+  .contact-tabs__input {
+    width: 100%;
+    color: var(--color-input-text);
+    background-color: var(--color-input-background);
+    padding: var(--padding-lg, 12px) var(--padding-xl, 16px);
+    border: 1px solid var(--contact-tabs-input-border, var(--color-input-border));
+    border-radius: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .contact-tabs__input--textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
+
+  .contact-tabs__submit {
+    align-self: center;
+    margin-block-start: 8px;
+  }
+
+  .contact-form__error,
+  .contact-form__success {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs, 8px);
+    margin-block-end: 16px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact tabs",
+  "tag": "section",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "signup_panel",
+      "name": "Email sign up",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Email Sign Up & Special Offers"
+        },
+        {
+          "type": "textarea",
+          "id": "intro_text",
+          "label": "Intro text",
+          "default": "Stay connected to the Monrosia community, discover new products, and learn about upcoming offerings."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Join The Ritual"
+        }
+      ]
+    },
+    {
+      "type": "wholesale_panel",
+      "name": "Wholesale",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Wholesale & Partnerships"
+        },
+        {
+          "type": "textarea",
+          "id": "intro_text",
+          "label": "Intro text",
+          "default": "Interested in carrying Monrosia products or offering The Red Lotus Tea Service at your space or event?"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Send Message"
+        }
+      ]
+    },
+    {
+      "type": "general_panel",
+      "name": "General inquiries",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "General Inquiries"
+        },
+        {
+          "type": "textarea",
+          "id": "intro_text",
+          "label": "Intro text",
+          "default": "For order questions, product guidance, or returns, please include your order number and the best way to reach you."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Send Message"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "page-width",
+          "label": "Page"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "section_width_custom",
+      "label": "Custom width",
+      "placeholder": "688",
+      "default": "688",
+      "visible_if": "{{ section.settings.section_width == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "placeholder": "Default"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border color",
+      "default": "#f0d9bb"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_text_color",
+      "label": "Active tab color",
+      "default": "#4d0804"
+    },
+    {
+      "type": "color",
+      "id": "inactive_tab_text_color",
+      "label": "Inactive tab color",
+      "default": "#bababa"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact tabs",
+      "category": "Forms",
+      "blocks": {
+        "signup": {
+          "type": "signup_panel"
+        },
+        "wholesale": {
+          "type": "wholesale_panel"
+        },
+        "general": {
+          "type": "general_panel"
+        }
+      },
+      "block_order": ["signup", "wholesale", "general"]
+    }
+  ]
+}
+{% endschema %}
