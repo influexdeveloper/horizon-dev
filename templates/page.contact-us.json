@@ -325,12 +325,12 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
+            "gap": 15,
+            "width": "custom",
+            "custom_width": 33,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
             "background_media": "none",
             "background_color": "#ffffff",
@@ -348,10 +348,10 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
+            "padding-block-start": 15,
+            "padding-block-end": 15,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
           },
           "blocks": {
             "icon": {
@@ -359,6 +359,7 @@
               "name": "Icon",
               "settings": {
                 "icon": "none",
+                "image_upload": "shopify://shop_images/email-icon.svg",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -370,7 +371,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>monrosiabotanicals@gmail.com</p>",
+                "text": "<p><strong>monrosiabotanicals@gmail.com</strong></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
@@ -410,12 +411,12 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 33,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
             "background_media": "none",
             "background_color": "#ffffff",
@@ -433,10 +434,10 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
+            "padding-block-start": 15,
+            "padding-block-end": 15,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
           },
           "blocks": {
             "icon": {
@@ -444,6 +445,7 @@
               "name": "Icon",
               "settings": {
                 "icon": "instagram",
+                "image_upload": "shopify://shop_images/ig-icon.svg",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -455,7 +457,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>@monrosia_</p>",
+                "text": "<p><strong>@monrosia_</strong></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
@@ -496,8 +498,8 @@
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
+            "width": "custom",
+            "custom_width": 33,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -518,10 +520,10 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 24,
-            "padding-block-end": 24,
-            "padding-inline-start": 16,
-            "padding-inline-end": 16
+            "padding-block-start": 15,
+            "padding-block-end": 15,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
           },
           "blocks": {
             "icon": {
@@ -529,6 +531,7 @@
               "name": "Icon",
               "settings": {
                 "icon": "map_pin",
+                "image_upload": "shopify://shop_images/map-icon.svg",
                 "width": 32,
                 "link": "",
                 "open_in_new_tab": false,
@@ -540,7 +543,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Nevada City, CA 95959, United States<br><em>Visits by appointment only.</em></p>",
+                "text": "<p><strong>Nevada City, CA 95959, United States</strong></p><p><em>Visits by appointment only.</em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
@@ -584,7 +587,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
+        "gap": 8,
         "section_width": "custom",
         "section_width_custom": "688",
         "section_height": "",
