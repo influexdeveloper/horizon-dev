@@ -9,14 +9,15 @@
 // its `.contact-tabs__error-template` is shown above the form instead so
 // the visitor can retry.
 //
-// The subscribe call below only ever sends `email` — Klaviyo's client
-// subscribe endpoint returned 400 Bad Request the one time this also sent
-// `first_name` / `phone_number` / a `properties` bag built from the other
-// fields (Event Date, Business Name, Location, Inquiry details / Message).
-// Its exact accepted profile shape isn't fully confirmed, and every failure
-// here now logs Klaviyo's own response body to the console, so the real
-// reason is visible next time rather than another guess — check that output
-// and this endpoint's current docs before adding those fields back in.
+// The subscribe call below only sends `email` — the extra fields (Event
+// Date, Business Name, Location, Inquiry details / Message) were dropped
+// while chasing a 400 that turned out to be unrelated (`subscriptions`
+// nested inside the profile object instead of beside it — see
+// #subscribeToKlaviyo). They haven't been confirmed against this endpoint's
+// accepted profile shape since, so add them back one at a time rather than
+// all at once. Every failure here logs Klaviyo's own response body to the
+// console, which is what actually diagnosed the `subscriptions` issue —
+// check that output first if a re-added field 400s again.
 const KLAVIYO_REVISION = '2024-10-15';
 
 class ContactTabs extends HTMLElement {
@@ -143,16 +144,18 @@ class ContactTabs extends HTMLElement {
         data: {
           type: 'subscription',
           attributes: {
+            // Klaviyo rejects `subscriptions` nested inside the profile
+            // object ("'subscriptions' is not a valid field for the
+            // resource 'profile'") — it belongs here instead, as a sibling
+            // of `profile` on the subscription resource's own attributes.
             profile: {
               data: {
                 type: 'profile',
-                attributes: {
-                  email,
-                  subscriptions: {
-                    email: { marketing: { consent: 'SUBSCRIBED' } },
-                  },
-                },
+                attributes: { email },
               },
+            },
+            subscriptions: {
+              email: { marketing: { consent: 'SUBSCRIBED' } },
             },
           },
           relationships: {
