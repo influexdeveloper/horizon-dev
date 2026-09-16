@@ -71,9 +71,9 @@
       {% capture success_message_html %}
         {% case block.type %}
           {% when 'signup_panel' %}
-            <h3>SUBSCRIPTION CONFIRMED</h3>
+            <strong>SUBSCRIPTION CONFIRMED</strong>
           {% else %}
-            <h3>Thank you for contacting us.</h3>
+            <strong>Thank you for contacting us.</strong>
             <p>We will be in touch with you shortly.</p>
         {% endcase %}
       {% endcapture %}
@@ -281,7 +281,6 @@
             class="contact-form__success"
             tabindex="-1"
           >
-            {{- 'icon-checkmark.svg' | inline_asset_content -}}
             {{ success_message_html }}
           </div>
         </template>
@@ -423,12 +422,21 @@
     margin-block-start: 8px;
   }
 
-  .contact-form__error,
-  .contact-form__success {
+  .contact-form__error {
     display: flex;
     align-items: center;
     gap: var(--gap-xs, 8px);
     margin-block-end: 16px;
+  }
+
+  .contact-form__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px;
+    border: 1px solid var(--contact-tabs-input-border, var(--color-input-border));
+    text-align: center;
   }
 {% endstylesheet %}
 
