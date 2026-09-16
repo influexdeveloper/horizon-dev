@@ -490,32 +490,28 @@ ol {
    Contact page — templates/page.contact-us.json, Figma node 2935:145
 
    The banner reuses the homepage hero's own `.hero .text-block h1` / `p`
-   rules above for size, so bumping just this page's headings without also
-   bumping the homepage's needs a selector more specific than theirs rather
-   than editing them in place. `custom_class` on the two text blocks
+   rules above for size, so setting this page's own heading sizes without
+   also changing the homepage's needs a selector more specific than theirs
+   rather than editing them in place. `custom_class` on the two text blocks
    (contact-hero-heading / contact-hero-subtext) gives each a hook one class
    more specific than the shared rule, which wins outright on specificity —
    no dependency on load order, no doubled class needed.
 
-   `calc(<their clamp> + 30px)` rather than restating the clamp's own bounds:
-   it shifts every point of the existing responsive curve up by the same
-   amount, so the fluid scaling behaviour carries over exactly instead of
-   being re-derived by hand.
+   Fixed 64px / 30px rather than the homepage's fluid clamp: this page's
+   copy pairs a display headline with a fixed-size tagline throughout (see
+   "Stay Connected" below), so the banner matches that same flat scale
+   instead of one section behaving responsively and the rest not.
+
+   "Stay Connected" doesn't need an override here: it isn't inside `.hero`,
+   so nothing else is contesting its size — its 64px/30px are set directly
+   on the text blocks themselves (`font_size`) in the template JSON.
    -------------------------------------------------------------------------- */
 .hero .text-block.contact-hero-heading h1 {
-  font-size: calc(clamp(2.5rem, 5.28vw, 3.959rem) + 30px);
+  font-size: 4rem;
 }
 
 .hero .text-block.contact-hero-subtext p {
-  font-size: calc(clamp(1.25rem, 2.5vw, 1.875rem) + 30px);
-}
-
-/* "Stay Connected" heading: a plain `h2` preset with no page-specific rule to
-   out-specificity yet, so the doubled `.h2` class (the block's own preset
-   class, already present in its markup) is what pushes this past base.css's
-   `.text-block.h2 :is(h1, h2, ...)` rule instead of tying with it. */
-.text-block.h2.contact-stay-connected-heading h2 {
-  font-size: calc(var(--font-h2--size) + 30px);
+  font-size: 1.875rem;
 }
 
 /* --------------------------------------------------------------------------
