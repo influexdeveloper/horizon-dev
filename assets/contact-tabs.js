@@ -144,18 +144,20 @@ class ContactTabs extends HTMLElement {
         data: {
           type: 'subscription',
           attributes: {
-            // Klaviyo rejects `subscriptions` nested inside the profile
-            // object ("'subscriptions' is not a valid field for the
-            // resource 'profile'") — it belongs here instead, as a sibling
-            // of `profile` on the subscription resource's own attributes.
+            // No explicit `subscriptions` / consent field: Klaviyo has
+            // rejected it both nested inside `profile` ("not a valid field
+            // for the resource 'profile'") and as a sibling of `profile`
+            // here ("not a valid field for the resource 'subscription'").
+            // Subscribing someone to the list via the relationship below
+            // may just be the consent action itself on this endpoint — if
+            // Klaviyo actually requires consent expressed some other way,
+            // its response will now say so explicitly (see the console log
+            // in #handleFormSubmit) instead of this being a third guess.
             profile: {
               data: {
                 type: 'profile',
                 attributes: { email },
               },
-            },
-            subscriptions: {
-              email: { marketing: { consent: 'SUBSCRIBED' } },
             },
           },
           relationships: {
