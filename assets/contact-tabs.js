@@ -1,10 +1,12 @@
 // Contact tabs
 // Switches between the signup / wholesale / general-inquiries panels on the
-// contact page. Each panel is its own `{% form 'contact' %}`, so switching
-// tabs only ever toggles visibility — it never touches form state. Each
-// form also fires a Klaviyo list-subscribe alongside its normal Shopify
-// submission, keyed off the section's public API key and that panel's own
-// list ID (both set in the theme editor — see contact-tabs.liquid's schema).
+// contact page, and submits each panel's `{% form 'contact' %}` in the
+// background instead of letting it navigate the browser away: the request
+// still goes to Shopify for real (validation, notification emails, and
+// Klaviyo eligibility are all unchanged), but the response is fetched and
+// only that one panel's rendered result — an error, or the tab's own
+// "SUBSCRIPTION CONFIRMED" / "Thank you for contacting us" copy, both from
+// contact-tabs.liquid — is swapped into the page in place of a redirect.
 const KLAVIYO_REVISION = '2024-10-15';
 
 class ContactTabs extends HTMLElement {
@@ -20,11 +22,6 @@ class ContactTabs extends HTMLElement {
     return Array.from(this.querySelectorAll('[role="tabpanel"]'));
   }
 
-  /** @type {HTMLFormElement[]} */
-  get #forms() {
-    return Array.from(this.querySelectorAll('form'));
-  }
-
   connectedCallback() {
     const { signal } = this.#controller;
 
@@ -32,9 +29,11 @@ class ContactTabs extends HTMLElement {
       tab.addEventListener('click', this.#handleTabClick, { signal });
     });
 
-    this.#forms.forEach((form) => {
-      form.addEventListener('submit', this.#handleFormSubmit, { signal });
-    });
+    // Delegated on the component itself, rather than bound per-form: a
+    // submit replaces its own panel's content (fresh form markup included),
+    // so a listener attached to today's form element wouldn't survive that
+    // swap for a second submission.
+    this.addEventListener('submit', this.#handleFormSubmit, { signal });
 
     this.#activateSubmittedPanel();
   }
@@ -44,8 +43,10 @@ class ContactTabs extends HTMLElement {
   }
 
   /**
-   * After a contact form submission, Shopify re-renders the page with that
-   * one panel's `{% form %}` carrying an error or success message — the tab
+   * Covers the case where JS never got this far — the honeypot fetch failed
+   * and fell back to a real submit, or the script simply hadn't loaded yet.
+   * Shopify then re-renders the page with that one panel's `{% form %}`
+   * carrying an error or success message on a normal full-page load; the tab
    * that opens by default is always the first one (see contact-tabs.liquid),
    * so if a *different* panel is the one holding that message, switch to it.
    */
@@ -67,28 +68,105 @@ class ContactTabs extends HTMLElement {
   };
 
   /**
-   * Fires alongside the form's normal submission to Shopify — it never calls
-   * `preventDefault()`, so the browser still navigates to /contact right
-   * after. `keepalive` is what lets this particular request finish in the
-   * background despite that navigation, the same way `navigator.sendBeacon`
-   * would; a plain `fetch` here would otherwise usually be cancelled
-   * mid-flight. A failed or skipped call must never block or surface an
-   * error on top of the Shopify submission, so every exit here is silent.
+   * @param {HTMLButtonElement} tab
+   */
+  #activate(tab) {
+    const panelId = tab.getAttribute('aria-controls');
+
+    this.#tabs.forEach((t) => {
+      const isActive = t === tab;
+
+      t.setAttribute('aria-selected', String(isActive));
+      t.classList.toggle('contact-tabs__tab--active', isActive);
+    });
+
+    this.#panels.forEach((panel) => {
+      const isActive = panel.id === panelId;
+
+      panel.classList.toggle('contact-tabs__panel--active', isActive);
+      panel.hidden = !isActive;
+    });
+  }
+
+  /**
+   * A filled honeypot means a bot filled in a field real visitors never see
+   * (contact-tabs.liquid), so that submission is dropped outright — nothing
+   * is sent to Shopify or Klaviyo. A genuine submission is always intercepted
+   * (this always calls `preventDefault()`): the fetch below is what actually
+   * sends it on, in place of the browser's own navigation.
    * @param {SubmitEvent} event
    */
   #handleFormSubmit = (event) => {
-    const form = /** @type {HTMLFormElement} */ (event.currentTarget);
-    const publicKey = this.dataset.klaviyoPublicKey;
-    const listId = form.dataset.klaviyoListId;
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || !form.classList.contains('contact-tabs__form')) return;
+
+    event.preventDefault();
+
+    const honeypot = /** @type {HTMLInputElement | null} */ (
+      form.querySelector('input[name="contact[website]"]')
+    )?.value.trim();
+    if (honeypot) return;
+
+    const panel = form.closest('[role="tabpanel"]');
+    if (!panel) return;
+
+    // Captured now, off the live form, because a successful swap below
+    // replaces this exact element with the fetched response's markup.
+    const klaviyoPublicKey = this.dataset.klaviyoPublicKey;
+    const klaviyoListId = form.dataset.klaviyoListId;
     const email = /** @type {HTMLInputElement | null} */ (
       form.querySelector('input[type="email"]')
     )?.value.trim();
 
-    if (!publicKey || !listId || !email) return;
+    const submitButton = /** @type {HTMLButtonElement | null} */ (form.querySelector('button[type="submit"]'));
+    if (submitButton) submitButton.disabled = true;
 
-    fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(publicKey)}`, {
+    fetch(form.action, {
       method: 'POST',
-      keepalive: true,
+      credentials: 'same-origin',
+      body: new FormData(form),
+    })
+      .then((response) => response.text())
+      .then((html) => {
+        const fetchedPanel = new DOMParser().parseFromString(html, 'text/html').getElementById(panel.id);
+
+        // Shopify didn't return the page shape this was built against —
+        // safest to fall back to a real submission rather than show nothing.
+        if (!fetchedPanel) {
+          form.submit();
+          return;
+        }
+
+        const succeeded = !fetchedPanel.querySelector('.contact-form__error');
+        panel.innerHTML = fetchedPanel.innerHTML;
+        /** @type {HTMLElement | null} */ (
+          panel.querySelector('.contact-form__error, .contact-form__success')
+        )?.focus();
+
+        if (succeeded) this.#subscribeToKlaviyo({ klaviyoPublicKey, klaviyoListId, email });
+      })
+      .catch(() => {
+        // The submission may already have gone through server-side even
+        // though this fetch itself failed (a dropped connection, offline,
+        // etc.) — a real navigation is the only way left to show the
+        // visitor an accurate outcome instead of a silent dead end.
+        form.submit();
+      });
+  };
+
+  /**
+   * Fired only once the fetch above has confirmed the Shopify submission
+   * itself succeeded — never blindly on submit — so an invalid entry never
+   * reaches Klaviyo's list. A failed or skipped call must never surface an
+   * error on top of a Shopify submission that already succeeded, so every
+   * exit here is silent.
+   * @param {{ klaviyoPublicKey: string | undefined, klaviyoListId: string | undefined, email: string | undefined }} params
+   */
+  #subscribeToKlaviyo({ klaviyoPublicKey, klaviyoListId, email }) {
+    if (!klaviyoPublicKey || !klaviyoListId || !email) return;
+
+    fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(klaviyoPublicKey)}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         revision: KLAVIYO_REVISION,
@@ -110,32 +188,11 @@ class ContactTabs extends HTMLElement {
             },
           },
           relationships: {
-            list: { data: { type: 'list', id: listId } },
+            list: { data: { type: 'list', id: klaviyoListId } },
           },
         },
       }),
     }).catch(() => {});
-  };
-
-  /**
-   * @param {HTMLButtonElement} tab
-   */
-  #activate(tab) {
-    const panelId = tab.getAttribute('aria-controls');
-
-    this.#tabs.forEach((t) => {
-      const isActive = t === tab;
-
-      t.setAttribute('aria-selected', String(isActive));
-      t.classList.toggle('contact-tabs__tab--active', isActive);
-    });
-
-    this.#panels.forEach((panel) => {
-      const isActive = panel.id === panelId;
-
-      panel.classList.toggle('contact-tabs__panel--active', isActive);
-      panel.hidden = !isActive;
-    });
   }
 }
 

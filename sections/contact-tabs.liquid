@@ -71,6 +71,15 @@
         {% assign is_active = true %}
       {% endif %}
       {% assign tab_form_id = 'ContactTabs-' | append: block.id %}
+      {% capture success_message_html %}
+        {% case block.type %}
+          {% when 'signup_panel' %}
+            <h3>SUBSCRIPTION CONFIRMED</h3>
+          {% else %}
+            <h3>Thank you for contacting us.</h3>
+            <p>We will be in touch with you shortly.</p>
+        {% endcase %}
+      {% endcapture %}
       <div
         id="ContactPanel-{{ block.id }}"
         role="tabpanel"
@@ -86,6 +95,29 @@
             name="contact[id]"
             value="{{ tab_form_id }}"
           >
+
+          {% comment %}
+            Honeypot: real visitors never see or reach this field (visually
+            hidden, aria-hidden, and skipped by keyboard tabbing), but simple
+            spam bots that auto-fill every input they find tend to fill it
+            in. contact-tabs.js blocks the submission client-side when it's
+            non-empty — see #handleFormSubmit. This is on top of, not instead
+            of, Shopify's own invisible reCAPTCHA v3, which already runs
+            server-side on every `{% form 'contact' %}` automatically.
+          {% endcomment %}
+          <div
+            class="contact-tabs__honeypot"
+            aria-hidden="true"
+          >
+            <label for="ContactTabs-{{ block.id }}-website">Website</label>
+            <input
+              type="text"
+              id="ContactTabs-{{ block.id }}-website"
+              name="contact[website]"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </div>
 
           {% if block.settings.intro_text != blank %}
             <p class="contact-tabs__intro">{{ block.settings.intro_text }}</p>
@@ -110,7 +142,7 @@
               autofocus
             >
               {{- 'icon-checkmark.svg' | inline_asset_content -}}
-              {{- 'blocks.contact_form.post_success' | t -}}
+              {{ success_message_html }}
             </div>
           {%- endif -%}
 
@@ -364,14 +396,32 @@
     flex: 1 1 100%;
   }
 
+  /* Off-screen rather than `display: none` or `hidden` — some spam bots skip
+     fields that are display:none, but this still reads as an ordinary,
+     fillable text input to them while staying invisible and unreachable
+     (tabindex="-1" above) for real visitors and screen readers. */
+  .contact-tabs__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
   /* base.css's own `input:not([type='checkbox'], [type='radio'])` rule
      (one element + one attribute selector) outranks a single class, so it
      wins the border-color right back off a plain `.contact-tabs__input`
      rule regardless of load order. The doubled class is this codebase's own
-     idiom for outranking a rule like that without `!important`. */
+     idiom for outranking a rule like that without `!important`.
+
+     `color` is a literal value rather than `var(--color-input-text)`: that
+     token resolves to this store's global foreground (white — the site's
+     inputs otherwise sit on dark backgrounds), which is invisible against
+     this card's own white background. */
   .contact-tabs__input.contact-tabs__input {
     width: 100%;
-    color: var(--color-input-text);
+    color: #220706;
     background-color: var(--color-input-background);
     padding: var(--padding-lg, 12px) var(--padding-xl, 16px);
     border: 1px solid var(--contact-tabs-input-border, var(--color-input-border));
