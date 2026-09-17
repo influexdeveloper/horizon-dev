@@ -202,6 +202,28 @@ ol {
     justify-items: center;
     text-align: center;
   }
+
+  /* The nav and signup blocks are "group" blocks whose horizontal alignment
+     (flex-start, for the desktop layout) is written as an inline
+     `--horizontal-alignment` custom property, which no external rule can
+     outrank. `align-items` itself isn't set inline though — only computed from
+     that variable by the theme's own `.mobile-column` rule above — so
+     overriding the property directly here wins on specificity instead of
+     fighting the variable. This is what actually centres the social icons
+     (an auto-width box that otherwise sits flush left) and the newsletter
+     heading/body/form as a group. */
+  .footer-section .footer-content .mobile-column {
+    align-items: center;
+  }
+
+  /* The newsletter heading and body are separate text blocks that hard-code
+     `alignment: left` from the desktop design as an inline `--text-align`
+     variable on the same element `.text-align: center` above can't reach.
+     Redeclaring `text-align` directly, rather than through the variable,
+     overrides it the same way. */
+  .footer-section .footer-content .text-block > * {
+    text-align: center;
+  }
 }
 
 /* Footer nav: 18px on a 36px rhythm (the design sets line-height 2, and four
