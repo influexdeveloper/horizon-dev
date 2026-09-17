@@ -452,8 +452,8 @@
                 "icon": "instagram",
                 "image_upload": "shopify://shop_images/ig-icon.svg",
                 "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
+                "link": "https://www.instagram.com/officialmonroeking/",
+                "open_in_new_tab": true,
                 "icon_color": ""
               },
               "blocks": {}
@@ -462,7 +462,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p><strong>@monrosia_</strong></p>",
+                "text": "<p><a href=\"https://www.instagram.com/officialmonroeking/\" target=\"_blank\" title=\"https://www.instagram.com/officialmonroeking/\"><strong>@officialmonroeking</strong></a></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
