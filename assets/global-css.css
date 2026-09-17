@@ -190,6 +190,20 @@ ol {
   }
 }
 
+/* Below 750px the columns stack into the theme's default single column. The
+   design has no mobile spec, and a left-hung column reads worse than a
+   centred one at that width, so each block (logo, nav, signup) is centred
+   as a unit — the same treatment the desktop rule above already gives a
+   lone block via `justify-items: center`. `text-align: center` is what
+   actually centres multi-line text and the menu links; neither sets its own
+   alignment, so this inherits down instead of fighting a more specific rule. */
+@media screen and (max-width: 749px) {
+  .footer-section .footer-content {
+    justify-items: center;
+    text-align: center;
+  }
+}
+
 /* Footer nav: 18px on a 36px rhythm (the design sets line-height 2, and four
    items at 36px are exactly the 144px the nav block occupies).
 
