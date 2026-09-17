@@ -366,7 +366,7 @@
                 "icon": "none",
                 "image_upload": "shopify://shop_images/email-icon.svg",
                 "width": 32,
-                "link": "",
+                "link": "mailto:monrosiabotanicals@gmail.com",
                 "open_in_new_tab": false,
                 "icon_color": ""
               },
@@ -376,7 +376,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p><strong>monrosiabotanicals@gmail.com</strong></p>",
+                "text": "<p><a href=\"mailto:monrosiabotanicals@gmail.com\" title=\"mailto:monrosiabotanicals@gmail.com\"><strong>monrosiabotanicals@gmail.com</strong></a></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
