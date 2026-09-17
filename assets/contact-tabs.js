@@ -47,6 +47,11 @@ class ContactTabs extends HTMLElement {
     // a listener attached to today's form element wouldn't be around for a
     // second submission anyway.
     this.addEventListener('submit', this.#handleFormSubmit, { signal });
+
+    // Delegated the same way as submit: the phone field is re-created any
+    // time a panel's success/error template swaps the form, so a listener
+    // bound to today's input wouldn't survive that either.
+    this.addEventListener('input', this.#handlePhoneInput, { signal });
   }
 
   disconnectedCallback() {
@@ -81,6 +86,22 @@ class ContactTabs extends HTMLElement {
       panel.hidden = !isActive;
     });
   }
+
+  /**
+   * Wholesale's phone field (the only `type="tel"` input this component
+   * renders) only accepts digits and the punctuation real phone numbers use.
+   * `pattern` on its own (contact-tabs.liquid) only blocks submission —
+   * letters would otherwise still be typable — so this strips anything else
+   * as it's typed instead.
+   * @param {Event} event
+   */
+  #handlePhoneInput = (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || input.type !== 'tel') return;
+
+    const sanitized = input.value.replace(/[^0-9+()\-.\s]/g, '');
+    if (sanitized !== input.value) input.value = sanitized;
+  };
 
   /**
    * A filled honeypot means a bot filled in a field real visitors never see

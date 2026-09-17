@@ -184,14 +184,15 @@
                     id="ContactTabs-{{ block.id }}-phone"
                     class="contact-tabs__input"
                     autocomplete="tel"
-                    pattern="[0-9\-]*"
+                    inputmode="tel"
+                    pattern="[0-9+()\-.\s]*"
                     data-klaviyo-field="phone_number"
                   >
                 </div>
                 <div class="contact-tabs__field">
                   <label for="ContactTabs-{{ block.id }}-event-date">Event Date</label>
                   <input
-                    type="text"
+                    type="date"
                     id="ContactTabs-{{ block.id }}-event-date"
                     class="contact-tabs__input"
                     data-klaviyo-field="Event Date"
