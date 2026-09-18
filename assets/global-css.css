@@ -31,6 +31,7 @@
      measured it off the export; naming it here is what lets the content pages
      land on the same column instead of each band picking its own number. */
   --brand-content-width: 930px;
+  --line-height: 1.6em;
 }
 
 .custom-typography ul,
