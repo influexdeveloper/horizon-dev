@@ -43,7 +43,7 @@
           "type": "text",
           "name": "Heading",
           "settings": {
-            "text": "<h1>Shop Monrosia</h1>",
+            "text": "<h1>{{ closest.collection.title }}</h1>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
