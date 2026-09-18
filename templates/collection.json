@@ -140,7 +140,7 @@
           "type": "tab",
           "settings": {
             "label": "All",
-            "link": "",
+            "link": "shopify://collections/frontpage",
             "default_tab": true
           }
         },
@@ -148,7 +148,7 @@
           "type": "tab",
           "settings": {
             "label": "Tinctures",
-            "link": "",
+            "link": "shopify://collections/tinctures",
             "default_tab": false
           }
         },
@@ -156,7 +156,7 @@
           "type": "tab",
           "settings": {
             "label": "Teas",
-            "link": "",
+            "link": "shopify://collections/teas",
             "default_tab": false
           }
         },
@@ -164,7 +164,7 @@
           "type": "tab",
           "settings": {
             "label": "Skincare",
-            "link": "",
+            "link": "shopify://collections/skincare",
             "default_tab": false
           }
         },
@@ -172,7 +172,7 @@
           "type": "tab",
           "settings": {
             "label": "Balms",
-            "link": "",
+            "link": "shopify://collections/balms",
             "default_tab": false
           }
         }
