@@ -1,32 +1,27 @@
 
 
 {% liquid
-  assign font_family = block.settings.font
-  if block.settings.font == 'custom' and block.settings.custom_font_family != blank
-    assign font_family = block.settings.custom_font_family
-  endif
-  assign has_custom_font = false
-  if font_family != blank and font_family != 'custom'
-    assign has_custom_font = true
+  assign is_custom_typography = false
+  if block.settings.type_preset == 'custom'
+    assign is_custom_typography = true
   endif
 %}
 
 <div
-  class="custom-liquid-block {{ block.settings.custom_class }} {% if has_custom_font %}custom-liquid-block--custom-font{% endif %}"
-  {% if has_custom_font %}
-    style="--font-family: {{ font_family }};"
+  class="
+    {{ block.settings.custom_class }}
+    {% if is_custom_typography %}
+      custom-typography
+      {% if block.settings.font_size != blank %}custom-font-size{% endif %}
+    {% endif %}
+  "
+  {% if is_custom_typography %}
+    style="{% render 'typography-style', settings: block.settings %}"
   {% endif %}
   {{ block.shopify_attributes }}
 >
   {{ block.settings.custom_liquid }}
 </div>
-
-{% stylesheet %}
-  .custom-liquid-block--custom-font,
-  .custom-liquid-block--custom-font * {
-    font-family: var(--font-family);
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -46,14 +41,30 @@
       "info": "Adds this class to the block's wrapper, e.g. \"text-gradient\"."
     },
     {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.preset",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:options.default"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "default": "default"
+    },
+    {
       "type": "select",
       "id": "font",
       "label": "t:settings.font",
       "options": [
-        {
-          "value": "",
-          "label": "t:options.default"
-        },
         {
           "value": "var(--font-body--family)",
           "label": "t:options.body"
@@ -69,20 +80,174 @@
         {
           "value": "var(--font-accent--family)",
           "label": "t:options.accent"
-        },
-        {
-          "value": "custom",
-          "label": "t:options.custom"
         }
       ],
-      "default": ""
+      "default": "var(--font-body--family)",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
-      "type": "text",
-      "id": "custom_font_family",
-      "label": "Custom font family",
-      "info": "Enter a CSS font-family value, e.g. \"Georgia, serif\".",
-      "visible_if": "{{ block.settings.font == 'custom' }}"
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "0.625rem",
+          "label": "10px"
+        },
+        {
+          "value": "0.75rem",
+          "label": "12px"
+        },
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        },
+        {
+          "value": "1.25rem",
+          "label": "20px"
+        },
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        },
+        {
+          "value": "1.875rem",
+          "label": "30px"
+        },
+        {
+          "value": "2rem",
+          "label": "32px"
+        },
+        {
+          "value": "2.5rem",
+          "label": "40px"
+        },
+        {
+          "value": "3rem",
+          "label": "48px"
+        },
+        {
+          "value": "3.5rem",
+          "label": "56px"
+        },
+        {
+          "value": "4rem",
+          "label": "64px"
+        },
+        {
+          "value": "4.5rem",
+          "label": "72px"
+        },
+        {
+          "value": "5.5rem",
+          "label": "88px"
+        },
+        {
+          "value": "7.5rem",
+          "label": "120px"
+        },
+        {
+          "value": "9.5rem",
+          "label": "152px"
+        },
+        {
+          "value": "11.5rem",
+          "label": "184px"
+        }
+      ],
+      "default": "1rem",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "tight",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "loose",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "case",
+      "label": "t:settings.case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:options.uppercase"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "wrap",
+      "label": "t:settings.wrap",
+      "options": [
+        {
+          "value": "pretty",
+          "label": "t:options.pretty"
+        },
+        {
+          "value": "balance",
+          "label": "t:options.balance"
+        },
+        {
+          "value": "nowrap",
+          "label": "t:options.none"
+        }
+      ],
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     }
   ],
   "presets": [
