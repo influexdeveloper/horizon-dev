@@ -10,6 +10,7 @@
 <div
   class="
     {{ block.settings.custom_class }}
+    {{ block.settings.type_preset }}
     {% if is_custom_typography %}
       custom-typography
       {% if block.settings.font_size != blank %}custom-font-size{% endif %}
@@ -50,15 +51,44 @@
       "label": "t:settings.preset",
       "options": [
         {
-          "value": "default",
+          "value": "rte",
           "label": "t:options.default"
+        },
+        {
+          "value": "paragraph",
+          "label": "t:options.paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "t:options.h1"
+        },
+        {
+          "value": "h2",
+          "label": "t:options.h2"
+        },
+        {
+          "value": "h3",
+          "label": "t:options.h3"
+        },
+        {
+          "value": "h4",
+          "label": "t:options.h4"
+        },
+        {
+          "value": "h5",
+          "label": "t:options.h5"
+        },
+        {
+          "value": "h6",
+          "label": "t:options.h6"
         },
         {
           "value": "custom",
           "label": "t:options.custom"
         }
       ],
-      "default": "default"
+      "default": "rte",
+      "info": "t:info.edit_presets_in_theme_settings"
     },
     {
       "type": "select",
