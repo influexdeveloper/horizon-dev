@@ -1,6 +1,12 @@
 
 
-<div>
+<div
+  class="{{ block.settings.custom_class }}"
+  {% if block.settings.font != blank %}
+    style="font-family: {{ block.settings.font }};"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
   {{ block.settings.custom_liquid }}
 </div>
 
@@ -14,6 +20,40 @@
       "id": "custom_liquid",
       "label": "t:settings.custom_liquid",
       "info": "t:info.custom_liquid"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS class",
+      "info": "Adds this class to the block's wrapper, e.g. \"text-gradient\"."
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": ""
     }
   ],
   "presets": [
