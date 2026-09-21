@@ -70,7 +70,7 @@
           "type": "text",
           "name": "Description",
           "settings": {
-            "text": "<p>Browse our collection and <br/>become the altar.</p>",
+            "text": "<p>Browse our collection & <br/>become the altar.</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
