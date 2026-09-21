@@ -1,14 +1,32 @@
 
 
+{% liquid
+  assign font_family = block.settings.font
+  if block.settings.font == 'custom' and block.settings.custom_font_family != blank
+    assign font_family = block.settings.custom_font_family
+  endif
+  assign has_custom_font = false
+  if font_family != blank and font_family != 'custom'
+    assign has_custom_font = true
+  endif
+%}
+
 <div
-  class="{{ block.settings.custom_class }}"
-  {% if block.settings.font != blank %}
-    style="font-family: {{ block.settings.font }};"
+  class="custom-liquid-block {{ block.settings.custom_class }} {% if has_custom_font %}custom-liquid-block--custom-font{% endif %}"
+  {% if has_custom_font %}
+    style="--font-family: {{ font_family }};"
   {% endif %}
   {{ block.shopify_attributes }}
 >
   {{ block.settings.custom_liquid }}
 </div>
+
+{% stylesheet %}
+  .custom-liquid-block--custom-font,
+  .custom-liquid-block--custom-font * {
+    font-family: var(--font-family);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -51,9 +69,20 @@
         {
           "value": "var(--font-accent--family)",
           "label": "t:options.accent"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
       "default": ""
+    },
+    {
+      "type": "text",
+      "id": "custom_font_family",
+      "label": "Custom font family",
+      "info": "Enter a CSS font-family value, e.g. \"Georgia, serif\".",
+      "visible_if": "{{ block.settings.font == 'custom' }}"
     }
   ],
   "presets": [
