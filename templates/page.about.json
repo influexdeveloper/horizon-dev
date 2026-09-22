@@ -1251,7 +1251,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p><strong>The lotus teaches us that beauty is not found despite the mud.<br/>It blooms because of it.</strong></p>",
+                "text": "<p><strong>The lotus teaches us that beauty is not found despite the mud.<br/>It </strong><em><strong>blooms because of it.</strong></em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1757,7 +1757,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Every Monrosia product is made in small batches with intentional sourcing, pure botanicals, and elegant design. Our approach merges science with spirit, honoring both the chemistry of skincare and the soul of ritual. Each formula is inspired by the healing traditions of the Red Lotus (Nymphaea rubra) a flower revered for its calming, euphoric, and heart-opening essence.</p>",
+                "text": "<p>Every Monrosia product is made in small batches with intentional sourcing, pure botanicals, and sustainability in mind. Our approach merges science with spirit, honoring both the chemistry of skincare and the soul of ritual. Each formula is inspired by the healing traditions of ayerveda or European folk magic and include Artesmia Vulgaris & Red Lotus (Nymphaea rubra) a flower revered for its calming, euphoric, and heart-opening essence.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
