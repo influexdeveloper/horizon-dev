@@ -233,7 +233,7 @@
                       "type": "custom-liquid",
                       "name": "Variant label",
                       "settings": {
-                        "custom_liquid": "{% unless closest.product.has_only_default_variant %}<span style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\">{{ closest.product.selected_or_first_available_variant.title }}</span>{% endunless %}",
+                        "custom_liquid": "{% if closest.product.selected_or_first_available_variant.weight > 0 %}<span style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\">{{ closest.product.selected_or_first_available_variant.weight | weight_with_unit }}</span>{% endif %}",
                         "custom_class": "",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
