@@ -74,7 +74,11 @@
     when 'content-full-width'
       assign content_width = 'full-width'
     when 'content-custom-width'
-      assign content_width = 'custom'
+      # Maps to page-width; the custom cap overrides the central column width
+      # below instead of capping product-information__grid directly, since that
+      # element uses grid-template-columns: subgrid and a max-width there would
+      # desync its subgrid tracks from its box.
+      assign content_width = 'page-width'
   endcase
 %}
 
@@ -92,8 +96,11 @@
   style="
     {% render 'spacing-style', settings: settings %}
     --gap: {{ settings.gap }}px;
-    {% if content_width == 'custom' and settings.content_width_custom != blank %}
-      --section-width-custom: {{ settings.content_width_custom | remove: 'px' | strip }}px;
+    {% if settings.content_width == 'content-custom-width' and settings.content_width_custom != blank %}
+      --full-page-grid-central-column-width: min(
+        {{ settings.content_width_custom | remove: 'px' | strip }}px,
+        calc(100% - var(--page-margin) * 2)
+      );
     {% endif %}
   "
   data-testid="product-information"
