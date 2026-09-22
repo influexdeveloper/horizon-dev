@@ -705,3 +705,19 @@ ol {
 .shopify-policy__body .rte li + li {
   margin-block-start: 0.5em;
 }
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 749px) {
+  .facets-toggle__wrapper {
+      width: 100%;
+  }
+
+  .facets-toggle__wrapper button {
+      margin: 0 auto;
+  }
+
+  .collection-category-tabs__list {
+      justify-content: center;
+  }
+}
