@@ -27,6 +27,8 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
+            "custom_class": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -39,7 +41,9 @@
         },
         "page-content": {
           "type": "page-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -47,6 +51,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "content_direction": "column",
