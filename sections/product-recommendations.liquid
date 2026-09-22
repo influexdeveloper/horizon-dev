@@ -67,6 +67,9 @@
       {%  render 'spacing-style', settings: section.settings %}
       {%  render 'gap-style', value: section.settings.gap %}
       {{ styles }}
+      {% if section.settings.section_width == 'custom' and section.settings.section_width_custom != blank %}
+        --section-width-custom: {{ section.settings.section_width_custom | remove: 'px' | strip }}px;
+      {% endif %}
     "
   >
     <div class="section-resource-list__content">
@@ -409,9 +412,21 @@
         {
           "value": "full-width",
           "label": "t:options.full"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
       "default": "page-width"
+    },
+    {
+      "type": "text",
+      "id": "section_width_custom",
+      "label": "t:settings.custom_width",
+      "placeholder": "930",
+      "default": "930",
+      "visible_if": "{{ section.settings.section_width == 'custom' }}"
     },
     {
       "type": "range",

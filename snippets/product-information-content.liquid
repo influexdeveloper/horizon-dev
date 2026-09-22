@@ -73,6 +73,8 @@
       assign content_width = 'page-width'
     when 'content-full-width'
       assign content_width = 'full-width'
+    when 'content-custom-width'
+      assign content_width = 'custom'
   endcase
 %}
 
@@ -87,7 +89,13 @@
 ></div>
 <div
   class="product-information section section--{{ content_width }} spacing-style{% if settings.background_color != blank %} color-custom-{{ section_id }}{% endif %} relative"
-  style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
+  style="
+    {% render 'spacing-style', settings: settings %}
+    --gap: {{ settings.gap }}px;
+    {% if content_width == 'custom' and settings.content_width_custom != blank %}
+      --section-width-custom: {{ settings.content_width_custom | remove: 'px' | strip }}px;
+    {% endif %}
+  "
   data-testid="product-information"
 >
   {% if settings.desktop_media_position == 'left' and product_has_media and request.page_type == 'product' %}

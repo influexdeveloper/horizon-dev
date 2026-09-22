@@ -399,9 +399,21 @@
         {
           "value": "content-full-width",
           "label": "t:options.full"
+        },
+        {
+          "value": "content-custom-width",
+          "label": "t:options.custom"
         }
       ],
       "default": "content-center-aligned"
+    },
+    {
+      "type": "text",
+      "id": "content_width_custom",
+      "label": "t:settings.custom_width",
+      "placeholder": "930",
+      "default": "930",
+      "visible_if": "{{ section.settings.content_width == 'content-custom-width' }}"
     },
     {
       "type": "select",
