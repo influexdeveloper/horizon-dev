@@ -510,7 +510,8 @@
         "breadcrumb"
       ],
       "settings": {
-        "content_width": "content-center-aligned",
+        "content_width": "content-custom-width",
+        "content_width_custom": "1077",
         "desktop_media_position": "left",
         "equal_columns": true,
         "limit_details_width": false,
@@ -774,7 +775,8 @@
         "rows_gap": 24,
         "icons_style": "arrow",
         "icons_shape": "none",
-        "section_width": "page-width",
+        "section_width": "custom",
+        "section_width_custom": "1077",
         "gap": 56,
         "background_color": "#fff7ed",
         "padding-block-start": 100,
