@@ -216,6 +216,8 @@
               "settings": {
                 "width": "fill",
                 "custom_width": 100,
+                "klaviyo_public_api_key": "Tw56Et",
+                "klaviyo_list_id": "VNMfTx",
                 "heading": "",
                 "heading_text_color": "",
                 "heading_preset": "h3",
