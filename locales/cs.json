@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "E-mail",
       "placeholder": "E-mailová adresa",
-      "success": "Díky za odběr!"
+      "success": "Díky za odběr!",
+      "error": "Něco se pokazilo. Zkuste to prosím znovu."
     },
     "filter": "Filtr",
     "payment_methods": "Platební metody",

@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "E-mail",
       "placeholder": "E-mail",
-      "success": "Obrigado por se inscrever!"
+      "success": "Obrigado por se inscrever!",
+      "error": "Algo deu errado. Tente novamente."
     },
     "filter": "Filtrar",
     "payment_methods": "Formas de pagamento",

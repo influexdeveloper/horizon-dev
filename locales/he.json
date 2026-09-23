@@ -1,5 +1,15 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "accessibility": {
+    "back_to_top": "חזרה למעלה",
     "account": "חשבון",
     "active_filters": "מסננים פעילים:",
     "cart": "סל",
@@ -116,7 +126,8 @@
     "email_signup": {
       "label": "דוא\"ל",
       "placeholder": "כתובת דוא\"ל",
-      "success": "תודה על ההרשמה!"
+      "success": "תודה על ההרשמה!",
+      "error": "משהו השתבש. נא לנסות שוב."
     },
     "filter": "מסנן",
     "load_video": "טעינת הסרטון: {{ description }}",

@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "E-mail",
       "placeholder": "Adresă de e-mail",
-      "success": "Mulțumim pentru că te-ai abonat!"
+      "success": "Mulțumim pentru că te-ai abonat!",
+      "error": "Ceva nu a mers bine. Încercați din nou."
     },
     "filter": "Filtrează",
     "contact_form": {

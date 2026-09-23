@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "E-Mail",
       "placeholder": "E-Mail-Adresse",
-      "success": "Danke für deine Anmeldung!"
+      "success": "Danke für deine Anmeldung!",
+      "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
     },
     "filter": "Filtern",
     "payment_methods": "Zahlungsmethoden",

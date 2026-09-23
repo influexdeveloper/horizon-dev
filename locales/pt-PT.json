@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "E-mail",
       "placeholder": "Endereço de e-mail",
-      "success": "Agradecemos a sua subscrição!"
+      "success": "Agradecemos a sua subscrição!",
+      "error": "Algo correu mal. Tente novamente."
     },
     "filter": "Filtrar",
     "payment_methods": "Métodos de pagamento",

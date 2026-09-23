@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "Videó betöltése: {{ description }}",
@@ -5,7 +14,8 @@
     "email_signup": {
       "label": "E-mail-cím",
       "placeholder": "E-mail-cím",
-      "success": "Köszönjük feliratkozást!"
+      "success": "Köszönjük feliratkozást!",
+      "error": "Valami hiba történt. Kérjük, próbálja újra."
     },
     "filter": "Szűrés",
     "payment_methods": "Fizetési módok",
@@ -20,6 +30,7 @@
     "slider_label": "Csúszka"
   },
   "accessibility": {
+    "back_to_top": "Vissza a tetejére",
     "play_model": "3D-modell lejátszása",
     "play_video": "Videó lejátszása",
     "unit_price": "Egységár",

@@ -24,6 +24,21 @@
       {{ block_settings.heading | escape }}
     </div>
   {% endif %}
+  {% comment %}
+    When a Klaviyo list ID is set below, <email-signup-form> (see
+    assets/email-signup.js) intercepts this form's submit event and posts
+    straight to Klaviyo's public Client API instead — the same approach used
+    by the contact page's Klaviyo signup tab (contact-tabs.liquid /
+    contact-tabs.js). The `{% form 'customer' %}` tag is still used to render
+    a normal Shopify newsletter form as a fallback: with no list ID, the
+    custom element does nothing and this form submits to Shopify as usual.
+  {% endcomment %}
+  <email-signup-form
+    {% if block_settings.klaviyo_list_id != blank %}
+      data-klaviyo-list-id="{{ block_settings.klaviyo_list_id }}"
+      data-klaviyo-public-key="{{ block_settings.klaviyo_public_api_key }}"
+    {% endif %}
+  >
   {%- form 'customer', class: 'email-signup__form spacing-style' %}
     {% comment %} --- Input group classes --- {% endcomment %}
     {%- liquid
@@ -129,6 +144,37 @@
       </div>
     {%- endif -%}
   {% endform %}
+  {% if block_settings.klaviyo_list_id != blank %}
+    <template class="email-signup__success-template">
+      <div
+        class="email-signup__message"
+        tabindex="-1"
+      >
+        <span class="svg-wrapper icon-success">
+          {{ 'icon-checkmark.svg' | inline_asset_content }}
+        </span>
+        <p class="email-signup__message-text">{{ 'blocks.email_signup.success' | t }}</p>
+      </div>
+    </template>
+    <template class="email-signup__error-template">
+      <div
+        class="email-signup__message"
+        tabindex="-1"
+      >
+        <svg
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+          focusable="false"
+          aria-hidden="true"
+          class="icon-error"
+        >
+          {%- render 'icon', icon: 'error' -%}
+        </svg>
+        <p class="email-signup__message-text">{{ 'blocks.email_signup.error' | t }}</p>
+      </div>
+    </template>
+  {% endif %}
+  </email-signup-form>
 </div>
 
 {% stylesheet %}
@@ -440,6 +486,22 @@
       "unit": "%",
       "default": 100,
       "visible_if": "{{ block.settings.width == \"custom\" }}"
+    },
+    {
+      "type": "header",
+      "content": "Klaviyo"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_public_api_key",
+      "label": "Klaviyo public API key",
+      "info": "Your Klaviyo account's public API key (Settings > API Keys). Required when a Klaviyo list ID is set below."
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "Klaviyo list ID",
+      "info": "Subscribes the submitted email straight to this Klaviyo list instead of creating a Shopify customer. Leave blank to use Shopify's native newsletter signup."
     },
     {
       "type": "header",

@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "Correo electrónico",
       "placeholder": "Dirección de correo electrónico",
-      "success": "¡Gracias por suscribirte!"
+      "success": "¡Gracias por suscribirte!",
+      "error": "Algo salió mal. Inténtalo de nuevo."
     },
     "filter": "Filtro",
     "payment_methods": "Formas de pago",

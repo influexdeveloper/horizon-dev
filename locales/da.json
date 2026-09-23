@@ -14,7 +14,8 @@
     "email_signup": {
       "label": "Mail",
       "placeholder": "Mailadresse",
-      "success": "Tak for din tilmelding"
+      "success": "Tak for din tilmelding",
+      "error": "Noget gik galt. Prøv venligst igen."
     },
     "filter": "Filtrer",
     "payment_methods": "Betalingsmetoder",

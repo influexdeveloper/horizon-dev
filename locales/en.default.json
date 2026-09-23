@@ -135,7 +135,8 @@
     "email_signup": {
       "label": "Email",
       "placeholder": "Email",
-      "success": "Thanks for subscribing!"
+      "success": "Thanks for subscribing!",
+      "error": "Something went wrong. Please try again."
     },
     "filter": "Filter",
     "load_video": "Load video: {{ description }}",
