@@ -24,157 +24,179 @@
       {{ block_settings.heading | escape }}
     </div>
   {% endif %}
-  {% comment %}
-    When a Klaviyo list ID is set below, <email-signup-form> (see
-    assets/email-signup.js) intercepts this form's submit event and posts
-    straight to Klaviyo's public Client API instead — the same approach used
-    by the contact page's Klaviyo signup tab (contact-tabs.liquid /
-    contact-tabs.js). The `{% form 'customer' %}` tag is still used to render
-    a normal Shopify newsletter form as a fallback: with no list ID, the
-    custom element does nothing and this form submits to Shopify as usual.
-  {% endcomment %}
-  <email-signup-form
-    {% if block_settings.klaviyo_list_id != blank %}
-      data-klaviyo-list-id="{{ block_settings.klaviyo_list_id }}"
-      data-klaviyo-public-key="{{ block_settings.klaviyo_public_api_key }}"
-    {% endif %}
-  >
-  {%- form 'customer', class: 'email-signup__form spacing-style' %}
-    {% comment %} --- Input group classes --- {% endcomment %}
-    {%- liquid
-      assign input_group_classes = 'email-signup__input-group'
-      if block_settings.integrated_button and block_settings.border_style != 'underline'
-        assign input_group_classes = input_group_classes | append: ' email-signup__input-group--integrated'
-      endif
-      if block_settings.border_style == 'underline'
-        assign input_group_classes = input_group_classes | append: ' email-signup__input-group--underline'
-      endif
-      if block_settings.border_style == 'none'
-        assign input_group_classes = input_group_classes | append: ' email-signup__input-group--no-border'
-      endif
-      if block_settings.display_type == 'arrow'
-        assign input_group_classes = input_group_classes | append: ' email-signup__input-group--arrow'
-      endif
-    -%}
-
-    <div
-      class="{{ input_group_classes }}"
-      style="
-        --border-width: {% if is_custom_input %}{{ block_settings.border_width }}px{% else %}var(--style-border-width-inputs){% endif %};
-        --border-radius: {% if is_custom_input %}{{ block_settings.border_radius }}px{% else %}var(--style-border-radius-inputs){% endif %};
-        {% if is_custom_input %}{% render 'input-custom-styles', block_settings: block_settings %}{% endif %}
-      "
+  {%- liquid
+    assign input_group_classes = 'email-signup__input-group'
+    if block_settings.integrated_button and block_settings.border_style != 'underline'
+      assign input_group_classes = input_group_classes | append: ' email-signup__input-group--integrated'
+    endif
+    if block_settings.border_style == 'underline'
+      assign input_group_classes = input_group_classes | append: ' email-signup__input-group--underline'
+    endif
+    if block_settings.border_style == 'none'
+      assign input_group_classes = input_group_classes | append: ' email-signup__input-group--no-border'
+    endif
+    if block_settings.display_type == 'arrow'
+      assign input_group_classes = input_group_classes | append: ' email-signup__input-group--arrow'
+    endif
+  -%}
+  {% capture input_group_button %}
+    <button
+      class="email-signup__button {% if block_settings.integrated_button or block_settings.border_style == 'underline' %}email-signup__button--integrated{% endif %} email-signup__button--{{ block_settings.display_type }} {{ block_settings.button_type_preset }} {{ block_settings.style_class }} {{ block_settings.style_class }}--{{ block.id }}"
+      {% if block_settings.display_type != 'text' %}
+        aria-label="{{ 'actions.sign_up' | t }}"
+      {% endif %}
     >
-      <label
-        for="EmailInput-{{ block.id }}"
-        class="visually-hidden"
+      {% if block_settings.display_type == 'text' %}
+        {{ block_settings.label }}
+      {% else %}
+        <svg
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+          focusable="false"
+          aria-hidden="true"
+          class="email-signup__button-icon"
+        >
+          {% render 'icon', icon: 'arrow' %}
+        </svg>
+      {% endif %}
+    </button>
+  {% endcapture %}
+
+  {% if block_settings.klaviyo_list_id != blank %}
+    {% comment %}
+      Klaviyo path — mirrors the contact page's Klaviyo signup tab
+      (contact-tabs.liquid / contact-tabs.js): a plain `<form>`, no
+      `{% form 'customer' %}`, submitted entirely client-side by
+      <email-signup-form> (assets/email-signup.js) straight to Klaviyo's
+      public Client API. There's no Shopify-side processing and no Shopify
+      customer created, so the confirmation below is cloned in by JS from
+      the `<template>`s the same way contact-tabs.js does it, instead of
+      reacting to `form.posted_successfully?` / `form.errors`.
+    {% endcomment %}
+    <email-signup-form data-klaviyo-public-key="{{ block_settings.klaviyo_public_api_key }}">
+      <form
+        class="email-signup__form spacing-style"
+        data-klaviyo-list-id="{{ block_settings.klaviyo_list_id }}"
+        novalidate
       >
-        {{ 'blocks.email_signup.label' | t }}
-      </label>
-      <input
-        id="EmailInput-{{ block.id }}"
-        class="email-signup__input email-signup__input--{{ block_settings.border_style }} {% if is_custom_input %}{{ block_settings.input_type_preset }}{% else %}{{ settings.type_preset }}{% endif %} {{ block_settings.border_variation }}"
-        type="email"
-        name="contact[email]"
-        autocorrect="off"
-        autocapitalize="off"
-        autocomplete="email"
-        placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
-        required
-        {% if form.errors and form.id == blank %}
-          autofocus
-          aria-invalid="true"
-          aria-describedby="Email-signup__message-error-{{ block.id }}"
-        {% elsif form.posted_successfully? and form.id == blank %}
-          aria-describedby="Email-signup__message-success-{{ block.id }}"
-        {% endif %}
+        <div
+          class="{{ input_group_classes }}"
+          style="
+            --border-width: {% if is_custom_input %}{{ block_settings.border_width }}px{% else %}var(--style-border-width-inputs){% endif %};
+            --border-radius: {% if is_custom_input %}{{ block_settings.border_radius }}px{% else %}var(--style-border-radius-inputs){% endif %};
+            {% if is_custom_input %}{% render 'input-custom-styles', block_settings: block_settings %}{% endif %}
+          "
+        >
+          <label
+            for="EmailInput-{{ block.id }}"
+            class="visually-hidden"
+          >
+            {{ 'blocks.email_signup.label' | t }}
+          </label>
+          <input
+            id="EmailInput-{{ block.id }}"
+            class="email-signup__input email-signup__input--{{ block_settings.border_style }} {% if is_custom_input %}{{ block_settings.input_type_preset }}{% else %}{{ settings.type_preset }}{% endif %} {{ block_settings.border_variation }}"
+            type="email"
+            name="contact[email]"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
+            required
+          >
+          {{ input_group_button }}
+        </div>
+      </form>
+
+      <template class="email-signup__success-template">
+        <p
+          class="h4 email-signup__message"
+          tabindex="-1"
+        >
+          {{ 'blocks.email_signup.success' | t }}
+        </p>
+      </template>
+      <template class="email-signup__error-template">
+        <div
+          class="email-signup__message"
+          tabindex="-1"
+        >
+          {{- 'icon-error.svg' | inline_asset_content -}}
+          <p>{{ 'blocks.email_signup.error' | t }}</p>
+        </div>
+      </template>
+    </email-signup-form>
+  {% else %}
+    {%- form 'customer', class: 'email-signup__form spacing-style' %}
+      <div
+        class="{{ input_group_classes }}"
+        style="
+          --border-width: {% if is_custom_input %}{{ block_settings.border_width }}px{% else %}var(--style-border-width-inputs){% endif %};
+          --border-radius: {% if is_custom_input %}{{ block_settings.border_radius }}px{% else %}var(--style-border-radius-inputs){% endif %};
+          {% if is_custom_input %}{% render 'input-custom-styles', block_settings: block_settings %}{% endif %}
+        "
       >
-      <button
-        class="email-signup__button {% if block_settings.integrated_button or block_settings.border_style == 'underline' %}email-signup__button--integrated{% endif %} email-signup__button--{{ block_settings.display_type }} {{ block_settings.button_type_preset }} {{ block_settings.style_class }} {{ block_settings.style_class }}--{{ block.id }}"
-        {% if block_settings.display_type != 'text' %}
-          aria-label="{{ 'actions.sign_up' | t }}"
-        {% endif %}
-      >
-        {% if block_settings.display_type == 'text' %}
-          {{ block_settings.label }}
-        {% else %}
+        <label
+          for="EmailInput-{{ block.id }}"
+          class="visually-hidden"
+        >
+          {{ 'blocks.email_signup.label' | t }}
+        </label>
+        <input
+          id="EmailInput-{{ block.id }}"
+          class="email-signup__input email-signup__input--{{ block_settings.border_style }} {% if is_custom_input %}{{ block_settings.input_type_preset }}{% else %}{{ settings.type_preset }}{% endif %} {{ block_settings.border_variation }}"
+          type="email"
+          name="contact[email]"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
+          required
+          {% if form.errors and form.id == blank %}
+            autofocus
+            aria-invalid="true"
+            aria-describedby="Email-signup__message-error-{{ block.id }}"
+          {% elsif form.posted_successfully? and form.id == blank %}
+            aria-describedby="Email-signup__message-success-{{ block.id }}"
+          {% endif %}
+        >
+        {{ input_group_button }}
+      </div>
+
+      {%- if form.errors and form.id == blank -%}
+        <div
+          id="Email-signup__message-error-{{ block.id }}"
+          class="email-signup__message"
+          tabindex="-1"
+        >
           <svg
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
             focusable="false"
             aria-hidden="true"
-            class="email-signup__button-icon"
+            class="icon-error"
           >
-            {% render 'icon', icon: 'arrow' %}
+            {%- render 'icon', icon: 'error'  -%}
           </svg>
-        {% endif %}
-      </button>
-    </div>
+          {{- form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email -}}
+        </div>
+      {%- endif -%}
 
-    {%- if form.errors and form.id == blank -%}
-      <div
-        id="Email-signup__message-error-{{ block.id }}"
-        class="email-signup__message"
-        tabindex="-1"
-      >
-        <svg
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-          focusable="false"
-          aria-hidden="true"
-          class="icon-error"
+      {%- if form.posted_successfully? and form.id == blank -%}
+        <div
+          id="Email-signup__message-success-{{ block.id }}"
+          class="email-signup__message"
+          tabindex="-1"
         >
-          {%- render 'icon', icon: 'error'  -%}
-        </svg>
-        {{- form.errors.translated_fields.email | capitalize }}
-        {{ form.errors.messages.email -}}
-      </div>
-    {%- endif -%}
-
-    {%- if form.posted_successfully? and form.id == blank -%}
-      <div
-        id="Email-signup__message-success-{{ block.id }}"
-        class="email-signup__message"
-        tabindex="-1"
-      >
-        <span class="svg-wrapper icon-success">
-          {{ 'icon-checkmark.svg' | inline_asset_content }}
-        </span>
-        <p class="email-signup__message-text">{{ 'blocks.email_signup.success' | t }}</p>
-      </div>
-    {%- endif -%}
-  {% endform %}
-  {% if block_settings.klaviyo_list_id != blank %}
-    <template class="email-signup__success-template">
-      <div
-        class="email-signup__message"
-        tabindex="-1"
-      >
-        <span class="svg-wrapper icon-success">
-          {{ 'icon-checkmark.svg' | inline_asset_content }}
-        </span>
-        <p class="email-signup__message-text">{{ 'blocks.email_signup.success' | t }}</p>
-      </div>
-    </template>
-    <template class="email-signup__error-template">
-      <div
-        class="email-signup__message"
-        tabindex="-1"
-      >
-        <svg
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-          focusable="false"
-          aria-hidden="true"
-          class="icon-error"
-        >
-          {%- render 'icon', icon: 'error' -%}
-        </svg>
-        <p class="email-signup__message-text">{{ 'blocks.email_signup.error' | t }}</p>
-      </div>
-    </template>
+          <span class="svg-wrapper icon-success">
+            {{ 'icon-checkmark.svg' | inline_asset_content }}
+          </span>
+          <p class="email-signup__message-text">{{ 'blocks.email_signup.success' | t }}</p>
+        </div>
+      {%- endif -%}
+    {% endform %}
   {% endif %}
-  </email-signup-form>
 </div>
 
 {% stylesheet %}
