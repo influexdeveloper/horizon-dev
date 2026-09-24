@@ -339,7 +339,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Group_31090.png",
+                "image": "shopify://shop_images/attachment_1.png",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -1280,7 +1280,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Inside the Temple of Hathor, the goddess of music, beauty, motherhood, joy, and sacred celebration, I felt something ancient awaken.</p><p>Not a memory of the past.<br/>A remembrance of the future.<br/>A vision of women gathering across every generation.<br/>Infants.<br/>Mothers.<br/>Grandmothers.<br/>Elders.<br/>No one excluded.<br/>No stage of womanhood left outside the circle.</p><p>That is the world I want my daughter to inherit.<br/>And that is why Monrosia exists.<br/>Monrosia is more than tea.<br/>More than adornment.<br/>More than ritual.</p><p>It is an invitation to remember that women were never meant to walk these thresholds alone.<br/>To create spaces where beauty becomes belonging.</p><p>Where ritual becomes <em>remembrance</em>.<br/>Where motherhood is <em>honored</em>.<br/>Where <em>healing </em>happens in community.<br/>Where every woman is <em>welcomed </em>exactly as she is.</p>",
+                "text": "<p>Inside the Temple of Hathor, the goddess of music, beauty, motherhood, joy, and sacred celebration, I felt something ancient awaken.</p><p>Not a memory of the past.<br/>A remembrance of the future.<br/>A vision of women gathering across every generation.<br/>Infants.<br/>Mothers.<br/>Grandmothers.<br/>Elders.<br/>No one excluded.<br/>No stage of womanhood left outside the circle.</p><p>That is the world I want my daughter to inherit.<br/>And that is why Monrosia exists.<br/>Monrosia is more than tea.<br/>More than adornment.<br/>More than ritual.</p><p>It is an invitation to remember that women were never meant to walk these thresholds alone.<br/>To create spaces where beauty becomes belonging.</p><p>Where ritual becomes <em><strong>remembrance.</strong></em><br/>Where motherhood is <em><strong>honored.</strong></em>&nbsp;<br/>Where healing happens in <em><strong>community.</strong></em>&nbsp;<br/>Where every woman is welcomed <em><strong>exactly as she is.</strong></em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1307,12 +1307,12 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p><strong>The lotus teaches us that beauty is not found despite the mud.<br/>It </strong><em><strong>blooms because of it.</strong></em></p>",
+                "text": "<p>The lotus teaches us that beauty is not found despite the mud.<br/><strong>It </strong><em><strong>blooms because of it.</strong></em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
                 "type_preset": "custom",
-                "font": "var(--font-body--family)",
+                "font": "var(--font-subheading--family)",
                 "font_size": "1.25rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
