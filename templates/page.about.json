@@ -1307,7 +1307,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>The lotus teaches us that beauty is not found despite the mud.<br/><strong>It </strong><em><strong>blooms because of it.</strong></em></p>",
+                "text": "<p>The lotus teaches us that beauty is not found despite the mud.<br/>It <em><strong>blooms because of it.</strong></em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
