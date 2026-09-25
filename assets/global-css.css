@@ -706,6 +706,10 @@ ol {
   margin-block-start: 0.5em;
 }
 
+/* The Pearl Page */
+.template-page-the-pearl .header__row {
+    background-color: var(--color-background) !important;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 749px) {
