@@ -497,8 +497,8 @@
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     },
     "section_rWqcxD": {
@@ -1109,7 +1109,7 @@
                     "align_baseline": false,
                     "horizontal_alignment_flex_direction_column": "center",
                     "vertical_alignment_flex_direction_column": "center",
-                    "gap": 40,
+                    "gap": 0,
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -1174,8 +1174,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 30,
-                        "padding-inline-end": 30
+                        "padding-inline-start": 20,
+                        "padding-inline-end": 20
                       },
                       "blocks": {
                         "icon_xqfM7j": {
@@ -1183,7 +1183,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "stopwatch",
-                            "width": 32,
+                            "image_upload": "shopify://shop_images/hour-icon.png",
+                            "width": 52,
                             "link": "",
                             "open_in_new_tab": false,
                             "icon_color": "#4d0804"
@@ -1194,13 +1195,13 @@
                           "type": "text",
                           "name": "Text",
                           "settings": {
-                            "text": "<p>Boutique Hours are Thursday – Sunday, 11:00 am – 7 pm</p>",
+                            "text": "<p><em>Boutique Hours are&nbsp;<br/>Thursday – Sunday, 11:00 am – 7 pm</em></p>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "",
+                            "font_size": "1.25rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1223,6 +1224,19 @@
                         "icon_xqfM7j",
                         "text_MbdFry"
                       ]
+                    },
+                    "divider_gGGWMK": {
+                      "type": "_divider",
+                      "name": "t:names.divider",
+                      "settings": {
+                        "thickness": 1,
+                        "corner_radius": "square",
+                        "divider_color": "#AB7B53",
+                        "width_percent": 100,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0
+                      },
+                      "blocks": {}
                     },
                     "group_qi3HL6": {
                       "type": "group",
@@ -1260,8 +1274,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 30,
-                        "padding-inline-end": 30
+                        "padding-inline-start": 20,
+                        "padding-inline-end": 20
                       },
                       "blocks": {
                         "icon_c6aEY7": {
@@ -1269,7 +1283,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "map_pin",
-                            "width": 32,
+                            "image_upload": "shopify://shop_images/location-icon.png",
+                            "width": 52,
                             "link": "",
                             "open_in_new_tab": false,
                             "icon_color": "#4d0804"
@@ -1280,13 +1295,13 @@
                           "type": "text",
                           "name": "Text",
                           "settings": {
-                            "text": "<p>Located at 421 Broad Street, Nevada City, CA</p>",
+                            "text": "<p><em>Located at&nbsp;<br/>421 Broad Street, Nevada City, CA</em></p>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "",
+                            "font_size": "1.25rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1309,6 +1324,19 @@
                         "icon_c6aEY7",
                         "text_Ap78XD"
                       ]
+                    },
+                    "divider_kQx36W": {
+                      "type": "_divider",
+                      "name": "t:names.divider",
+                      "settings": {
+                        "thickness": 1,
+                        "corner_radius": "square",
+                        "divider_color": "#AB7B53",
+                        "width_percent": 100,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0
+                      },
+                      "blocks": {}
                     },
                     "group_4QLU4C": {
                       "type": "group",
@@ -1346,8 +1374,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 30,
-                        "padding-inline-end": 30
+                        "padding-inline-start": 20,
+                        "padding-inline-end": 20
                       },
                       "blocks": {
                         "icon_DKPb7M": {
@@ -1355,7 +1383,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "star",
-                            "width": 32,
+                            "image_upload": "shopify://shop_images/holiday-icon.png",
+                            "width": 52,
                             "link": "",
                             "open_in_new_tab": false,
                             "icon_color": "#4d0804"
@@ -1366,13 +1395,13 @@
                           "type": "text",
                           "name": "Text",
                           "settings": {
-                            "text": "<p>Open on select Holidays and for events.</p>",
+                            "text": "<p><em>Open on select Holidays and for events.</em></p>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "",
+                            "font_size": "1.25rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1399,7 +1428,9 @@
                   },
                   "block_order": [
                     "group_LyNH68",
+                    "divider_gGGWMK",
                     "group_qi3HL6",
+                    "divider_kQx36W",
                     "group_4QLU4C"
                   ]
                 }
