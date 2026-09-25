@@ -1154,7 +1154,8 @@ summary:hover {
 
 /* Custom Typography style */
 .custom-typography,
-.custom-typography * {
+.custom-typography *,
+.text-block.custom-typography :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-family);
   font-weight: var(--font-weight);
   text-transform: var(--text-transform);
@@ -1180,12 +1181,14 @@ summary:hover {
 }
 
 .custom-font-size,
-.custom-font-size > * {
+.custom-font-size > *,
+.text-block.custom-font-size :is(h1, h2, h3, h4, h5, h6) {
   font-size: var(--font-size);
 }
 
 .custom-font-weight,
-.custom-font-weight > * {
+.custom-font-weight > *,
+.text-block.custom-font-weight :is(h1, h2, h3, h4, h5, h6) {
   font-weight: var(--font-weight);
 }
 
