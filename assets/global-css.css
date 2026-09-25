@@ -493,7 +493,7 @@ ol {
 .hero .text-block p {
   font-size: clamp(1.25rem, 2.5vw, 1.875rem);
   line-height: 1.1;
-  max-inline-size: 584px;
+  /* max-inline-size: 584px; */
   margin-inline: auto;
 }
 
