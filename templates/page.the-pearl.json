@@ -414,9 +414,9 @@
           "type": "text",
           "name": "Text",
           "settings": {
-            "text": "<p><strong>At the heart of our offerings is the ancient botanical Red Lotus, </strong>revered for its calming, ceremonial, and heart-opening qualities.&nbsp;</p>",
+            "text": "<p><strong>At the heart of our offerings is the ancient&nbsp;<br/>botanical Red Lotus, </strong>revered for its calming,&nbsp;<br/>ceremonial, and heart-opening qualities.&nbsp;</p>",
             "width": "100%",
-            "max_width": "narrow",
+            "max_width": "none",
             "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
