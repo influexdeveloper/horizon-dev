@@ -9,10 +9,10 @@
  */
 {
   "sections": {
-    "hero_J8UfxL": {
-      "type": "hero",
+    "section_6fgrNw": {
+      "type": "section",
       "blocks": {
-        "image_pWyyce": {
+        "image_rmcKrX": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
@@ -37,7 +37,7 @@
           },
           "blocks": {}
         },
-        "text_Matdq4": {
+        "text_KVMiAz": {
           "type": "text",
           "name": "t:names.text",
           "settings": {
@@ -47,12 +47,12 @@
             "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "2.5rem",
+            "font_size": "2.625rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#4D0804",
+            "text_color": "#4d0804",
             "custom_class": "",
             "background": false,
             "background_color": "#00000026",
@@ -64,7 +64,7 @@
           },
           "blocks": {}
         },
-        "text_pcWWYM": {
+        "text_4BGtzd": {
           "type": "text",
           "name": "t:names.text",
           "settings": {
@@ -79,7 +79,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#4D0804",
+            "text_color": "#4d0804",
             "custom_class": "",
             "background": false,
             "background_color": "#00000026",
@@ -91,7 +91,7 @@
           },
           "blocks": {}
         },
-        "text_CzN8Cz": {
+        "text_fkTyHt": {
           "type": "text",
           "name": "t:names.text",
           "settings": {
@@ -120,43 +120,41 @@
         }
       },
       "block_order": [
-        "image_pWyyce",
-        "text_Matdq4",
-        "text_pcWWYM",
-        "text_CzN8Cz"
+        "image_rmcKrX",
+        "text_KVMiAz",
+        "text_4BGtzd",
+        "text_fkTyHt"
       ],
-      "name": "Custom Section",
+      "name": "t:names.custom_section",
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/Mask_group.png",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
+        "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 12,
         "section_width": "page-width",
         "section_width_custom": "930",
-        "section_height": "small",
+        "section_height": "",
         "section_height_custom": 50,
-        "background_color": "#220706",
+        "background_media": "image",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image": "shopify://shop_images/Mask_group.png",
+        "background_image_position": "cover",
         "toggle_overlay": false,
         "overlay_color": "#00000026",
-        "overlay_style": "gradient",
+        "overlay_style": "solid",
         "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     },
     "intro_pearl": {
@@ -1139,7 +1137,7 @@
     }
   },
   "order": [
-    "hero_J8UfxL",
+    "section_6fgrNw",
     "intro_pearl",
     "cta_red_lotus",
     "community_calendar",
