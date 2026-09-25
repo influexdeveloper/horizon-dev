@@ -937,10 +937,84 @@
             "image_VUYNBE",
             "text_9z7YzJ"
           ]
+        },
+        "group_aNNm3f": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_cdn7JL": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Join The Ritual</p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "custom_letter_spacing": "",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "custom_class": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_cdn7JL"
+          ]
         }
       },
       "block_order": [
-        "group_G9p6Na"
+        "group_G9p6Na",
+        "group_aNNm3f"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -951,7 +1025,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap": 30,
         "section_width": "page-width",
         "section_width_custom": "930",
         "section_height": "",
@@ -972,139 +1046,6 @@
         "border_radius": 0,
         "padding-block-start": 60,
         "padding-block-end": 60
-      }
-    },
-    "join_ritual": {
-      "type": "hero",
-      "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "Heading",
-          "settings": {
-            "text": "<h2>We invite you to become the altar</h2>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "custom_letter_spacing": "",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#ffffff",
-            "custom_class": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "subheading": {
-          "type": "text",
-          "name": "Subheading",
-          "settings": {
-            "text": "<p>Join The Ritual</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "custom",
-            "font": "var(--font-accent--family)",
-            "font_size": "1.5rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "custom_letter_spacing": "",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#ffffff",
-            "custom_class": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 16,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "signup": {
-          "type": "email-signup",
-          "name": "t:names.email_signup",
-          "settings": {
-            "width": "custom",
-            "custom_width": 60,
-            "klaviyo_public_api_key": "",
-            "klaviyo_list_id": "",
-            "heading": "",
-            "heading_text_color": "",
-            "heading_preset": "h3",
-            "border_style": "all",
-            "input_style": "default",
-            "border_width": 1,
-            "border_radius": 100,
-            "input_background_color": "",
-            "input_text_color": "",
-            "input_border_color": "",
-            "input_type_preset": "paragraph",
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "display_type": "text",
-            "label": "Submit",
-            "integrated_button": true,
-            "button_type_preset": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "heading",
-        "subheading",
-        "signup"
-      ],
-      "name": "Join The Ritual",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_width_custom": "930",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "#220706",
-        "toggle_overlay": true,
-        "overlay_color": "#00000073",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     },
     "info_strip": {
@@ -1529,7 +1470,6 @@
     "cta_red_lotus",
     "section_rWqcxD",
     "section_XGeeAq",
-    "join_ritual",
     "info_strip"
   ]
 }
