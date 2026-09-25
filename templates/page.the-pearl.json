@@ -9,29 +9,26 @@
  */
 {
   "sections": {
-    "hero_pearl": {
+    "hero_J8UfxL": {
       "type": "hero",
       "blocks": {
-        "eyebrow": {
-          "type": "text",
-          "name": "Eyebrow",
+        "image_pWyyce": {
+          "type": "image",
+          "name": "t:names.image",
           "settings": {
-            "text": "<p>The Pearl</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "custom",
-            "font": "var(--font-accent--family)",
-            "font_size": "1.25rem",
-            "line_height": "normal",
-            "letter_spacing": "0.1em",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "text_color": "#ffffff",
-            "custom_class": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
+            "image": "shopify://shop_images/Neda-Vibing-ThePearl-logo_1_1.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -39,17 +36,17 @@
           },
           "blocks": {}
         },
-        "heading": {
+        "text_Matdq4": {
           "type": "text",
-          "name": "Heading",
+          "name": "t:names.text",
           "settings": {
-            "text": "<h1>A Venusian Boutique and Nourishment Lounge</h1>",
+            "text": "<h1>about monrosia</h1>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
-            "type_preset": "h1",
+            "type_preset": "rte",
             "font": "var(--font-heading--family)",
-            "font_size": "3.5rem",
+            "font_size": "4rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -66,17 +63,17 @@
           },
           "blocks": {}
         },
-        "subtext": {
+        "text_pcWWYM": {
           "type": "text",
-          "name": "Subtext",
+          "name": "t:names.text",
           "settings": {
-            "text": "<p>Devoted to the maiden, mother, and matriarch within every woman.</p>",
+            "text": "<p>Permission to Bloom</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
             "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.875rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -95,14 +92,14 @@
         }
       },
       "block_order": [
-        "eyebrow",
-        "heading",
-        "subtext"
+        "image_pWyyce",
+        "text_Matdq4",
+        "text_pcWWYM"
       ],
-      "name": "The Pearl Hero",
+      "name": "Custom Section",
       "settings": {
         "media_type_1": "image",
-        "image_1": "",
+        "image_1": "shopify://shop_images/Mask_group.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -117,15 +114,15 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 20,
+        "gap": 16,
         "section_width": "page-width",
         "section_width_custom": "930",
-        "section_height": "medium",
+        "section_height": "small",
         "section_height_custom": 50,
         "background_color": "#220706",
-        "toggle_overlay": true,
-        "overlay_color": "#00000059",
-        "overlay_style": "solid",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
@@ -141,16 +138,21 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "",
-            "image_position": "cover"
-          }
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
         },
         "content": {
           "type": "_content-without-appearance",
           "static": true,
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center"
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
           },
           "blocks": {
             "text_intro_1": {
@@ -278,6 +280,10 @@
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -293,7 +299,6 @@
       "name": "Red Lotus CTA",
       "settings": {
         "media_type_1": "image",
-        "image_1": "",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -425,7 +430,6 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "custom",
@@ -449,7 +453,6 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "custom",
@@ -473,7 +476,6 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "custom",
@@ -504,7 +506,6 @@
           "type": "image",
           "name": "Calendar embed placeholder",
           "settings": {
-            "image": "",
             "link": "",
             "image_ratio": "landscape",
             "width": "fill",
@@ -542,9 +543,22 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 32,
         "section_width": "page-width",
+        "section_width_custom": "930",
         "section_height": "",
         "section_height_custom": 50,
+        "background_media": "none",
         "background_color": "#f3e9dc",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
         "padding-block-start": 80,
         "padding-block-end": 80
       }
@@ -612,6 +626,8 @@
           "settings": {
             "width": "custom",
             "custom_width": 60,
+            "klaviyo_public_api_key": "",
+            "klaviyo_list_id": "",
             "heading": "",
             "heading_text_color": "",
             "heading_preset": "h3",
@@ -619,7 +635,15 @@
             "input_style": "default",
             "border_width": 1,
             "border_radius": 100,
+            "input_background_color": "",
+            "input_text_color": "",
+            "input_border_color": "",
+            "input_type_preset": "paragraph",
             "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "display_type": "text",
             "label": "Submit",
             "integrated_button": true,
@@ -640,7 +664,6 @@
       "name": "Join The Ritual",
       "settings": {
         "media_type_1": "image",
-        "image_1": "",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -1061,16 +1084,29 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 32,
         "section_width": "page-width",
+        "section_width_custom": "930",
         "section_height": "",
         "section_height_custom": 50,
+        "background_media": "none",
         "background_color": "#fff7ed",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
         "padding-block-start": 60,
         "padding-block-end": 60
       }
     }
   },
   "order": [
-    "hero_pearl",
+    "hero_J8UfxL",
     "intro_pearl",
     "cta_red_lotus",
     "community_calendar",
