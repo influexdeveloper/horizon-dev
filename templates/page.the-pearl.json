@@ -947,7 +947,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "width": "fill",
@@ -1092,8 +1092,8 @@
                 "link": "",
                 "open_in_new_tab": false,
                 "placeholder": "",
-                "padding-block-start": 20,
-                "padding-block-end": 20,
+                "padding-block-start": 60,
+                "padding-block-end": 60,
                 "padding-inline-start": 20,
                 "padding-inline-end": 20
               },
@@ -1174,8 +1174,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-start": 30,
+                        "padding-inline-end": 30
                       },
                       "blocks": {
                         "icon_xqfM7j": {
@@ -1260,8 +1260,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-start": 30,
+                        "padding-inline-end": 30
                       },
                       "blocks": {
                         "icon_c6aEY7": {
@@ -1346,8 +1346,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-start": 30,
+                        "padding-inline-end": 30
                       },
                       "blocks": {
                         "icon_DKPb7M": {
