@@ -228,36 +228,79 @@
         "padding-block-end": 100
       }
     },
-    "intro_pearl": {
-      "type": "media-with-content",
+    "section_YUDNkd": {
+      "type": "section",
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
+        "image_Uy3xrh": {
+          "type": "image",
+          "name": "t:names.image",
           "settings": {
-            "media_type": "image",
+            "image": "shopify://shop_images/the-pearl.png",
             "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
+        "group_9LEnjz": {
+          "type": "group",
+          "name": "t:names.group",
           "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
-            "text_intro_1": {
+            "text_JFGV7J": {
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>The Pearl is a boutique, nourishment lounge, tea sanctuary, and gathering space devoted to intentional living. We offer sustainably minded style, thoughtfully selected natural-fiber pieces, nourishing food and tea rituals, and a warm setting for meaningful connection, creativity, and community.</p>",
+                "text": "<p><strong>The Pearl</strong> is a boutique, nourishment lounge, tea sanctuary, and gathering space devoted to intentional living. We offer sustainably minded style, thoughtfully selected natural-fiber pieces, nourishing food and tea rituals, and a warm setting for meaningful connection, creativity, and community.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -280,7 +323,7 @@
               },
               "blocks": {}
             },
-            "divider": {
+            "divider_7Vzz4j": {
               "type": "_divider",
               "name": "t:names.divider",
               "settings": {
@@ -293,7 +336,7 @@
               },
               "blocks": {}
             },
-            "text_intro_2": {
+            "text_QzGAdh": {
               "type": "text",
               "name": "Text",
               "settings": {
@@ -322,20 +365,44 @@
             }
           },
           "block_order": [
-            "text_intro_1",
-            "divider",
-            "text_intro_2"
+            "text_JFGV7J",
+            "divider_7Vzz4j",
+            "text_QzGAdh"
           ]
         }
       },
-      "name": "The Pearl Intro",
+      "block_order": [
+        "image_Uy3xrh",
+        "group_9LEnjz"
+      ],
+      "name": "t:names.custom_section",
       "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 43,
         "section_width": "page-width",
-        "extend_media": false,
-        "background_color": "#fff7ed",
+        "section_width_custom": "930",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "image",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image": "shopify://shop_images/the-pearl-bg.png",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
         "padding-block-start": 80,
         "padding-block-end": 80
       }
@@ -1209,7 +1276,7 @@
   },
   "order": [
     "section_6fgrNw",
-    "intro_pearl",
+    "section_YUDNkd",
     "cta_red_lotus",
     "community_calendar",
     "join_ritual",
