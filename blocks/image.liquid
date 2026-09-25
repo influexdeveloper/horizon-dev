@@ -28,6 +28,9 @@
   {% if block_settings.height == 'custom' and block_settings.custom_height != blank %}
     --size-style-height: {{ block_settings.custom_height }};
   {% endif %}
+  {% if block_settings.height == 'custom' and block_settings.custom_height_mobile != blank %}
+    --size-style-height-mobile: {{ block_settings.custom_height_mobile }};
+  {% endif %}
   {% render 'spacing-style', settings: block_settings %}
 {% endcapture %}
 
@@ -246,6 +249,13 @@
       "type": "text",
       "id": "custom_height",
       "label": "t:settings.custom_height",
+      "placeholder": "100px",
+      "visible_if": "{{ block.settings.image_ratio == 'adapt' and block.settings.height == 'custom' }}"
+    },
+    {
+      "type": "text",
+      "id": "custom_height_mobile",
+      "label": "Custom height (mobile)",
       "placeholder": "100px",
       "visible_if": "{{ block.settings.image_ratio == 'adapt' and block.settings.height == 'custom' }}"
     },
