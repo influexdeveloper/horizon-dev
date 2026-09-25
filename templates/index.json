@@ -43,7 +43,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Sacred Botanicals to Remember Your Magic & Return To Ritual</p>",
+            "text": "<p>Sacred Botanicals to Remember&nbsp;<br/>Your Magic & Return To Ritual</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
