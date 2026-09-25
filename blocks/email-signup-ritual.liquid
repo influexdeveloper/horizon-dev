@@ -497,6 +497,17 @@
       var(--button-background-color) 100%
     );
   }
+
+  /* Centered, fixed 32px heading — scoped to `.ritual-signup-block` (this
+     block's own wrapper class) rather than the bare `.email-signup__heading`
+     it shares with blocks/email-signup.liquid, so the footer's heading is
+     untouched. Doubled to 3 classes for the same reason as the button rule
+     above: `.h2.h2` (the heading-preset class base.css applies) is already
+     2 classes, so this needs 3 to reliably win rather than tie it. */
+  .ritual-signup-block .email-signup__heading.email-signup__heading {
+    text-align: center;
+    font-size: 32px;
+  }
 {% endstylesheet %}
 
 {% schema %}
