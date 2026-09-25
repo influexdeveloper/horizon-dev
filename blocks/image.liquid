@@ -25,6 +25,9 @@
 {% capture style %}
   --ratio: {{ ratio }};
   {% render 'size-style', settings: block_settings %}
+  {% if block_settings.height == 'custom' and block_settings.custom_height != blank %}
+    --size-style-height: {{ block_settings.custom_height }};
+  {% endif %}
   {% render 'spacing-style', settings: block_settings %}
 {% endcapture %}
 
@@ -102,7 +105,8 @@
     justify-content: var(--horizontal-alignment, 'inline-start');
   }
 
-  .image-block--height-fill .image-block__image {
+  .image-block--height-fill .image-block__image,
+  .image-block--height-custom .image-block__image {
     height: 100%;
   }
 
@@ -229,10 +233,21 @@
         {
           "value": "fill",
           "label": "t:options.fill"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
         }
       ],
       "default": "fit",
       "visible_if": "{{ block.settings.image_ratio == 'adapt' }}"
+    },
+    {
+      "type": "text",
+      "id": "custom_height",
+      "label": "t:settings.custom_height",
+      "placeholder": "100px",
+      "visible_if": "{{ block.settings.image_ratio == 'adapt' and block.settings.height == 'custom' }}"
     },
     {
       "type": "header",
