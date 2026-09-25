@@ -508,6 +508,28 @@
     text-align: center;
     font-size: 32px;
   }
+
+  /* Flush integrated button: the shared `--button-offset` margin
+     (base.css/email-signup.liquid — var(--margin-xs), 8px) insets the
+     button from the pill's border on all sides, which is what stops its
+     square corners from poking past the pill's rounded ones. Removing that
+     margin means the wrapper now has to clip to its own radius instead. */
+  .ritual-signup-block .email-signup__input-group--integrated {
+    overflow: hidden;
+  }
+
+  .ritual-signup-block .email-signup__button--integrated.email-signup__button--integrated {
+    margin: 0;
+  }
+
+  .ritual-signup-block .email-signup__button--integrated.email-signup__button--text.email-signup__button--text {
+    padding-inline: 40px;
+  }
+
+  .ritual-signup-block .email-signup__button.email-signup__button {
+    font-weight: 600;
+    letter-spacing: 0.75px;
+  }
 {% endstylesheet %}
 
 {% schema %}
