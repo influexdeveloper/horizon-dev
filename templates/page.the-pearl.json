@@ -393,8 +393,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 43,
-        "section_width": "page-width",
-        "section_width_custom": "930",
+        "section_width": "custom",
+        "section_width_custom": "1076",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "image",
@@ -821,8 +821,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 50,
-        "section_width": "page-width",
-        "section_width_custom": "930",
+        "section_width": "custom",
+        "section_width_custom": "1076",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "image",
@@ -1183,8 +1183,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 20,
-                        "padding-inline-end": 20
+                        "padding-inline-start": 10,
+                        "padding-inline-end": 10
                       },
                       "blocks": {
                         "icon_xqfM7j": {
@@ -1210,7 +1210,7 @@
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "1.25rem",
+                            "font_size": "1.125rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1283,8 +1283,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 20,
-                        "padding-inline-end": 20
+                        "padding-inline-start": 10,
+                        "padding-inline-end": 10
                       },
                       "blocks": {
                         "icon_c6aEY7": {
@@ -1310,7 +1310,7 @@
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "1.25rem",
+                            "font_size": "1.125rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1383,8 +1383,8 @@
                         "placeholder": "",
                         "padding-block-start": 0,
                         "padding-block-end": 0,
-                        "padding-inline-start": 20,
-                        "padding-inline-end": 20
+                        "padding-inline-start": 10,
+                        "padding-inline-end": 10
                       },
                       "blocks": {
                         "icon_DKPb7M": {
@@ -1404,13 +1404,13 @@
                           "type": "text",
                           "name": "Text",
                           "settings": {
-                            "text": "<p><em>Open on select Holidays and for events.</em></p>",
+                            "text": "<p><em>Open on select Holidays and&nbsp;<br/>for events.</em></p>",
                             "width": "100%",
                             "max_width": "none",
                             "alignment": "center",
                             "type_preset": "custom",
                             "font": "var(--font-body--family)",
-                            "font_size": "1.25rem",
+                            "font_size": "1.125rem",
                             "line_height": "normal",
                             "letter_spacing": "normal",
                             "custom_letter_spacing": "",
@@ -1571,8 +1571,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 70,
-        "section_width": "page-width",
-        "section_width_custom": "930",
+        "section_width": "custom",
+        "section_width_custom": "1076",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "image",
