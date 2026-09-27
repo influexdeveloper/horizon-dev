@@ -111,6 +111,11 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "2647664283302970701": {
+        "type": "shopify://apps/cookiebot-cmp/blocks/uc-banner/42d95aba-03be-478d-adf0-7bb4f5efae78",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
