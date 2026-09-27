@@ -1533,7 +1533,7 @@
                     "case": "none",
                     "wrap": "pretty",
                     "text_color": "#220706",
-                    "custom_class": "",
+                    "custom_class": "opacity-80",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
