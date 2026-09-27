@@ -707,6 +707,10 @@ ol {
 }
 
 /* The Pearl Page */
+.opacity-80 {
+    opacity: 0.8;
+}
+
 .template-page-the-pearl .header__row {
     background-color: var(--color-background) !important;
 }
