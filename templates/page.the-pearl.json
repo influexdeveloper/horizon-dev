@@ -841,6 +841,7 @@
         "group_FUpREB",
         "group_YJem6T"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
