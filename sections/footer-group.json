@@ -171,6 +171,7 @@
                 "font_size": "2rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
+                "custom_letter_spacing": "",
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "",
@@ -188,7 +189,7 @@
             "footer_signup_text": {
               "type": "text",
               "settings": {
-                "text": "<p>Stay connected to the Monrosia community, discover new products, and learn about upcoming offerings.</p>",
+                "text": "<p>Stay connected to the Monrosia™ community, discover new products, and learn about upcoming offerings.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -197,6 +198,7 @@
                 "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
+                "custom_letter_spacing": "",
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "",
