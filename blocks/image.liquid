@@ -34,6 +34,34 @@
   {% render 'spacing-style', settings: block_settings %}
 {% endcapture %}
 
+{% liquid
+  assign has_margin = false
+  if block_settings.margin-block-start != blank or block_settings.margin-block-end != blank or block_settings.margin-inline-start != blank or block_settings.margin-inline-end != blank
+    assign has_margin = true
+  endif
+%}
+
+{% if has_margin %}
+  {% style %}
+    @media screen and (min-width: 750px) {
+      .image-block--{{ block.id }} {
+        {% if block_settings.margin-block-start != blank %}
+          margin-block-start: {{ block_settings.margin-block-start }};
+        {% endif %}
+        {% if block_settings.margin-block-end != blank %}
+          margin-block-end: {{ block_settings.margin-block-end }};
+        {% endif %}
+        {% if block_settings.margin-inline-start != blank %}
+          margin-inline-start: {{ block_settings.margin-inline-start }};
+        {% endif %}
+        {% if block_settings.margin-inline-end != blank %}
+          margin-inline-end: {{ block_settings.margin-inline-end }};
+        {% endif %}
+      }
+    }
+  {% endstyle %}
+{% endif %}
+
 {% capture image_border_style %}
   --ratio: {{ ratio }};
   {% render 'border-override', settings: block_settings %}
@@ -361,6 +389,35 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.margin",
+      "info": "Applies on desktop only"
+    },
+    {
+      "type": "text",
+      "id": "margin-block-start",
+      "label": "t:settings.top",
+      "placeholder": "0px"
+    },
+    {
+      "type": "text",
+      "id": "margin-block-end",
+      "label": "t:settings.bottom",
+      "placeholder": "0px"
+    },
+    {
+      "type": "text",
+      "id": "margin-inline-start",
+      "label": "t:settings.left",
+      "placeholder": "0px"
+    },
+    {
+      "type": "text",
+      "id": "margin-inline-end",
+      "label": "t:settings.right",
+      "placeholder": "0px"
     }
   ],
   "presets": [
