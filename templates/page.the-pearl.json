@@ -122,7 +122,7 @@
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
                 "height": "custom",
-                "custom_height": "74px",
+                "custom_height": "80px",
                 "custom_height_mobile": "auto",
                 "border": "none",
                 "border_width": 1,
@@ -133,9 +133,9 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "margin-block-start": "",
+                "margin-block-start": "-18px",
                 "margin-block-end": "",
-                "margin-inline-start": "",
+                "margin-inline-start": "-80px",
                 "margin-inline-end": ""
               },
               "blocks": {}
