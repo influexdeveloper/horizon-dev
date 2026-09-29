@@ -181,7 +181,7 @@
           "name": "Email sign up",
           "settings": {
             "label": "Email Sign Up & Special Offers",
-            "intro_text": "Stay connected to the Monrosia community, discover new products, and learn about upcoming offerings.",
+            "intro_text": "Stay connected to the Monrosia™ community, discover new products, and learn about upcoming offerings.",
             "button_label": "Join The Ritual",
             "klaviyo_list_id": "X5EKbe"
           }
@@ -191,7 +191,7 @@
           "name": "Wholesale",
           "settings": {
             "label": "Wholesale & Partnerships",
-            "intro_text": "Interested in carrying Monrosia products or offering The Red Lotus Tea Service at your space or event?",
+            "intro_text": "Interested in carrying Monrosia™ products or offering The Red Lotus Tea Service at your space or event?",
             "button_label": "Send Message",
             "klaviyo_list_id": "WK9HME"
           }
@@ -261,7 +261,7 @@
           "type": "text",
           "name": "Text",
           "settings": {
-            "text": "<p>Follow Monrosia for ritual beauty, botanical wellness, and product updates.</p>",
+            "text": "<p>Follow Monrosia™ for ritual beauty, botanical wellness, and product updates.</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
