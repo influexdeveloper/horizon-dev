@@ -250,7 +250,7 @@
           "settings": {
             "image": "shopify://shop_images/the-pearl.png",
             "link": "",
-            "image_ratio": "adapt",
+            "image_ratio": "square",
             "width": "custom",
             "custom_width": 50,
             "width_mobile": "fill",
@@ -262,7 +262,7 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_color": "",
-            "border_radius": 0,
+            "border_radius": 12,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -324,7 +324,7 @@
                 "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
-                "font_size": "1.375rem",
+                "font_size": "1.5rem",
                 "line_height": "loose",
                 "letter_spacing": "normal",
                 "custom_letter_spacing": "",
@@ -345,6 +345,7 @@
             "divider_7Vzz4j": {
               "type": "_divider",
               "name": "t:names.divider",
+              "disabled": true,
               "settings": {
                 "thickness": 1,
                 "corner_radius": "square",
@@ -358,6 +359,7 @@
             "text_QzGAdh": {
               "type": "text",
               "name": "Text",
+              "disabled": true,
               "settings": {
                 "text": "<p>We weave tea meditations, healing rituals, and apothecary intensives into a luxurious, sustainable boutique experience devoted to elevating the feminine. Guided by Monrosia™, our resident herbalist, we honor the wisdom of traditional plant medicine while creating modern rituals for nervous system support, embodied wellbeing, sensual self-connection, digestion, and deep restoration.</p>",
                 "width": "100%",
@@ -404,7 +406,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 43,
+        "gap": 70,
         "section_width": "custom",
         "section_width_custom": "1076",
         "section_height": "",
