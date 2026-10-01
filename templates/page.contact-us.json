@@ -189,6 +189,7 @@
         "wholesale": {
           "type": "wholesale_panel",
           "name": "Wholesale",
+          "disabled": true,
           "settings": {
             "label": "Wholesale & Partnerships",
             "intro_text": "Interested in carrying Monrosia™ products or offering The Red Lotus Tea Service at your space or event?",
