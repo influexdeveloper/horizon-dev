@@ -38,7 +38,6 @@
     display: flex;
     z-index: var(--layer-heightened);
     pointer-events: none;
-    mix-blend-mode: difference;
     align-items: flex-end;
 
     &[position='left'] {
@@ -55,11 +54,6 @@
       justify-content: space-between;
       align-items: center;
     }
-  }
-
-  slideshow-arrows:has(.slideshow-control--shape-square),
-  slideshow-arrows:has(.slideshow-control--shape-circle) {
-    mix-blend-mode: normal;
   }
 
   slideshow-component[disabled='true'] slideshow-arrows {
