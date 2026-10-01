@@ -443,7 +443,7 @@
                   "type": "custom-liquid",
                   "name": "List",
                   "settings": {
-                    "custom_liquid": "<div style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{% if closest.product.metafields.custom.features_and_benefits != blank %}{{ closest.product.metafields.custom.features_and_benefits.value }}{% else %}<ul style=\"font-weight:300;margin: 0; padding-inline-start: 1.2em;\"><li>Promotes calm euphoria and sensual embodiment</li><li>Supports relaxation and nervous system balance</li><li>Encourages self-trust and emotional grounding</li><li>Infused with red lotus, passionvine, and motherwort</li></ul>{% endif %}</div>",
+                    "custom_liquid": "<div style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-70));\">{% if closest.product.metafields.custom.features_and_benefits != blank %}{{ closest.product.metafields.custom.features_and_benefits | metafield_tag }}{% else %}<ul style=\"font-weight:300;margin: 0; padding-inline-start: 1.2em;\"><li>Promotes calm euphoria and sensual embodiment</li><li>Supports relaxation and nervous system balance</li><li>Encourages self-trust and emotional grounding</li><li>Infused with red lotus, passionvine, and motherwort</li></ul>{% endif %}</div>",
                     "custom_class": "",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
