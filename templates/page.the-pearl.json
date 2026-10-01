@@ -178,7 +178,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Devoted to the maiden, mother, and matriarch within every woman.</p>",
+            "text": "<p>Devoted to the maiden, mother, and matriarch.</p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
