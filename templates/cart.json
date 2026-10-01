@@ -54,7 +54,7 @@
           "static": true,
           "settings": {
             "extend_summary": true,
-            "background_color": "{{ settings.color_palette.foreground }}",
+            "background_color": "#FFF7ED",
             "text_color": "",
             "border": "none",
             "border_width": 1,
