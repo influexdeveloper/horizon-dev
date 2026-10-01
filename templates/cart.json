@@ -54,7 +54,7 @@
           "static": true,
           "settings": {
             "extend_summary": true,
-            "background_color": "{{ settings.color_palette.color4 }}",
+            "background_color": "{{ settings.color_palette.foreground }}",
             "text_color": "",
             "border": "none",
             "border_width": 1,
@@ -67,7 +67,7 @@
       },
       "settings": {
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#FFF7ED",
         "text_color": "",
         "padding-block-start": 24,
         "padding-block-end": 0
