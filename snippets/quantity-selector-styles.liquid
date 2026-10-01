@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     color: var(--color-input-text);
-    background-color: var(--color-input-background);
+    background-color: transparent;
     border: var(--style-border-width-inputs) solid var(--color-input-border);
     border-radius: var(--style-border-radius-inputs);
     flex: 1 1 var(--quantity-selector-width);
@@ -110,7 +110,12 @@
   .product-details .quantity-selector {
     border-radius: 0px !important;
     border-color: #4d0804 !important;
-    background-color: #fff7ed !important;
+    background-color: transparent !important;
+  }
+
+  .cart-items .quantity-selector,
+  .cart-items .quantity-selector :is(.quantity-minus, .quantity-plus, input[type='number']) {
+    background: transparent !important;
   }
 
   .product-details .quantity-selector :is(.quantity-minus, .quantity-plus) {
