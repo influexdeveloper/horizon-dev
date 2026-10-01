@@ -319,7 +319,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>It was the beginning of a journey home, a remembering that would eventually become Monrosia.</p>",
+                "text": "<p>It was the beginning of a journey home, a remembering that would eventually become Monrosia™.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -365,7 +365,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             }
@@ -621,7 +625,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             }
@@ -907,7 +915,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             }
@@ -1026,7 +1038,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             },
@@ -1255,7 +1271,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             },
@@ -1319,7 +1339,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Inside the Temple of Hathor, the goddess of music, beauty, motherhood, joy, and sacred celebration, I felt something ancient awaken.</p><p>Not a memory of the past.<br/>A remembrance of the future.<br/>A vision of women gathering across every generation.<br/>Infants.<br/>Mothers.<br/>Grandmothers.<br/>Elders.<br/>No one excluded.<br/>No stage of womanhood left outside the circle.</p><p>That is the world I want my daughter to inherit.<br/>And that is why Monrosia exists.<br/>Monrosia is more than tea.<br/>More than adornment.<br/>More than ritual.</p><p>It is an invitation to remember that women were never meant to walk these thresholds alone.<br/>To create spaces where beauty becomes belonging.</p><p>Where ritual becomes <em><strong>remembrance.</strong></em><br/>Where motherhood is <em><strong>honored.</strong></em>&nbsp;<br/>Where healing happens in <em><strong>community.</strong></em>&nbsp;<br/>Where every woman is welcomed <em><strong>exactly as she is.</strong></em></p>",
+                "text": "<p>Inside the Temple of Hathor, the goddess of music, beauty, motherhood, joy, and sacred celebration, I felt something ancient awaken.</p><p>Not a memory of the past.<br/>A remembrance of the future.<br/>A vision of women gathering across every generation.<br/>Infants.<br/>Mothers.<br/>Grandmothers.<br/>Elders.<br/>No one excluded.<br/>No stage of womanhood left outside the circle.</p><p>That is the world I want my daughter to inherit.<br/>And that is why Monrosia™ exists.<br/>Monrosia™ is more than tea.<br/>More than adornment.<br/>More than ritual.</p><p>It is an invitation to remember that women were never meant to walk these thresholds alone.<br/>To create spaces where beauty becomes belonging.</p><p>Where ritual becomes <em><strong>remembrance.</strong></em><br/>Where motherhood is <em><strong>honored.</strong></em>&nbsp;<br/>Where healing happens in <em><strong>community.</strong></em>&nbsp;<br/>Where every woman is welcomed <em><strong>exactly as she is.</strong></em></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1431,7 +1451,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<h3><em>“Become the Altar.”</em></h3>",
+                "text": "<h3><em>“Become the Altar</em>™<em>.”</em></h3>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1490,7 +1510,11 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "margin-block-start": "",
+            "margin-block-end": "",
+            "margin-inline-start": "",
+            "margin-inline-end": ""
           },
           "blocks": {}
         },
@@ -1584,7 +1608,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "margin-block-start": "",
+                "margin-block-end": "",
+                "margin-inline-start": "",
+                "margin-inline-end": ""
               },
               "blocks": {}
             },
@@ -1650,7 +1678,11 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "margin-block-start": "",
+                    "margin-block-end": "",
+                    "margin-inline-start": "",
+                    "margin-inline-end": ""
                   },
                   "blocks": {}
                 },
@@ -1658,7 +1690,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p><em>Founded by Monroe King, a musician, sound healer, herbalist, and mother, Monrosia was born from years of working with sacred botanicals and ceremonial practices. </em></p>",
+                    "text": "<p><em>Founded by Monroe King, a musician, sound healer, herbalist, and mother, Monrosia</em>™<em> was born from years of working with sacred botanicals and ceremonial practices.&nbsp;</em></p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -1766,7 +1798,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Monrosia was created to remind us that self-care is sacred. Rooted in the timeless art of ritual beauty, our products are crafted with reverence for the plants, the body, and the unseen. We believe that tending to yourself is an act of devotion, a way to reconnect with what’s holy, sensual, and alive.</p>",
+                "text": "<p>Monrosia™ was created to remind us that self-care is sacred. Rooted in the timeless art of ritual beauty, our products are crafted with reverence for the plants, the body, and the unseen. We believe that tending to yourself is an act of devotion, a way to reconnect with what’s holy, sensual, and alive.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1868,7 +1900,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Every Monrosia product is made in small batches with intentional sourcing, pure botanicals, and sustainability in mind. Our approach merges science with spirit, honoring both the chemistry of skincare and the soul of ritual. Each formula is inspired by the healing traditions of ayerveda or European folk magic and include Artesmia Vulgaris & Red Lotus (Nymphaea rubra) a flower revered for its calming, euphoric, and heart-opening essence.</p>",
+                "text": "<p>Every Monrosia™ product is made in small batches with intentional sourcing, pure botanicals, and sustainability in mind. Our approach merges science with spirit, honoring both the chemistry of skincare and the soul of ritual.&nbsp;Each formula is inspired by the healing traditions of ayerveda or European folk magic and include Artesmia Vulgaris & Red Lotus (Nymphaea rubra)&nbsp;a flower revered for its calming, euphoric, and heart-opening essence.</p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -1970,7 +2002,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>To use Monrosia is to participate in a ceremony: to breathe deeply, to touch gently, and to remember yourself as sacred.</p><p>With each ritual, we invite you to<strong> become the altar.</strong></p>",
+                "text": "<p>To use Monrosia™ is to participate in a ceremony: to breathe deeply, to touch gently, and to remember yourself as sacred.</p><p>With each ritual, we invite you to<strong> become the altar.</strong></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
