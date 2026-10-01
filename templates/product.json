@@ -233,7 +233,7 @@
                       "type": "custom-liquid",
                       "name": "Variant label",
                       "settings": {
-                        "custom_liquid": "{% assign sel_variant = closest.product.selected_or_first_available_variant %}{% assign sel_volume = sel_variant.metafields.custom.volume %}{% capture variant_label_text %}{% if sel_volume != blank %}{% assign vol = sel_volume.value %}{% if vol.value != nil %}{{ vol.value }} {{ vol.unit | downcase | replace: 'us_', '' | replace: '_', ' ' }}{% else %}{{ sel_volume }}{% endif %}{% elsif sel_variant.weight > 0 %}{{ sel_variant.weight | weight_with_unit }}{% endif %}{% endcapture %}{% assign variant_label_text = variant_label_text | strip %}{% if variant_label_text != blank %}<span style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\">{{ variant_label_text }}</span>{% endif %}",
+                        "custom_liquid": "{% assign sel_variant = closest.product.selected_or_first_available_variant %}{% assign sel_volume = sel_variant.metafields.custom.volume %}{% capture variant_label_text %}{% if sel_volume != blank %}{{ sel_volume.value }}{% elsif sel_variant.weight > 0 %}{{ sel_variant.weight | weight_with_unit }}{% endif %}{% endcapture %}{% assign variant_label_text = variant_label_text | strip %}{% if variant_label_text != blank %}<span style=\"font-size: 1rem; color: rgb(var(--color-foreground-rgb) / var(--opacity-50));\">{{ variant_label_text }}</span>{% endif %}",
                         "custom_class": "",
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
