@@ -73,7 +73,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Shop The Collection",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/frontpage",
             "open_in_new_tab": false,
             "style_class": "button",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
