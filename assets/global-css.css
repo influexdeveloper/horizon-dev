@@ -47,6 +47,11 @@ ol {
     line-height: var(--line-height--body, var(--line-height));
 }
 
+
+#shopify-section-template--23054591197421__section_6fgrNw img {
+  object-fit: unset;
+}
+
 /* base.css flattens every descendant of a rich-text block to the block's own
    uniform weight (`.custom-typography, .custom-typography * { font-weight:
    var(--font-weight) }`), which also erases <strong>/<b> emphasis authored in
