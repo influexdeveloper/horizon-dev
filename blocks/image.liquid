@@ -62,16 +62,11 @@
   {% endstyle %}
 {% endif %}
 
-{% if block_settings.height == 'custom' %}
-  {% style %}
-    .image-block--{{ block.id }} .image-block__image {
-      object-fit: contain !important;
-    }
-  {% endstyle %}
-{% endif %}
-
 {% capture image_border_style %}
   --ratio: {{ ratio }};
+  {% if block_settings.object_fit != blank %}
+    object-fit: {{ block_settings.object_fit }};
+  {% endif %}
   {% render 'border-override', settings: block_settings %}
 {% endcapture %}
 
@@ -197,6 +192,22 @@
         }
       ],
       "default": "adapt"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
     },
     {
       "type": "select",
