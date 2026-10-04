@@ -64,7 +64,7 @@
 
 {% capture image_border_style %}
   --ratio: {{ ratio }};
-  {% if block_settings.object_fit != blank %}
+  {% if block_settings.object_fit != blank and block_settings.object_fit != 'none' %}
     object-fit: {{ block_settings.object_fit }};
   {% endif %}
   {% render 'border-override', settings: block_settings %}
@@ -199,6 +199,10 @@
       "label": "Image fit",
       "options": [
         {
+          "value": "none",
+          "label": "None"
+        },
+        {
           "value": "cover",
           "label": "Cover"
         },
@@ -207,7 +211,7 @@
           "label": "Contain"
         }
       ],
-      "default": "cover"
+      "default": "none"
     },
     {
       "type": "select",
