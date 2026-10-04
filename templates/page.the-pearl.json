@@ -153,7 +153,7 @@
                 "type_preset": "custom",
                 "font": "var(--font-heading--family)",
                 "font_size": "2.625rem",
-                "line_height": "tight",
+                "line_height": "normal",
                 "letter_spacing": "normal",
                 "custom_letter_spacing": "",
                 "case": "none",
