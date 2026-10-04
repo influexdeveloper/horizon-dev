@@ -62,6 +62,14 @@
   {% endstyle %}
 {% endif %}
 
+{% if block_settings.height == 'custom' %}
+  {% style %}
+    .image-block--{{ block.id }} .image-block__image {
+      object-fit: contain;
+    }
+  {% endstyle %}
+{% endif %}
+
 {% capture image_border_style %}
   --ratio: {{ ratio }};
   {% render 'border-override', settings: block_settings %}
@@ -144,10 +152,6 @@
   .image-block__image {
     object-fit: cover;
     aspect-ratio: var(--ratio);
-  }
-
-  .image-block--height-custom .image-block__image {
-    object-fit: contain;
   }
 {% endstylesheet %}
 
