@@ -65,7 +65,7 @@
 {% if block_settings.height == 'custom' %}
   {% style %}
     .image-block--{{ block.id }} .image-block__image {
-      object-fit: contain;
+      object-fit: contain !important;
     }
   {% endstyle %}
 {% endif %}
