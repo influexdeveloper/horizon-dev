@@ -321,6 +321,7 @@
         "gap": 0,
         "background_color": "#220706",
         "show_image": true,
+        "image_link": "https://www.influex.com/",
         "image_alt": "Influex",
         "image_width": 230,
         "divider_thickness": 0,
