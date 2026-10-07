@@ -1157,7 +1157,7 @@
                     "content_direction": "row",
                     "vertical_on_mobile": true,
                     "horizontal_alignment": "center",
-                    "vertical_alignment": "center",
+                    "vertical_alignment": "flex-start",
                     "align_baseline": false,
                     "horizontal_alignment_flex_direction_column": "center",
                     "vertical_alignment_flex_direction_column": "center",
@@ -1275,6 +1275,106 @@
                       "block_order": [
                         "icon_xqfM7j",
                         "text_MbdFry"
+                      ]
+                    },
+                    "divider_ALHRRw": {
+                      "type": "_divider",
+                      "name": "t:names.divider",
+                      "settings": {
+                        "thickness": 1,
+                        "corner_radius": "square",
+                        "divider_color": "#ab7b53",
+                        "width_percent": 100,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "group_bXecYU": {
+                      "type": "group",
+                      "name": "t:names.group",
+                      "settings": {
+                        "content_direction": "column",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "center",
+                        "vertical_alignment": "center",
+                        "align_baseline": false,
+                        "horizontal_alignment_flex_direction_column": "center",
+                        "vertical_alignment_flex_direction_column": "center",
+                        "gap": 12,
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "fit",
+                        "custom_height": 100,
+                        "background_media": "none",
+                        "background_color": "",
+                        "video_position": "cover",
+                        "background_image_position": "cover",
+                        "toggle_overlay": false,
+                        "overlay_color": "#00000026",
+                        "overlay_style": "solid",
+                        "gradient_direction": "to top",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_color": "",
+                        "border_radius": 0,
+                        "link": "https://www.instagram.com/thepearlnevadacity/",
+                        "open_in_new_tab": true,
+                        "placeholder": "",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 10,
+                        "padding-inline-end": 10
+                      },
+                      "blocks": {
+                        "icon_mdP3KV": {
+                          "type": "icon",
+                          "name": "t:names.icon",
+                          "settings": {
+                            "icon": "star",
+                            "image_upload": "shopify://shop_images/ig-icon_0a510cd3-0dea-4a26-98fe-51eff4bfc641.png",
+                            "width": 52,
+                            "link": "",
+                            "open_in_new_tab": false,
+                            "icon_color": "#4d0804"
+                          },
+                          "blocks": {}
+                        },
+                        "text_bLQzDC": {
+                          "type": "text",
+                          "name": "Text",
+                          "settings": {
+                            "text": "<p><em>Follow us on instagram @ThePearlNevadaCity</em></p>",
+                            "width": "100%",
+                            "max_width": "none",
+                            "alignment": "center",
+                            "type_preset": "custom",
+                            "font": "var(--font-body--family)",
+                            "font_size": "1rem",
+                            "line_height": "normal",
+                            "letter_spacing": "normal",
+                            "custom_letter_spacing": "",
+                            "case": "none",
+                            "wrap": "pretty",
+                            "text_color": "#220706",
+                            "custom_class": "",
+                            "background": false,
+                            "background_color": "#00000026",
+                            "corner_radius": 0,
+                            "padding-block-start": 0,
+                            "padding-block-end": 0,
+                            "padding-inline-start": 0,
+                            "padding-inline-end": 0
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "icon_mdP3KV",
+                        "text_bLQzDC"
                       ]
                     },
                     "divider_gGGWMK": {
@@ -1480,6 +1580,8 @@
                   },
                   "block_order": [
                     "group_LyNH68",
+                    "divider_ALHRRw",
+                    "group_bXecYU",
                     "divider_gGGWMK",
                     "group_qi3HL6",
                     "divider_kQx36W",
