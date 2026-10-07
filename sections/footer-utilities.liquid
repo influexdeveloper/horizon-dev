@@ -14,11 +14,28 @@
   {{ section.shopify_attributes }}
 >
   <div
-    class="utilities utilities--blocks-{{ section.blocks.size }} spacing-style"
+    class="utilities utilities--blocks-{{ section.blocks.size }}{% if section.settings.show_image %} utilities--has-image{% endif %} spacing-style"
     style="{% render 'spacing-style', settings: section.settings %} --border-width: {{ section.settings.divider_thickness }}px;{% if section.settings.divider_color != blank %} --divider-color: {{ section.settings.divider_color }};{% endif %} --gap: {{ section.settings.gap }}px;"
     data-testid="footer-utilities"
   >
     {% content_for 'blocks' %}
+    {%- if section.settings.show_image -%}
+      <div class="utilities__image" style="--image-width: {{ section.settings.image_width }}px;">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 800
+            | image_tag: loading: 'lazy', alt: section.settings.image_alt, widths: '200, 400, 800', sizes: '(min-width: 750px) 300px, 50vw'
+          }}
+        {%- else -%}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0775/4694/6797/files/influex-footer.png?v=1791351745"
+            alt="{{ section.settings.image_alt | escape }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -54,6 +71,33 @@
     @media screen and (min-width: 750px) {
       text-align: left;
       justify-self: start;
+    }
+  }
+
+  .utilities__image img {
+    display: block;
+    width: min(100%, var(--image-width, 160px));
+    height: auto;
+    margin-inline: auto;
+  }
+
+  /* Optional image sits in the bottom-right column, after the blocks */
+  @media screen and (min-width: 750px) {
+    .utilities--has-image {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .utilities--has-image > .utilities__image {
+      margin-inline-start: auto;
+      justify-self: end;
+      text-align: right;
+    }
+
+    .utilities__image img {
+      margin-inline: auto 0;
     }
   }
 
@@ -138,6 +182,41 @@
       "id": "background_color",
       "label": "t:settings.background_color",
       "default": "{{ settings.color_palette.foreground }}"
+    },
+    {
+      "type": "header",
+      "content": "Bottom right image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show image in bottom right column",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Leave empty to use the default Influex footer image.",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Influex",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image width",
+      "min": 40,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 160,
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "range",
