@@ -327,8 +327,8 @@
         "image_width": 230,
         "divider_thickness": 0,
         "divider_color": "",
-        "padding-block-start": 20,
-        "padding-block-end": 20
+        "padding-block-start": 30,
+        "padding-block-end": 30
       }
     }
   },
