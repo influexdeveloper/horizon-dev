@@ -105,14 +105,26 @@
 
   @media screen and (min-width: 750px) {
     .footer-utilities .utilities.utilities--has-image {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
       column-gap: var(--gap);
     }
 
+    .utilities--has-image > .utilities__main {
+      flex: 0 0 auto;
+    }
+
+    .utilities--has-image > .utilities__image {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
     .utilities__main {
       flex-direction: row;
+      flex-wrap: nowrap;
+      white-space: nowrap;
       justify-content: flex-start;
       column-gap: 0;
       row-gap: 0;
@@ -126,6 +138,10 @@
     .utilities--has-image > .utilities__image {
       justify-self: end;
       text-align: right;
+    }
+
+    .utilities__main .menu .details-content ul {
+      flex-wrap: nowrap;
     }
 
     .utilities__image img {
