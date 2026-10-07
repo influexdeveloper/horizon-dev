@@ -24,7 +24,7 @@
     {%- if section.settings.show_image -%}
       <div class="utilities__image" style="--image-width: {{ section.settings.image_width }}px;">
         {%- if section.settings.image_link != blank -%}
-          <a href="{{ section.settings.image_link }}" class="utilities__image-link">
+          <a href="{{ section.settings.image_link }}" class="utilities__image-link"{% if section.settings.image_link_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
         {%- endif -%}
         {%- if section.settings.image != blank -%}
           {{
@@ -280,6 +280,13 @@
       "id": "image_link",
       "label": "Image link",
       "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_link_new_tab",
+      "label": "Open link in new tab",
+      "default": false,
+      "visible_if": "{{ section.settings.show_image and section.settings.image_link != blank }}"
     },
     {
       "type": "text",
