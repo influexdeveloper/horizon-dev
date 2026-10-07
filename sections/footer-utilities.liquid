@@ -23,6 +23,9 @@
     {%- if section.settings.show_image -%}</div>{%- endif -%}
     {%- if section.settings.show_image -%}
       <div class="utilities__image" style="--image-width: {{ section.settings.image_width }}px;">
+        {%- if section.settings.image_link != blank -%}
+          <a href="{{ section.settings.image_link }}" class="utilities__image-link">
+        {%- endif -%}
         {%- if section.settings.image != blank -%}
           {{
             section.settings.image
@@ -35,6 +38,9 @@
             alt="{{ section.settings.image_alt | escape }}"
             loading="lazy"
           >
+        {%- endif -%}
+        {%- if section.settings.image_link != blank -%}
+          </a>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -74,6 +80,10 @@
       text-align: left;
       justify-self: start;
     }
+  }
+
+  .utilities__image-link {
+    display: block;
   }
 
   .utilities__image img {
@@ -263,6 +273,12 @@
       "id": "image",
       "label": "Image",
       "info": "Leave empty to use the default Influex footer image.",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Image link",
       "visible_if": "{{ section.settings.show_image }}"
     },
     {
