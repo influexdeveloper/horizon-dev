@@ -18,7 +18,9 @@
     style="{% render 'spacing-style', settings: section.settings %} --border-width: {{ section.settings.divider_thickness }}px;{% if section.settings.divider_color != blank %} --divider-color: {{ section.settings.divider_color }};{% endif %} --gap: {{ section.settings.gap }}px;"
     data-testid="footer-utilities"
   >
+    {%- if section.settings.show_image -%}<div class="utilities__main">{%- endif -%}
     {% content_for 'blocks' %}
+    {%- if section.settings.show_image -%}</div>{%- endif -%}
     {%- if section.settings.show_image -%}
       <div class="utilities__image" style="--image-width: {{ section.settings.image_width }}px;">
         {%- if section.settings.image != blank -%}
@@ -81,17 +83,47 @@
     margin-inline: auto;
   }
 
-  /* Optional image sits in the bottom-right column, after the blocks */
+  /* Optional image: two columns on desktop (blocks left, image right), stacked and centred on mobile */
+  .utilities__main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+    text-align: center;
+  }
+
+  .utilities__main > * {
+    text-align: center;
+  }
+
+  .utilities--has-image > .utilities__image {
+    justify-self: center;
+    text-align: center;
+  }
+
   @media screen and (min-width: 750px) {
-    .utilities--has-image {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+    .footer-utilities .utilities.utilities--has-image {
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
+      column-gap: var(--gap);
+    }
+
+    .utilities__main {
+      flex-direction: row;
+      justify-content: flex-start;
+      column-gap: 0;
+      row-gap: 0;
+      text-align: left;
+    }
+
+    .utilities__main > * {
+      text-align: left;
     }
 
     .utilities--has-image > .utilities__image {
-      margin-inline-start: auto;
       justify-self: end;
       text-align: right;
     }
