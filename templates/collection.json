@@ -25,6 +25,7 @@
             "font_size": "0.875rem",
             "line_height": "normal",
             "letter_spacing": "loose",
+            "custom_letter_spacing": "",
             "case": "uppercase",
             "wrap": "pretty",
             "text_color": "",
@@ -52,6 +53,7 @@
             "font_size": "",
             "line_height": "normal",
             "letter_spacing": "normal",
+            "custom_letter_spacing": "",
             "case": "none",
             "wrap": "pretty",
             "text_color": "",
@@ -79,6 +81,7 @@
             "font_size": "",
             "line_height": "normal",
             "letter_spacing": "normal",
+            "custom_letter_spacing": "",
             "case": "none",
             "wrap": "pretty",
             "text_color": "",
@@ -144,6 +147,14 @@
             "default_tab": true
           }
         },
+        "tab_9CDQ4T": {
+          "type": "tab",
+          "settings": {
+            "label": "Dresses",
+            "link": "shopify://collections/dresses",
+            "default_tab": false
+          }
+        },
         "tab_tinctures": {
           "type": "tab",
           "settings": {
@@ -179,6 +190,7 @@
       },
       "block_order": [
         "tab_all",
+        "tab_9CDQ4T",
         "tab_tinctures",
         "tab_teas",
         "tab_skincare",
