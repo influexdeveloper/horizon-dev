@@ -1,6 +1,156 @@
+{% doc %}
+  @prompt
+    event calendars and event Rsvp, This a good start but I want to be able to go in add and edit event. I have made all the flyers for each event the events are:
+    -Nov 12 Ribbon Cutting
+    -Nov 13 Red Lotus Tea Ceremony
+    -Nov 15 Mom Church
+    -Dec 4th Grand Opening
+    -Victorian Christmas hours: Sundays, December 6, 13, and 20, 1:30–6 PM; Wednesdays, December 9 and 16, 5–9 PM
+    -Every Friday Complementary Tea Service
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-event-calendar-{{ ai_gen_id }} { display:block; width:{{ block.settings.desktop_width_percent }}%; max-width:100%; color:#fff; font-family:inherit; }
+  .ai-event-calendar-{{ ai_gen_id }}__heading { margin:0 0 8px; color:inherit; font-size:clamp(28px,4vw,44px); }
+  .ai-event-calendar-{{ ai_gen_id }}__intro { margin:0 0 28px; line-height:1.6; }
+  .ai-event-calendar-{{ ai_gen_id }}__list { display:grid; gap:18px; }
+  .ai-event-calendar-{{ ai_gen_id }}__card { display:grid; grid-template-columns:minmax(0, 220px) minmax(0,1fr); gap:22px; padding:22px; border:1px solid rgba(255,255,255,.35); border-radius:14px; background:rgba(255,255,255,.04); }
+  .ai-event-calendar-{{ ai_gen_id }}__flyer { width:100%; aspect-ratio:4/5; overflow:hidden; border-radius:8px; }
+  .ai-event-calendar-{{ ai_gen_id }}__flyer img, .ai-event-calendar-{{ ai_gen_id }}__flyer svg { display:block; width:100%; height:100%; object-fit:cover; }
+  .ai-event-calendar-{{ ai_gen_id }}__date { margin:0 0 8px; font-weight:700; letter-spacing:.04em; }
+  .ai-event-calendar-{{ ai_gen_id }}__title { margin:0 0 8px; color:inherit; font-size:22px; }
+  .ai-event-calendar-{{ ai_gen_id }}__details { margin:0 0 16px; line-height:1.6; }
+  .ai-event-calendar-{{ ai_gen_id }}__location { margin:-6px 0 16px; font-weight:600; }
+  .ai-event-calendar-{{ ai_gen_id }}__form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .ai-event-calendar-{{ ai_gen_id }}__input { width:100%; min-height:46px; padding:11px 13px; border:1px solid #777; border-radius:4px; background:#fff; color:#131111; font:inherit; }
+  .ai-event-calendar-{{ ai_gen_id }}__input:focus-visible, .ai-event-calendar-{{ ai_gen_id }}__button:focus-visible { outline:3px solid #dfdfdf; outline-offset:3px; }
+  .ai-event-calendar-{{ ai_gen_id }}__button { grid-column:1/-1; justify-self:start; min-height:46px; padding:11px 22px; border:1px solid #f0e8de; border-radius:100px; background:#f0e8de; color:#131111; font:inherit; font-weight:700; cursor:pointer; }
+  .ai-event-calendar-{{ ai_gen_id }}__notice { grid-column:1/-1; margin:0; line-height:1.5; }
+  .ai-event-calendar-{{ ai_gen_id }}__empty { padding:18px; border:1px dashed rgba(255,255,255,.6); border-radius:12px; }
+  @media screen and (max-width:650px) { .ai-event-calendar-{{ ai_gen_id }}__card { grid-template-columns:1fr; } .ai-event-calendar-{{ ai_gen_id }}__flyer { max-width:280px; } .ai-event-calendar-{{ ai_gen_id }}__form { grid-template-columns:1fr; } }
+{% endstyle %}
+
+<event-calendar-{{ ai_gen_id }} class="ai-event-calendar-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}<h2 class="ai-event-calendar-{{ ai_gen_id }}__heading">{{ block.settings.heading | escape }}</h2>{% endif %}
+  {% if block.settings.intro != blank %}<div class="ai-event-calendar-{{ ai_gen_id }}__intro">{{ block.settings.intro }}</div>{% endif %}
+  <div class="ai-event-calendar-{{ ai_gen_id }}__list">
+    {% assign event_count = 0 %}
+    {% for i in (1..6) %}
+      {% liquid
+        assign title_key = 'event_' | append: i | append: '_title'
+        assign date_key = 'event_' | append: i | append: '_date'
+        assign details_key = 'event_' | append: i | append: '_details'
+        assign location_key = 'event_' | append: i | append: '_location'
+        assign flyer_key = 'event_' | append: i | append: '_flyer'
+        assign event_title = block.settings[title_key]
+        assign event_date = block.settings[date_key]
+        assign event_details = block.settings[details_key]
+        assign event_location = block.settings[location_key]
+        assign event_flyer = block.settings[flyer_key]
+      %}
+      {% if event_title != blank %}
+        {% assign event_count = event_count | plus: 1 %}
+        {% capture rsvp_form_id %}EventRsvp-{{ ai_gen_id }}-{{ i }}{% endcapture %}
+        <article class="ai-event-calendar-{{ ai_gen_id }}__card">
+          <div class="ai-event-calendar-{{ ai_gen_id }}__flyer">
+            {% if event_flyer != blank %}
+              <img src="{{ event_flyer | image_url: width: 700 }}" alt="{{ event_flyer.alt | default: event_title | escape }}" width="{{ event_flyer.width }}" height="{{ event_flyer.height }}" loading="lazy">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+          <div>
+            {% if event_date != blank %}<p class="ai-event-calendar-{{ ai_gen_id }}__date">{{ event_date | escape }}</p>{% endif %}
+            <h3 class="ai-event-calendar-{{ ai_gen_id }}__title">{{ event_title | escape }}</h3>
+            {% if event_details != blank %}<div class="ai-event-calendar-{{ ai_gen_id }}__details">{{ event_details }}</div>{% endif %}
+            {% if event_location != blank %}<p class="ai-event-calendar-{{ ai_gen_id }}__location">{{ event_location | escape }}</p>{% endif %}
+            {% form 'contact', id: rsvp_form_id %}
+              <input type="hidden" name="contact[Event RSVP]" value="{{ event_title | escape }}{% if event_date != blank %} — {{ event_date | escape }}{% endif %}">
+              <div class="ai-event-calendar-{{ ai_gen_id }}__form">
+                {% if form.posted_successfully? %}<p class="ai-event-calendar-{{ ai_gen_id }}__notice" role="status">{{ block.settings.success_message | escape }}</p>
+                {% else %}
+                  {% if form.errors %}<p class="ai-event-calendar-{{ ai_gen_id }}__notice" role="alert">Please check your name and email, then try again.</p>{% endif %}
+                  <input class="ai-event-calendar-{{ ai_gen_id }}__input" type="text" name="contact[name]" autocomplete="name" placeholder="Your name" aria-label="Your name" required>
+                  <input class="ai-event-calendar-{{ ai_gen_id }}__input" type="email" name="contact[email]" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
+                  <button class="ai-event-calendar-{{ ai_gen_id }}__button" type="submit">{{ block.settings.button_label | escape }}</button>
+                {% endif %}
+              </div>
+            {% endform %}
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+    {% if event_count == 0 %}<p class="ai-event-calendar-{{ ai_gen_id }}__empty">Add an event title in the block settings to display your calendar.</p>{% endif %}
+  </div>
+</event-calendar-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    var tagName = 'event-calendar-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class EventCalendar extends HTMLElement {
+      connectedCallback() {
+        this.querySelectorAll('form').forEach(function(form) {
+          form.addEventListener('submit', function() {
+            var button = form.querySelector('button[type="submit"]');
+            if (button) button.disabled = true;
+          }, { once: true });
+        });
+      }
+    }
+    customElements.define(tagName, EventCalendar);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Event calendar RSVP",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Upcoming events" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Browse upcoming events, view the flyers, and RSVP below.</p>" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "text", "id": "button_label", "label": "RSVP button", "default": "RSVP" },
+    { "type": "text", "id": "success_message", "label": "Confirmation message", "default": "Thanks! Your RSVP has been received." },
+    { "type": "header", "content": "Event 1" },
+    { "type": "text", "id": "event_1_title", "label": "Event name", "default": "Ribbon Cutting" },
+    { "type": "text", "id": "event_1_date", "label": "Date and time", "default": "November 12" },
+    { "type": "richtext", "id": "event_1_details", "label": "Details", "default": "<p>Celebrate our ribbon cutting with us.</p>" },
+    { "type": "text", "id": "event_1_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_1_flyer", "label": "Event flyer" },
+    { "type": "header", "content": "Event 2" },
+    { "type": "text", "id": "event_2_title", "label": "Event name", "default": "Red Lotus Tea Ceremony" },
+    { "type": "text", "id": "event_2_date", "label": "Date and time", "default": "November 13" },
+    { "type": "richtext", "id": "event_2_details", "label": "Details", "default": "<p>Join us for a Red Lotus Tea Ceremony.</p>" },
+    { "type": "text", "id": "event_2_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_2_flyer", "label": "Event flyer" },
+    { "type": "header", "content": "Event 3" },
+    { "type": "text", "id": "event_3_title", "label": "Event name", "default": "Mom Church" },
+    { "type": "text", "id": "event_3_date", "label": "Date and time", "default": "November 15" },
+    { "type": "richtext", "id": "event_3_details", "label": "Details", "default": "<p>Gather with us for Mom Church.</p>" },
+    { "type": "text", "id": "event_3_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_3_flyer", "label": "Event flyer" },
+    { "type": "header", "content": "Event 4" },
+    { "type": "text", "id": "event_4_title", "label": "Event name", "default": "Grand Opening" },
+    { "type": "text", "id": "event_4_date", "label": "Date and time", "default": "December 4" },
+    { "type": "richtext", "id": "event_4_details", "label": "Details", "default": "<p>Celebrate our grand opening with us.</p>" },
+    { "type": "text", "id": "event_4_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_4_flyer", "label": "Event flyer" },
+    { "type": "header", "content": "Event 5" },
+    { "type": "text", "id": "event_5_title", "label": "Event name", "default": "Victorian Christmas hours" },
+    { "type": "text", "id": "event_5_date", "label": "Date and time", "default": "Dec 6, 9, 13, 16, and 20" },
+    { "type": "richtext", "id": "event_5_details", "label": "Details", "default": "<p>Sundays, December 6, 13, and 20: 1:30–6 PM. Wednesdays, December 9 and 16: 5–9 PM.</p>" },
+    { "type": "text", "id": "event_5_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_5_flyer", "label": "Event flyer" },
+    { "type": "header", "content": "Event 6" },
+    { "type": "text", "id": "event_6_title", "label": "Event name", "default": "Complementary Tea Service" },
+    { "type": "text", "id": "event_6_date", "label": "Date and time", "default": "Every Friday" },
+    { "type": "richtext", "id": "event_6_details", "label": "Details", "default": "<p>Enjoy complementary tea service every Friday.</p>" },
+    { "type": "text", "id": "event_6_location", "label": "Location", "default": "The Pearl" },
+    { "type": "image_picker", "id": "event_6_flyer", "label": "Event flyer" }
+  ],
+  "presets": [{ "name": "Event calendar RSVP" }],
+  "tag": null,
+  "class": "event-calendar-rsvp"
+}
 {% endschema %}
