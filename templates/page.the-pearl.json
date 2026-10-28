@@ -881,6 +881,82 @@
         "padding-block-end": 100
       }
     },
+    "179313029132200f85": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_aa6f7cb_xjb66N": {
+          "type": "ai_gen_block_aa6f7cb",
+          "settings": {
+            "heading": "Upcoming events",
+            "intro": "<p>Browse upcoming events, view the flyers, and RSVP below.</p>",
+            "desktop_width_percent": 100,
+            "button_label": "RSVP",
+            "success_message": "Thanks! Your RSVP has been received.",
+            "event_1_title": "Ribbon Cutting",
+            "event_1_date": "November 12 | 5-8PM",
+            "event_1_details": "<p>Celebrate our ribbon cutting with us.</p>",
+            "event_1_location": "The Pearl",
+            "event_1_flyer": "shopify://shop_images/Ribbon_Cutting_Instagram_Post_4_5.png",
+            "event_2_title": "Red Lotus Tea Ceremony",
+            "event_2_date": "November 13 | 4PM & 8PM",
+            "event_2_details": "<p>Join us for a Red Lotus Tea Ceremony.</p>",
+            "event_2_location": "The Pearl",
+            "event_2_flyer": "shopify://shop_images/Red_lotus_tea.png",
+            "event_3_title": "Mom Church",
+            "event_3_date": "November 15 | 10-11 AM",
+            "event_3_details": "<p>Gather with us for Mom Church.</p>",
+            "event_3_location": "The Pearl",
+            "event_3_flyer": "shopify://shop_images/Mom_Church_8.5_x_8.5_in.png",
+            "event_4_title": "Grand Opening",
+            "event_4_date": "December 4 | 4-8PM",
+            "event_4_details": "<p>Celebrate our grand opening with us.</p>",
+            "event_4_location": "The Pearl",
+            "event_4_flyer": "shopify://shop_images/Flyer_Templates.png",
+            "event_5_title": "Victorian Christmas hours",
+            "event_5_date": "Dec 6, 9, 13, 16, and 20",
+            "event_5_details": "<p>Sundays, December 6, 13, and 20: 1:30–6 PM. Wednesdays, December 9 and 16: 5–9 PM.</p>",
+            "event_5_location": "The Pearl",
+            "event_6_title": "Complementary Tea Service",
+            "event_6_date": "Every Friday",
+            "event_6_details": "<p>Enjoy complementary tea service every Friday.</p>",
+            "event_6_location": "The Pearl"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_aa6f7cb_xjb66N"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_width_custom": "930",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 50,
+        "padding-block-end": 50
+      }
+    },
     "section_XGeeAq": {
       "type": "section",
       "blocks": {
@@ -1744,6 +1820,7 @@
     "section_YUDNkd",
     "cta_red_lotus",
     "section_rWqcxD",
+    "179313029132200f85",
     "section_XGeeAq"
   ]
 }
